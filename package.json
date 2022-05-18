@@ -2,7 +2,11 @@
   "dependencies": {
     "@types/body-parser": "^1.19.2",
     "axios": "^0.27.2",
-    "react": "^18.1.0"
+    "express": "^4.18.1",
+    "html-webpack-plugin": "^5.5.0",
+    "nodemon": "^2.0.16",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
   },
   "name": "teamstorm",
   "description": "FEC",
@@ -10,6 +14,7 @@
   "main": "TeamStorm/client/src/index.jsx",
   "devDependencies": {
     "@babel/core": "^7.17.12",
+    "@babel/plugin-syntax-jsx": "^7.17.12",
     "@babel/preset-env": "^7.17.12",
     "@babel/preset-react": "^7.17.12",
     "babel-loader": "^8.2.5",
@@ -18,6 +23,7 @@
     "webpack-dev-server": "^4.9.0"
   },
   "scripts": {
+    "start": "nodemon server/index.js",
     "test": "jest",
     "client-dev": "npx webpack --watch"
   },
