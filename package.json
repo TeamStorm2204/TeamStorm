@@ -1,0 +1,37 @@
+{
+  "dependencies": {
+    "@types/body-parser": "^1.19.2",
+    "axios": "^0.27.2",
+    "react": "^18.1.0"
+  },
+  "name": "teamstorm",
+  "description": "FEC",
+  "version": "1.0.0",
+  "main": "TeamStorm/client/src/index.jsx",
+  "devDependencies": {
+    "@babel/core": "^7.17.12",
+    "@babel/preset-env": "^7.17.12",
+    "@babel/preset-react": "^7.17.12",
+    "babel-loader": "^8.2.5",
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.9.0"
+  },
+  "scripts": {
+    "test": "jest",
+    "client-dev": "npx webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TeamStorm2204/TeamStorm.git"
+  },
+  "keywords": [
+    "teamstorm-FEC-Ecommerce"
+  ],
+  "author": "AlexisStone&ZebibGebresiassie&XiaohuanHu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TeamStorm2204/TeamStorm/issues"
+  },
+  "homepage": "https://github.com/TeamStorm2204/TeamStorm#readme"
+}
