@@ -1,5 +1,4 @@
 const axios = require('axios');
-// require("dotenv").config();
 const config = require('../../config.js');
 
 const headers = {
@@ -10,7 +9,6 @@ const headers = {
 const axiosRequest = function (options, callback) {
   axios(options)
     .then((response) => {
-      console.log('response: ', response.data)
       callback(null, response.data)
     })
     .catch(err => {
@@ -53,10 +51,11 @@ module.exports = {
     };
     axiosRequest(options, callback);
   },
-  getReview: function (obj, callback) {
+  getReviews: function (obj, callback) {
+    console.log(obj)
     let options = {
       method: 'GET',
-      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/',
+      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?',
       params: obj,
       headers,
     };
