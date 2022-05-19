@@ -1,20 +1,15 @@
 const axios = require('axios');
-// require("dotenv").config();
 const config = require('../../config.js');
-console.log('TOIkennnn',config.TOKEN);
 const headers = {
-  //'User-Agent': 'request',
   'Authorization': config.TOKEN
 }
 
 const axiosRequest = function (options, callback) {
   axios(options)
     .then((response) => {
-      console.log('response: ', response.data)
       callback(null, response.data)
     })
     .catch(err => {
-      console.log(err)
       callback(err)
     })
 }
@@ -30,16 +25,15 @@ module.exports = {
   },
   getProductInformation: function (id, callback) {
     let options = {
-      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/:product_id',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}`,
       method: 'GET',
-      params: { product_id: id },
       headers,
     };
     axiosRequest(options, callback);
   },
-  getProductStyles: function (callback) {
+  getProductStyles: function (id, callback) {
     let options = {
-      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/:product_id/styles',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}/styles`,
       method: 'GET',
       headers,
     };
@@ -53,10 +47,10 @@ module.exports = {
     };
     axiosRequest(options, callback);
   },
-  getReview: function (obj, callback) {
+  getReviews: function (obj, callback) {
     let options = {
       method: 'GET',
-      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/',
+      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?',
       params: obj,
       headers,
     };
