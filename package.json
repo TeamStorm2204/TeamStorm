@@ -8,7 +8,8 @@
     "nodemon": "^2.0.16",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
-    "styled-components": "^5.3.5"
+    "styled-components": "^5.3.5",
+    "test": "^0.6.0"
   },
   "name": "teamstorm",
   "description": "FEC",
