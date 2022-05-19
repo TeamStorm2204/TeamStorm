@@ -19,7 +19,6 @@ const Reviews = (props) => {
 
   useEffect(() => {
     api.getReviews({ product_id: 40344 }, (err, data) => {
-      console.log('data: ', data)
       setReviews(data.results);
     })
   }, []);
@@ -57,7 +56,6 @@ const Reviews = (props) => {
         </Ratings>
         <ReviewsList>
           {reviews.map(t => {
-            { console.log('t: ', t) }
             return (
               <Review>
                 <br></br>

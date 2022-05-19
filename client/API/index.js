@@ -1,8 +1,6 @@
 const axios = require('axios');
 const config = require('../../config.js');
-
 const headers = {
-  'User-Agent': 'request',
   'Authorization': config.TOKEN
 }
 
@@ -12,7 +10,6 @@ const axiosRequest = function (options, callback) {
       callback(null, response.data)
     })
     .catch(err => {
-      console.log(err)
       callback(err)
     })
 }
@@ -28,16 +25,15 @@ module.exports = {
   },
   getProductInformation: function (id, callback) {
     let options = {
-      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/:product_id',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}`,
       method: 'GET',
-      params: { product_id: id },
       headers,
     };
     axiosRequest(options, callback);
   },
-  getProductStyles: function (callback) {
+  getProductStyles: function (id, callback) {
     let options = {
-      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/:product_id/styles',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}/styles`,
       method: 'GET',
       headers,
     };
@@ -52,7 +48,6 @@ module.exports = {
     axiosRequest(options, callback);
   },
   getReviews: function (obj, callback) {
-    console.log(obj)
     let options = {
       method: 'GET',
       url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?',

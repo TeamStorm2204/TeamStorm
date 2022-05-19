@@ -12,7 +12,6 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 var config = __webpack_require__(/*! ../../config.js */ "./config.js");
 
 var headers = {
-  'User-Agent': 'request',
   'Authorization': config.TOKEN
 };
 
@@ -20,7 +19,6 @@ var axiosRequest = function axiosRequest(options, callback) {
   axios(options).then(function (response) {
     callback(null, response.data);
   })["catch"](function (err) {
-    console.log(err);
     callback(err);
   });
 };
@@ -36,18 +34,15 @@ module.exports = {
   },
   getProductInformation: function getProductInformation(id, callback) {
     var options = {
-      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/:product_id',
+      url: "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/".concat(id),
       method: 'GET',
-      params: {
-        product_id: id
-      },
       headers: headers
     };
     axiosRequest(options, callback);
   },
-  getProductStyles: function getProductStyles(callback) {
+  getProductStyles: function getProductStyles(id, callback) {
     var options = {
-      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/:product_id/styles',
+      url: "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/".concat(id, "/styles"),
       method: 'GET',
       headers: headers
     };
@@ -62,7 +57,6 @@ module.exports = {
     axiosRequest(options, callback);
   },
   getReviews: function getReviews(obj, callback) {
-    console.log(obj);
     var options = {
       method: 'GET',
       url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?',
@@ -134,11 +128,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _API__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../API */ "./client/API/index.js");
-/* harmony import */ var _API__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_API__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _Reviews_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Reviews.jsx */ "./client/src/components/Reviews.jsx");
-/* harmony import */ var _Styles_styled_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Styles.styled.js */ "./client/src/components/Styles.styled.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _RelatedProducts_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RelatedProducts.jsx */ "./client/src/components/RelatedProducts.jsx");
+/* harmony import */ var _API__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../API */ "./client/API/index.js");
+/* harmony import */ var _API__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_API__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Reviews_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Reviews.jsx */ "./client/src/components/Reviews.jsx");
+/* harmony import */ var _Overview_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Overview.jsx */ "./client/src/components/Overview.jsx");
+/* harmony import */ var _Styles_styled_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Styles.styled.js */ "./client/src/components/Styles.styled.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -159,6 +155,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
 var App = function App(props) {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
@@ -166,27 +164,38 @@ var App = function App(props) {
       setProducts = _useState2[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    _API__WEBPACK_IMPORTED_MODULE_1___default().getProducts(function (err, data) {
-      //console.log('data: ', data)
-      setProducts(data);
+    _API__WEBPACK_IMPORTED_MODULE_2___default().getProducts(function (err, data) {
+      setProducts(data[0]);
     });
   }, []);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Styles_styled_js__WEBPACK_IMPORTED_MODULE_3__.GlobalStyle, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Styles_styled_js__WEBPACK_IMPORTED_MODULE_5__.GlobalStyle, {
       color: "#f5f5f5"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h1", {
       children: "Products "
-    }), products.map(function (t) {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h2", {
-          children: t.name
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", {
-          children: t.slogan
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-          children: t.description
-        })]
-      });
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Reviews_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {})]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+      children: products.id ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Overview_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        id: products.id
+      }) : null
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h2", {
+        children: products.name
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h3", {
+        children: products.slogan
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+        children: products.description
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h2", {
+        children: " Related Product"
+      }), products.id ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_RelatedProducts_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        id: products.id
+      }) : null]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+      children: products.id ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Reviews_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        id: products.id
+      }) : null
+    })]
   });
 };
 
@@ -240,6 +249,120 @@ var NewReview = function NewReview(_ref) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (NewReview);
+
+/***/ }),
+
+/***/ "./client/src/components/Overview.jsx":
+/*!********************************************!*\
+  !*** ./client/src/components/Overview.jsx ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _API__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../API */ "./client/API/index.js");
+/* harmony import */ var _API__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_API__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+
+var Overview = function Overview(props) {};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Overview);
+
+/***/ }),
+
+/***/ "./client/src/components/RelatedProducts.jsx":
+/*!***************************************************!*\
+  !*** ./client/src/components/RelatedProducts.jsx ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _API__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../API */ "./client/API/index.js");
+/* harmony import */ var _API__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_API__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+var RelatedProduct = function RelatedProduct(props) {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      relatedItems = _useState2[0],
+      setRelative = _useState2[1];
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    _API__WEBPACK_IMPORTED_MODULE_1___default().getRelatedProducts(props.id, function (err, data) {
+      if (err) {
+        alert('err getting related product');
+      } else {
+        var relatedInfor = [];
+
+        for (var i = 0; i < data.length; i++) {
+          _API__WEBPACK_IMPORTED_MODULE_1___default().getProductInformation(data[i], function (err, data) {
+            if (err) {
+              console.log(err);
+            } else {
+              console.log('namememme', data.name);
+              relatedInfor.push(data);
+              var updte = relatedItem.concat(data);
+              setRelative([].concat(_toConsumableArray(relatedItems), [updte]));
+            }
+          });
+        }
+      }
+    });
+  }, []);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    children: relatedItems.map(function (item) {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          children: "hello"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          children: item.name
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          children: item.default_price
+        })]
+      });
+    })
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RelatedProduct);
 
 /***/ }),
 
@@ -307,7 +430,6 @@ var Reviews = function Reviews(props) {
     _API__WEBPACK_IMPORTED_MODULE_1___default().getReviews({
       product_id: 40344
     }, function (err, data) {
-      console.log('data: ', data);
       setReviews(data.results);
     });
   }, []);
@@ -364,9 +486,6 @@ var Reviews = function Reviews(props) {
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Styles_styled_js__WEBPACK_IMPORTED_MODULE_3__.ReviewsList, {
         children: reviews.map(function (t) {
-          {
-            console.log('t: ', t);
-          }
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_Styles_styled_js__WEBPACK_IMPORTED_MODULE_3__.Review, {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h2", {
               children: t.reviewer_name
@@ -451,7 +570,7 @@ var GlobalStyle = (0,styled_components__WEBPACK_IMPORTED_MODULE_0__.createGlobal
 /***/ ((module) => {
 
 module.exports = {
-  TOKEN: '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'
+  TOKEN: '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'
 };
 
 /***/ }),
