@@ -3,7 +3,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import api from '../../API';
 import NewReview from './NewReview.jsx';
-import { Body, Header, Ratings, RatingCheck, ReviewsList, Review, SubHeader, GlobalStyles, StyledButton } from './Styles.styled.js';
+import { Body, Stars, Header, Ratings, RatingCheck, ReviewsList, Review, SubHeader, GlobalStyles, StyledButton } from './Styles.styled.js';
 
 const theme = {
   colors: {
@@ -12,24 +12,52 @@ const theme = {
     footer: '#003333'
   }
 }
-const Reviews = (props) => {
+const Reviews = ({ id }) => {
   let arr = [5, 4, 3, 2, 1]
   const [reviews, setReviews] = useState([]);
   const [seen, setSeen] = useState(false);
+  const [avg, setAvg] = useState(1);
+  const [filteredRatings, setFilteredRatings] = useState(null);
 
   useEffect(() => {
-    api.getReviews({ product_id: 40344 }, (err, data) => {
+    api.getReviews({ product_id: id }, (err, data) => {
+      if (data.results.length > 0) {
+        let sum = 0
+        for (let i = 0; i < data.results.length; i++) {
+          sum += data.results[i].rating
+        }
+        let avge = Math.round(sum / data.results.length);
+        setAvg(avge)
+        console.log('average: ', avg)
+      }
       setReviews(data.results);
     })
   }, []);
+
   let togglePop = () => {
     setSeen(!seen);
   };
+
+  let dateConverter = (dateString) => {
+    const options = { year: "numeric", month: "long", day: "numeric" }
+    return new Date(dateString).toLocaleDateString(undefined, options)
+  }
+  let handleFilter = () => {
+
+  }
   return (
     <ThemeProvider theme={theme} >
       <Header>
         <h1>Reviews</h1>
-        <h5>Stars</h5>
+        <Stars>
+          <p style={{ fontSize: '40px' }} >{avg}</p>
+          {
+            reviews.length > 0 ?
+              [1, 2, 3, 4, 5].map((t) => {
+                return t <= avg ? <span>★</span> : <span>☆</span>
+              }) : null
+          }
+        </Stars>
         <h5>Fit Slide Bar</h5>
         <div>
           <div className="btn" onClick={togglePop}>
@@ -58,8 +86,18 @@ const Reviews = (props) => {
           {reviews.map(t => {
             return (
               <Review>
-                <br></br>
-                <h2>{t.reviewer_name}</h2>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <div>
+                    {
+                      reviews.length > 0 ?
+                        [1, 2, 3, 4, 5].map((p) => {
+                          return p <= t.rating ? <span>★</span> : <span>☆</span>
+                        }) : null
+                    }
+                  </div>
+                  <span style={{ fontSize: '13px', color: '#a3a3a3' }}>{t.reviewer_name},  {dateConverter(t.date)}</span>
+                </div>
+                {/* <h2>{t.reviewer_name}</h2> */}
                 <h3>{t.summary}</h3>
                 <div>{t.body}</div>
               </Review>

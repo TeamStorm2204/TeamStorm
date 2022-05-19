@@ -11,6 +11,7 @@ const App = (props) => {
 
   useEffect(() => {
     api.getProducts((err, data) => {
+      console.log(data)
       setProducts(data[0]);
 
     })
@@ -21,21 +22,21 @@ const App = (props) => {
       <GlobalStyle color='#f5f5f5' />
       <h1>Products </h1>
       <div>
-       {products.id? <OverView id={products.id} />:null}
+        {products.id ? <OverView id={products.id} /> : null}
       </div>
-          <div>
-            <br></br>
-            <h2>{products.name}</h2>
-            <h3>{products.slogan}</h3>
-            <div>{products.description}</div>
-        </div>
-        {/* <hr> */}
+      <div>
+        <br></br>
+        <h2>{products.name}</h2>
+        <h3>{products.slogan}</h3>
+        <div>{products.description}</div>
+      </div>
+      {/* <hr> */}
       <div>
         <h2> Related Product</h2>
-        {products.id? <RelatedProducts id={products.id} />:null}
+        {products.id ? <RelatedProducts id={products.id} /> : null}
       </div>
       <div>
-        {products.id? <Reviews id={products.id} />:null}
+        {products.id ? <Reviews id={products.id} /> : null}
       </div>
     </div>
   )

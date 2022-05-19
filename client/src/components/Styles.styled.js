@@ -10,7 +10,6 @@ export const Header = styled.div`
     padding-left: 25px;
     padding-right: 25px;
     margin: 0 auto;
-    font-size: 20px;
     align-items: center;
   `
 export const SubHeader = styled.div`
@@ -49,8 +48,8 @@ export const Body = styled.div`
 export const Ratings = styled.div`
     display: flex;
     justify-content: space-around;
-    width: 30%;
-    max-width: 30%;
+    width: 40%;
+    max-width: 40%;
     padding: 0px;
     margin: 0px;
     font-size: 20px;
@@ -65,11 +64,16 @@ export const ReviewsList = styled.div`
 export const Review = styled.div`
     background-color: #ffffff;
     box-sizing: content-box;
-    width: 90%;
-    margin-right:25px;
+    width: 95%;
+    margin-right:10px;
     margin-top:5px;
     margin-bottom:5px;
     padding:25px;
+  `
+export const Stars = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
   `
 export const RatingCheck = styled.div`
     display: flex;
