@@ -1,9 +1,9 @@
 const axios = require('axios');
 // require("dotenv").config();
 const config = require('../../config.js');
-
+console.log('TOIkennnn',config.TOKEN);
 const headers = {
-  'User-Agent': 'request',
+  //'User-Agent': 'request',
   'Authorization': config.TOKEN
 }
 
