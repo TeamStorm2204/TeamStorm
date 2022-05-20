@@ -23,6 +23,16 @@ export const SubHeader = styled.div`
     font-size: 20px;
     align-items: center;
   `
+export const PrimaryButton = styled.button`
+    background-color: white;
+    border: none;
+    color: black;
+    padding: 15px 40px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    box-shadow: 0 8px 10px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  `
 export const StyledButton = styled.button`
     background-color: black;
     border: none;
@@ -75,9 +85,23 @@ export const Stars = styled.div`
     flex-direction: row;
     align-items: center;
   `
+export const St = styled.div`
+    background: linear-gradient(90deg, #fc0 0 ${(props) => props.average / 5 * 100}%, grey ${(props) => props.average / 5 * 100}% 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  `
+export const Scrollbar = styled.div`
+    width: 100%;
+    height: 500px;
+    overflow: scroll;
+    position: relative;
+    &::-webkit-scrollbar {
+        width: 20px;
+        border: 1px solid #d8d8d8;
+    }
+  `
 export const RatingCheck = styled.div`
     display: flex;
-    background-color: #ffffff;
     box-sizing: content-box;
     width: 70%;
     margin-right:30px;

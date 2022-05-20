@@ -11,7 +11,6 @@ const App = (props) => {
 
   useEffect(() => {
     api.getProducts((err, data) => {
-      console.log(data)
       setProducts(data[0]);
 
     })
