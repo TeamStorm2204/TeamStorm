@@ -24,6 +24,7 @@ module.exports = {
     axiosRequest(options, callback);
   },
   getProductInformation: function (id, callback) {
+
     let options = {
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}`,
       method: 'GET',
