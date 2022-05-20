@@ -72,13 +72,13 @@ export const ReviewsList = styled.div`
     width: 100%;
   `
 export const Review = styled.div`
-    background-color: #ffffff;
     box-sizing: content-box;
     width: 95%;
     margin-right:10px;
     margin-top:5px;
     margin-bottom:5px;
     padding:25px;
+    border-bottom: 1px solid grey;
   `
 export const Stars = styled.div`
     display: flex;

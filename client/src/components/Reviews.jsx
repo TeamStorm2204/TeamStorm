@@ -1,6 +1,7 @@
 import { ThemeProvider } from 'styled-components'
 import React from 'react';
-import { useEffect, useState, createContext } from 'react';
+import { useEffect, useState, createContext, useContext } from 'react';
+import { UserContext } from './App.jsx';
 import api from '../../API';
 import NewReview from './NewReview.jsx';
 import RenderReviews from './RenderReviews.jsx';
@@ -13,7 +14,8 @@ const theme = {
     footer: '#003333',
   }
 }
-const Reviews = ({ id }) => {
+const Reviews = () => {
+  let id = useContext(UserContext)
   let arr = [5, 4, 3, 2, 1]
   const [reviews, setReviews] = useState([]);
   const [renderedReviews, setRenderedReviews] = useState([]);
@@ -25,8 +27,7 @@ const Reviews = ({ id }) => {
 
   const AvgContext = createContext();
   useEffect(() => {
-    api.getReviews({ product_id: id }, (err, data) => {
-      console.log('data: ', data)
+    api.getReviews({ product_id: id.currentPD.id }, (err, data) => {
       if (data.results.length > 0) {
         let sum = 0
         let obj = { 1: [], 2: [], 3: [], 4: [], 5: [] }
@@ -97,14 +98,12 @@ const Reviews = ({ id }) => {
         </SubHeader>
         <Body>
           <Ratings>
-            {/* <input type='text' placeholder='Search Reviews' ></input> */}
-            <h4></h4>
             <RatingCheck>
               <div>
                 {
                   arr.map(t => {
                     return (
-                      <div onClick={() => handleFilter(t)} style={{ alignItems: 'center', display: 'flex', textDecoration: 'underline' }}>
+                      <div onClick={() => handleFilter(t)} style={{ alignItems: 'center', display: 'flex', textDecoration: 'underline', fontSize: '16px', color: '#4f4e4e' }}>
                         {t} stars
                         <div style={{ marginLeft: '20px', height: '7px', width: '150px', backgroundColor: 'grey' }}>
                           <ProgressBar percentNum={filteredRatings[t].length / maxRevCt * 100}></ProgressBar>
@@ -115,7 +114,7 @@ const Reviews = ({ id }) => {
                 }
               </div>
             </RatingCheck>
-            <div onClick={() => setIsFiltered(false)} style={{ textDecoration: 'underline' }}>See All Reviews</div>
+            <div onClick={() => setIsFiltered(false)} style={{ textDecoration: 'underline', fontSize: '16px', color: '#4f4e4e' }}>see all ratings...</div>
           </Ratings>
           {
             isFiltered ? <RenderReviews renderMore={renderMore} renderedReviews={renderedReviews} mainList={filteredRatings[renderedReviews[0].rating]} />
