@@ -32,6 +32,9 @@ export const PrimaryButton = styled.button`
     display: inline-block;
     font-size: 16px;
     box-shadow: 0 8px 10px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    &:hover {
+      box-shadow: 0 5px 3px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    }
   `
 export const StyledButton = styled.button`
     background-color: black;
@@ -41,7 +44,10 @@ export const StyledButton = styled.button`
     text-align: center;
     display: inline-block;
     font-size: 16px;
-    box-shadow: 0 8px 10px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 8px 10px 0 rgba(0,0,0,0.3), 0 6px 20px 0 rgba(0,0,0,0.19);
+    &:hover {
+      box-shadow: 0 5px 3px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    }
   `
 export const Body = styled.div`
     background-color:${({ theme }) => theme.colors.body};
@@ -101,9 +107,34 @@ export const Scrollbar = styled.div`
     height: 500px;
     overflow: scroll;
     position: relative;
+    box-shadow: inset 1px 1px 10px #d1d1d1;
     &:: -webkit - scrollbar {
+      -webkit-appearance: auto;
       width: 20px;
       border: 1px solid #d8d8d8;
+    }
+`
+export const DropdownMenu = styled.div`
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+`
+export const DrpItem = styled.p`
+    width: 170px;
+    height: 20px;
+    padding-bottom:10px;
+    border-bottom: 1px solid grey;
+
+`
+export const Dropdown = styled.div`
+    textDecoration: 'underline';
+    display: inline-block;
+    &:hover ${DropdownMenu} {
+      display: block;
     }
 `
 export const RatingCheck = styled.div`

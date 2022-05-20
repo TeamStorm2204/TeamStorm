@@ -494,13 +494,26 @@ var ReviewItem = function ReviewItem(_ref) {
         },
         children: [t.reviewer_name, ",  ", dateConverter(t.date)]
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
-      children: t.summary
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      style: {
+        fontSize: '25px',
+        textDecoration: 'bold',
+        marginTop: '15px'
+      },
+      children: t.summary
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      style: {
+        fontSize: '16px'
+      },
       children: t.body.length <= 250 ? t.body : t.body.substring(0, 250) + '...'
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
       children: t.body.length >= 250 ? 'Read More' : null
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), t.recommend ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      style: {
+        fontSize: '16px'
+      },
+      children: "\u2714\uFE0F I recommend this product"
+    }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
       style: {
         display: 'flex',
         fontSize: '13px',
@@ -538,6 +551,7 @@ var ReviewItem = function ReviewItem(_ref) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Average": () => (/* binding */ Average),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
@@ -580,6 +594,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+var Average = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.createContext)();
 var theme = {
   colors: {
     header: '#e3d5d5',
@@ -638,6 +653,8 @@ var Reviews = function Reviews() {
     _API__WEBPACK_IMPORTED_MODULE_2___default().getReviews({
       product_id: id.currentPD.id
     }, function (err, data) {
+      console.log('data: ', data);
+
       if (data.results.length > 0) {
         var sum = 0;
         var obj = {
@@ -668,6 +685,17 @@ var Reviews = function Reviews() {
 
   var togglePop = function togglePop() {
     setSeen(!seen);
+  };
+
+  var sorter = function sorter(sortType) {
+    _API__WEBPACK_IMPORTED_MODULE_2___default().getReviews({
+      product_id: id.currentPD.id,
+      sort: sortType
+    }, function (err, data) {
+      console.log('data: ', data);
+      setReviews(data.results);
+      setRenderedReviews(data.results.slice(0, 2));
+    });
   };
 
   var renderMore = function renderMore() {
@@ -732,8 +760,33 @@ var Reviews = function Reviews() {
           children: ["Showing ", renderedReviews.length, " of ", filteredRatings[renderedReviews[0].rating].length, " results"]
         }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("h6", {
           children: ["Showing ", renderedReviews.length, " of ", reviews.length, " results"]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h5", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h6", {
-          children: "'Sort by (insert dropdown here)'"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h5", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_Styles_styled_js__WEBPACK_IMPORTED_MODULE_5__.Dropdown, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+              style: {
+                textDecoration: 'underline',
+                fontSize: '15px'
+              },
+              children: "Filter by...\uD83D\uDD3D"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_Styles_styled_js__WEBPACK_IMPORTED_MODULE_5__.DropdownMenu, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Styles_styled_js__WEBPACK_IMPORTED_MODULE_5__.DrpItem, {
+                onClick: function onClick() {
+                  return sorter('newest');
+                },
+                children: "Newest"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Styles_styled_js__WEBPACK_IMPORTED_MODULE_5__.DrpItem, {
+                onClick: function onClick() {
+                  return sorter('helpful');
+                },
+                children: "Helpfulness"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Styles_styled_js__WEBPACK_IMPORTED_MODULE_5__.DrpItem, {
+                onClick: function onClick() {
+                  return sorter('relevant');
+                },
+                children: "Recommended"
+              })]
+            })]
+          })
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_Styles_styled_js__WEBPACK_IMPORTED_MODULE_5__.Body, {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_Styles_styled_js__WEBPACK_IMPORTED_MODULE_5__.Ratings, {
@@ -804,6 +857,9 @@ var Reviews = function Reviews() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Body": () => (/* binding */ Body),
+/* harmony export */   "Dropdown": () => (/* binding */ Dropdown),
+/* harmony export */   "DropdownMenu": () => (/* binding */ DropdownMenu),
+/* harmony export */   "DrpItem": () => (/* binding */ DrpItem),
 /* harmony export */   "GlobalStyle": () => (/* binding */ GlobalStyle),
 /* harmony export */   "Header": () => (/* binding */ Header),
 /* harmony export */   "Popup": () => (/* binding */ Popup),
@@ -821,7 +877,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "SubHeader": () => (/* binding */ SubHeader)
 /* harmony export */ });
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16, _templateObject17, _templateObject18, _templateObject19;
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
@@ -832,8 +888,8 @@ var Header = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_temp
   return theme.colors.header;
 });
 var SubHeader = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    display: flex;\n    justify-content: space-between;\n    width: 90%;\n    max-width: 90%;\n    padding-left: 25px;\n    padding-right: 25px;\n    margin: 0 auto;\n    font-size: 20px;\n    align-items: center;\n  "])));
-var PrimaryButton = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].button(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    background-color: white;\n    border: none;\n    color: black;\n    padding: 15px 40px;\n    text-align: center;\n    display: inline-block;\n    font-size: 16px;\n    box-shadow: 0 8px 10px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);\n  "])));
-var StyledButton = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].button(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    background-color: black;\n    border: none;\n    color: white;\n    padding: 15px 40px;\n    text-align: center;\n    display: inline-block;\n    font-size: 16px;\n    box-shadow: 0 8px 10px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);\n  "])));
+var PrimaryButton = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].button(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    background-color: white;\n    border: none;\n    color: black;\n    padding: 15px 40px;\n    text-align: center;\n    display: inline-block;\n    font-size: 16px;\n    box-shadow: 0 8px 10px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);\n    &:hover {\n      box-shadow: 0 5px 3px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);\n    }\n  "])));
+var StyledButton = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].button(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    background-color: black;\n    border: none;\n    color: white;\n    padding: 15px 40px;\n    text-align: center;\n    display: inline-block;\n    font-size: 16px;\n    box-shadow: 0 8px 10px 0 rgba(0,0,0,0.3), 0 6px 20px 0 rgba(0,0,0,0.19);\n    &:hover {\n      box-shadow: 0 5px 3px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);\n    }\n  "])));
 var Body = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n    background-color:", ";\n    display: flex;\n    justify-content: flex-start;\n    width: 95%;\n    max-width: 95%;\n    padding-left: 25px;\n    padding-right: 25px;\n    margin: 0 auto;\n    font-size: 20px;\n    align-items: flex-start;\n  "])), function (_ref2) {
   var theme = _ref2.theme;
   return theme.colors.body;
@@ -850,10 +906,13 @@ var St = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_template
 var ProgressBar = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["\n  background-color: #FDCC0D;\n  width: ", "%;\n  height: 7px;\n"])), function (props) {
   return props.percentNum;
 });
-var Scrollbar = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n    width: 100 %;\n    height: 500px;\n    overflow: scroll;\n    position: relative;\n    &:: -webkit - scrollbar {\n      width: 20px;\n      border: 1px solid #d8d8d8;\n    }\n"])));
-var RatingCheck = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["\n    display: flex;\n    width: 80 %;\n    margin - right: 30px;\n    flex - direction: row;\n"])));
-var SearchBar = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["\n    background - color: #ffffff;\n    box - sizing: content - box;\n    width: 80 %;\n    margin - right: 20px;\n"])));
-var Popup = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject15 || (_templateObject15 = _taggedTemplateLiteral(["\n    position: fixed;\n    z - index: 1;\n    width: 100 %;\n    height: 100 %;\n    background - color: rgba(0, 0, 0, 0.25);\n"]))); // export const PopupContent = styled.div`
+var Scrollbar = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n    width: 100 %;\n    height: 500px;\n    overflow: scroll;\n    position: relative;\n    box-shadow: inset 1px 1px 10px #d1d1d1;\n    &:: -webkit - scrollbar {\n      -webkit-appearance: auto;\n      width: 20px;\n      border: 1px solid #d8d8d8;\n    }\n"])));
+var DropdownMenu = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["\n  display: none;\n  position: absolute;\n  background-color: #f9f9f9;\n  min-width: 160px;\n  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);\n  padding: 12px 16px;\n  z-index: 1;\n"])));
+var DrpItem = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].p(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["\n    width: 170px;\n    height: 20px;\n    padding-bottom:10px;\n    border-bottom: 1px solid grey;\n\n"])));
+var Dropdown = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject15 || (_templateObject15 = _taggedTemplateLiteral(["\n    textDecoration: 'underline';\n    display: inline-block;\n    &:hover ", " {\n      display: block;\n    }\n"])), DropdownMenu);
+var RatingCheck = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject16 || (_templateObject16 = _taggedTemplateLiteral(["\n    display: flex;\n    width: 80 %;\n    margin - right: 30px;\n    flex - direction: row;\n"])));
+var SearchBar = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject17 || (_templateObject17 = _taggedTemplateLiteral(["\n    background - color: #ffffff;\n    box - sizing: content - box;\n    width: 80 %;\n    margin - right: 20px;\n"])));
+var Popup = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject18 || (_templateObject18 = _taggedTemplateLiteral(["\n    position: fixed;\n    z - index: 1;\n    width: 100 %;\n    height: 100 %;\n    background - color: rgba(0, 0, 0, 0.25);\n"]))); // export const PopupContent = styled.div`
 //     background-color: white;
 //     position: absolute;
 //     top: 20%;
@@ -864,7 +923,7 @@ var Popup = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templ
 //     border: 2px solid black;
 //   `
 
-var GlobalStyle = (0,styled_components__WEBPACK_IMPORTED_MODULE_0__.createGlobalStyle)(_templateObject16 || (_templateObject16 = _taggedTemplateLiteral(["\n   body {\n    display: flex;\n    margin: 0;\n    padding: 100px;\n    background: #f5f5f5;\n    font - family: sans-serif;\n    flex-direction: column;\n  }\n"]))); //export styles;
+var GlobalStyle = (0,styled_components__WEBPACK_IMPORTED_MODULE_0__.createGlobalStyle)(_templateObject19 || (_templateObject19 = _taggedTemplateLiteral(["\n   body {\n    display: flex;\n    margin: 0;\n    padding: 100px;\n    background: #f5f5f5;\n    font - family: sans-serif;\n    flex-direction: column;\n  }\n"]))); //export styles;
 
 /***/ }),
 

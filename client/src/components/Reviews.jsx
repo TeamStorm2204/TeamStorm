@@ -5,7 +5,9 @@ import { UserContext } from './App.jsx';
 import api from '../../API';
 import NewReview from './NewReview.jsx';
 import RenderReviews from './RenderReviews.jsx';
-import { Body, St, ProgressBar, Scrollbar, PrimaryButton, Stars, Header, Ratings, RatingCheck, ReviewsList, Review, SubHeader, GlobalStyles, StyledButton } from './Styles.styled.js';
+import { Body, Dropdown, DropdownMenu, DrpItem, St, ProgressBar, Scrollbar, PrimaryButton, Stars, Header, Ratings, RatingCheck, SubHeader, GlobalStyles, StyledButton } from './Styles.styled.js';
+
+export const Average = createContext();
 
 const theme = {
   colors: {
@@ -28,6 +30,7 @@ const Reviews = () => {
   const AvgContext = createContext();
   useEffect(() => {
     api.getReviews({ product_id: id.currentPD.id }, (err, data) => {
+      console.log('data: ', data)
       if (data.results.length > 0) {
         let sum = 0
         let obj = { 1: [], 2: [], 3: [], 4: [], 5: [] }
@@ -50,6 +53,14 @@ const Reviews = () => {
   let togglePop = () => {
     setSeen(!seen);
   };
+
+  var sorter = (sortType) => {
+    api.getReviews({ product_id: id.currentPD.id, sort: sortType }, (err, data) => {
+      console.log('data: ', data)
+      setReviews(data.results);
+      setRenderedReviews(data.results.slice(0, 2))
+    })
+  }
 
   let renderMore = () => {
     let leng = renderedReviews.length
@@ -94,7 +105,16 @@ const Reviews = () => {
           <h6>Filter Reviews</h6>
           {isFiltered ? <h6>Showing {renderedReviews.length} of {filteredRatings[renderedReviews[0].rating].length} results</h6> : <h6>Showing {renderedReviews.length} of {reviews.length} results</h6>}
           <h5></h5>
-          <h6>'Sort by (insert dropdown here)'</h6>
+          <div>
+            <Dropdown>
+              <span style={{ textDecoration: 'underline', fontSize: '15px' }}>Filter by...🔽</span>
+              <DropdownMenu>
+                <DrpItem onClick={() => sorter('newest')}>Newest</DrpItem>
+                <DrpItem onClick={() => sorter('helpful')}>Helpfulness</DrpItem>
+                <DrpItem onClick={() => sorter('relevant')}>Recommended</DrpItem>
+              </DropdownMenu>
+            </Dropdown>
+          </div>
         </SubHeader>
         <Body>
           <Ratings>
@@ -122,7 +142,7 @@ const Reviews = () => {
           }
         </Body>
       </ThemeProvider >
-    </AvgContext.Provider>
+    </AvgContext.Provider >
   )
 }
 
