@@ -3,7 +3,7 @@ import React from 'react';
 import API from '../../API';
 import { useEffect, useState } from 'react';
 import ProductStyleSelector from './ProductStyleSelector.jsx';
-// import ProductView from './ProductView.jsx';
+import ProductView from './ProductView.jsx';
 
 const Overview =(props)=> {
     const [product, setProduct] = useState([]);
@@ -14,7 +14,7 @@ const Overview =(props)=> {
         API.getProductStyles(props.id, (err, data) => {
             console.log('dat', data.results)
           setStyles(data.results);
-          setSelectedStyle 
+          // setSelectedStyle 
         })
       }, []);
 
@@ -32,8 +32,8 @@ const Overview =(props)=> {
             <h1>{product.name}</h1>
             {/* <h3>$ {product.default_price}</h3> */}
             </div>
-            {styles.length? <ProductStyleSelector id={props.id} styles={styles} selectedStyle={styles[4]}></ProductStyleSelector> :null}
-            {/* <ProductView id={props.id}></ProductView> */}
+            {styles.length? <ProductStyleSelector id={props.id} styles={styles} selectedStyle={styles[0]}></ProductStyleSelector> :null}
+            {styles.length? <ProductView selectedStyle={styles[0]}></ProductView>:null}
         </div>
     )
 }
