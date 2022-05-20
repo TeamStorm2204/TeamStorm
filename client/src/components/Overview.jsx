@@ -7,14 +7,13 @@ import ProductView from './ProductView.jsx';
 
 const Overview =(props)=> {
     const [product, setProduct] = useState([]);
-    const [selectedStyle, setSelectedStyle] = useState([]);
+    const [selectedIndex, setSelectedIndex] = useState(null);
     const [styles, setStyles] = useState([]);
 
     useEffect(() => {
         API.getProductStyles(props.id, (err, data) => {
             console.log('dat', data.results)
           setStyles(data.results);
-          // setSelectedStyle 
         })
       }, []);
 
@@ -32,8 +31,8 @@ const Overview =(props)=> {
             <h1>{product.name}</h1>
             {/* <h3>$ {product.default_price}</h3> */}
             </div>
-            {styles.length? <ProductStyleSelector id={props.id} styles={styles} selectedStyle={styles[0]}></ProductStyleSelector> :null}
-            {styles.length? <ProductView selectedStyle={styles[0]}></ProductView>:null}
+            {styles.length? <ProductStyleSelector id={props.id} styles={styles} setSelectedIndex={setSelectedIndex} selectedStyle={styles[(selectedIndex || 0)] }></ProductStyleSelector> :null}
+            {styles.length? <ProductView selectedStyle={styles[selectedIndex || 0]}></ProductView>:null}
         </div>
     )
 }

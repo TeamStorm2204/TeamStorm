@@ -10,7 +10,7 @@ const ProductView =(props)=> {
         <div>
           {<img src={photos[selectedIndex].thumbnail_url}/>}
           {photos.map((photo, index)=>(
-            (selectedIndex !== index)? <img src={photo.thumbnail_url}  width="100"/>:null
+            (selectedIndex !== index)? <img src={photo.thumbnail_url}  key={index} width="100"/>:null
           ))}
         </div>
 

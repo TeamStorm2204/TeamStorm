@@ -296,10 +296,10 @@ var Overview = function Overview(props) {
       product = _useState2[0],
       setProduct = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
       _useState4 = _slicedToArray(_useState3, 2),
-      selectedStyle = _useState4[0],
-      setSelectedStyle = _useState4[1];
+      selectedIndex = _useState4[0],
+      setSelectedIndex = _useState4[1];
 
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState6 = _slicedToArray(_useState5, 2),
@@ -309,7 +309,7 @@ var Overview = function Overview(props) {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     _API__WEBPACK_IMPORTED_MODULE_1___default().getProductStyles(props.id, function (err, data) {
       console.log('dat', data.results);
-      setStyles(data.results); // setSelectedStyle 
+      setStyles(data.results);
     });
   }, []);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
@@ -328,9 +328,10 @@ var Overview = function Overview(props) {
     }), styles.length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ProductStyleSelector_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
       id: props.id,
       styles: styles,
-      selectedStyle: styles[0]
+      setSelectedIndex: setSelectedIndex,
+      selectedStyle: styles[selectedIndex || 0]
     }) : null, styles.length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ProductView_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      selectedStyle: styles[0]
+      selectedStyle: styles[selectedIndex || 0]
     }) : null]
   });
 };
@@ -355,17 +356,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _API__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../API */ "./client/API/index.js");
 /* harmony import */ var _API__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_API__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
 
 
 
-var ProductStyleSelector = function ProductStyleSelector(props) {
-  var styles = props.styles;
-  var selectedStyle = props.selectedStyle;
+
+var ProductStyleSelector = function ProductStyleSelector(_ref) {
+  var styles = _ref.styles,
+      selectedStyle = _ref.selectedStyle,
+      setSelectedIndex = _ref.setSelectedIndex;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      quantity = _useState2[0],
+      setQuantity = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      isDisabled = _useState4[0],
+      setIsDisabled = _useState4[1];
+
   console.log({
-    styles: styles,
     selectedStyle: selectedStyle
   });
   var strikethoughStyle = selectedStyle.sale_price ? {
@@ -382,9 +406,21 @@ var ProductStyleSelector = function ProductStyleSelector(props) {
     });
   }
 
-  console.log({
-    skus: skus
-  });
+  var selectSize = function selectSize(event) {
+    console.log({
+      quantity: quantity
+    });
+    console.log('event', event.target.value);
+    var quantities = Array.from(Array(Number(event.target.value) + 1).keys());
+    quantities.shift();
+
+    if (quantities.length > 15) {
+      quantities = quantities.slice(0, 15);
+    }
+
+    setQuantity(quantities);
+  };
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("h3", {
@@ -403,28 +439,35 @@ var ProductStyleSelector = function ProductStyleSelector(props) {
         children: selectedStyle.name
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("select", {
-        children: skus.map(function (sku) {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("select", {
+        onChange: selectSize,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+          value: '-',
+          children: "Select Size"
+        }), skus.map(function (sku, index) {
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
-            value: sku.id,
+            value: sku.quantity,
             children: sku.size
-          }, sku.id);
-        })
+          }, index);
+        })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("select", {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
-          value: "1",
-          children: "1"
+        children: quantity.map(function (num, index) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+            children: num
+          }, index);
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
         type: "submit",
         value: "Add to Cart"
       })]
     }), styles.length > 0 ? styles.map(function (style, index) {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-        children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
-          src: style.photos[0].thumbnail_url,
-          width: "100"
-        })]
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+        src: style.photos[0].thumbnail_url,
+        width: "100",
+        value: index,
+        onClick: function onClick() {
+          return setSelectedIndex(index);
+        }
       }, index);
     }) : null]
   });
@@ -490,7 +533,7 @@ var ProductView = function ProductView(props) {
       return selectedIndex !== index ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
         src: photo.thumbnail_url,
         width: "100"
-      }) : null;
+      }, index) : null;
     })]
   });
 };
