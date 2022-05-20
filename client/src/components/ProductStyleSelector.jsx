@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react';
 
 const ProductStyleSelector =({styles, selectedStyle, setSelectedIndex})=> {
     const [quantity, setQuantity] = useState([]);
-    const [isDisabled, setIsDisabled] = useState(false);
+    const [inStock, setInStock] = useState(false);
+    // const [isEnabled, setIsEnabled] = useState(true);
     
     console.log({selectedStyle});
     const strikethoughStyle= selectedStyle.sale_price? {textDecorationLine: 'line-through'} : {};
@@ -15,13 +16,11 @@ const ProductStyleSelector =({styles, selectedStyle, setSelectedIndex})=> {
     }
 
     const selectSize = function(event) {
-        console.log({quantity})
-        console.log('event', event.target.value)
-        let quantities = Array.from(Array(Number(event.target.value)+1).keys());
+        // console.log({quantity})
+        // console.log('event', event.target.value)
+        let amount = (event.target.value > 15)? 15: event.target.value;
+        let quantities = Array.from(Array(Number(amount)+1).keys());
         quantities.shift()
-        if(quantities.length > 15) {
-            quantities = quantities.slice(0, 15);
-        }
         setQuantity(quantities);
     }
     return (
@@ -37,10 +36,13 @@ const ProductStyleSelector =({styles, selectedStyle, setSelectedIndex})=> {
 
             <form>
                 <select  onChange={selectSize}>
-                    <option value={'-'} >Select Size</option>
+                    <option >Select Size</option>
                     {skus.map((sku, index)=>(<option key={index} value={sku.quantity} >{sku.size}</option>))}
+                    {inStock?  <option >Out of Stock</option>: null}
+  
                 </select>
-                <select>
+                <select value={'-'}>
+                    {quantity.length? null: <option disabled={true}>-</option>}
                     {quantity.map((num, index)=>(<option key={index} >{num}</option>))}
                 </select>
                 <input type="submit" value="Add to Cart" />
