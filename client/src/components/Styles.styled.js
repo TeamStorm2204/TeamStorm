@@ -47,8 +47,8 @@ export const Body = styled.div`
     background-color:${({ theme }) => theme.colors.body};
     display: flex;
     justify-content: flex-start;
-    width: 90%;
-    max-width: 90%;
+    width: 95%;
+    max-width: 95%;
     padding-left: 25px;
     padding-right: 25px;
     margin: 0 auto;
@@ -58,10 +58,10 @@ export const Body = styled.div`
 export const Ratings = styled.div`
     display: flex;
     justify-content: space-around;
-    width: 40%;
-    max-width: 40%;
+    width: 35%;
+    max-width: 35%;
     padding: 0px;
-    margin: 0px;
+    margin-left: 10px;
     font-size: 20px;
     align-items: center;
     flex-direction: column;
@@ -86,41 +86,45 @@ export const Stars = styled.div`
     align-items: center;
   `
 export const St = styled.div`
-    background: linear-gradient(90deg, #fc0 0 ${(props) => props.average / 5 * 100}%, grey ${(props) => props.average / 5 * 100}% 100%);
+    background: linear-gradient(90deg, #FDCC0D 0 ${(props) => props.average / 5 * 100}%, grey ${(props) => props.average / 5 * 100}% 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   `
+export const ProgressBar = styled.div`
+  background-color: #FDCC0D;
+  width: ${(props) => props.percentNum}%;
+  height: 7px;
+`
+
 export const Scrollbar = styled.div`
-    width: 100%;
+    width: 100 %;
     height: 500px;
     overflow: scroll;
     position: relative;
-    &::-webkit-scrollbar {
-        width: 20px;
-        border: 1px solid #d8d8d8;
+    &:: -webkit - scrollbar {
+      width: 20px;
+      border: 1px solid #d8d8d8;
     }
-  `
+`
 export const RatingCheck = styled.div`
     display: flex;
-    box-sizing: content-box;
-    width: 70%;
-    margin-right:30px;
-    padding:15px;
-    flex-direction: column;
-  `
+    width: 80 %;
+    margin - right: 30px;
+    flex - direction: row;
+`
 export const SearchBar = styled.div`
-    background-color: #ffffff;
-    box-sizing: content-box;
-    width: 80%;
-    margin-right:20px;
-  `
+    background - color: #ffffff;
+    box - sizing: content - box;
+    width: 80 %;
+    margin - right: 20px;
+`
 export const Popup = styled.div`
     position: fixed;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.25);
-  `
+    z - index: 1;
+    width: 100 %;
+    height: 100 %;
+    background - color: rgba(0, 0, 0, 0.25);
+`
 // export const PopupContent = styled.div`
 //     background-color: white;
 //     position: absolute;

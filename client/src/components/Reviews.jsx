@@ -3,7 +3,8 @@ import React from 'react';
 import { useEffect, useState, createContext } from 'react';
 import api from '../../API';
 import NewReview from './NewReview.jsx';
-import { Body, St, Scrollbar, PrimaryButton, Stars, Header, Ratings, RatingCheck, ReviewsList, Review, SubHeader, GlobalStyles, StyledButton } from './Styles.styled.js';
+import RenderReviews from './RenderReviews.jsx';
+import { Body, St, ProgressBar, Scrollbar, PrimaryButton, Stars, Header, Ratings, RatingCheck, ReviewsList, Review, SubHeader, GlobalStyles, StyledButton } from './Styles.styled.js';
 
 const theme = {
   colors: {
@@ -19,12 +20,13 @@ const Reviews = ({ id }) => {
   const [seen, setSeen] = useState(false);
   const [avg, setAvg] = useState(0);
   const [maxRevCt, setMaxRevCt] = useState(0);
-  const [filteredRatings, setFilteredRatings] = useState({});
+  const [filteredRatings, setFilteredRatings] = useState({ 1: [], 2: [], 3: [], 4: [], 5: [] });
   const [isFiltered, setIsFiltered] = useState(false);
 
   const AvgContext = createContext();
   useEffect(() => {
     api.getReviews({ product_id: id }, (err, data) => {
+      console.log('data: ', data)
       if (data.results.length > 0) {
         let sum = 0
         let obj = { 1: [], 2: [], 3: [], 4: [], 5: [] }
@@ -35,9 +37,6 @@ const Reviews = ({ id }) => {
           obj[data.results[i].rating].length > max ? max = obj[data.results[i].rating].length : max = max
         }
         let avge = sum / data.results.length;
-        console.log('Average:', avge);
-        console.log('Max:', max);
-        console.log('FilteredRatingsObject:', obj)
         setAvg(avge)
         setMaxRevCt(max)
         setFilteredRatings(obj)
@@ -51,10 +50,6 @@ const Reviews = ({ id }) => {
     setSeen(!seen);
   };
 
-  let dateConverter = (dateString) => {
-    const options = { year: "numeric", month: "long", day: "numeric" }
-    return new Date(dateString).toLocaleDateString(undefined, options)
-  }
   let renderMore = () => {
     let leng = renderedReviews.length
     if (!isFiltered) {
@@ -68,6 +63,9 @@ const Reviews = ({ id }) => {
   let handleFilter = (ratingNum) => {
     console.log('ratingNum: ', ratingNum)
     let arr = filteredRatings[ratingNum]
+    if (arr.length === 0) {
+      return
+    }
     arr.length <= 2 ? setRenderedReviews(arr) : setRenderedReviews(arr.slice(0, 2))
     setIsFiltered(true)
   }
@@ -99,90 +97,29 @@ const Reviews = ({ id }) => {
         </SubHeader>
         <Body>
           <Ratings>
-            <input type='text' placeholder='Search Reviews' ></input>
-            <h6>Rating</h6>
+            {/* <input type='text' placeholder='Search Reviews' ></input> */}
+            <h4></h4>
             <RatingCheck>
-              {
-                arr.map(t => {
-                  return (
-                    <div onClick={() => handleFilter(t)} style={{ textDecoration: 'underline' }}>{t} stars</div>
-                  )
-                })
-              }
-              <div onClick={() => setIsFiltered(false)} style={{ textDecoration: 'underline' }}>See All Reviews</div>
+              <div>
+                {
+                  arr.map(t => {
+                    return (
+                      <div onClick={() => handleFilter(t)} style={{ alignItems: 'center', display: 'flex', textDecoration: 'underline' }}>
+                        {t} stars
+                        <div style={{ marginLeft: '20px', height: '7px', width: '150px', backgroundColor: 'grey' }}>
+                          <ProgressBar percentNum={filteredRatings[t].length / maxRevCt * 100}></ProgressBar>
+                        </div>
+                      </div>
+                    )
+                  })
+                }
+              </div>
             </RatingCheck>
+            <div onClick={() => setIsFiltered(false)} style={{ textDecoration: 'underline' }}>See All Reviews</div>
           </Ratings>
           {
-            isFiltered ?
-              <ReviewsList>
-                {
-                  (renderedReviews.length > 2 ?
-                    <Scrollbar>
-                      <div>
-                        {renderedReviews.map(t => {
-                          return (
-                            <Review>
-                              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                <St average={t.rating}>★★★★★</St>
-                                <span style={{ fontSize: '13px', color: '#a3a3a3' }}>{t.reviewer_name},  {dateConverter(t.date)}</span>
-                              </div>
-                              <h3>{t.summary}</h3>
-                              <div>{t.body}</div>
-                            </Review>
-                          )
-                        })}
-                      </div>
-                    </Scrollbar>
-                    : renderedReviews.map(t => {
-                      return (
-                        <Review>
-                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                            <St average={t.rating}>★★★★★</St>
-                            <span style={{ fontSize: '13px', color: '#a3a3a3' }}>{t.reviewer_name},  {dateConverter(t.date)}</span>
-                          </div>
-                          <h3>{t.summary}</h3>
-                          <div>{t.body}</div>
-                        </Review>
-                      )
-                    }))
-                }
-                {renderedReviews.length !== filteredRatings[renderedReviews[0].rating].length ? <PrimaryButton onClick={renderMore}>More Reviews</PrimaryButton> : null}
-              </ReviewsList>
-              :
-              <ReviewsList>
-                {
-                  (renderedReviews.length > 2 ?
-                    <Scrollbar>
-                      <div>
-                        {renderedReviews.map(t => {
-                          return (
-                            <Review>
-                              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                <St average={t.rating}>★★★★★</St>
-                                <span style={{ fontSize: '13px', color: '#a3a3a3' }}>{t.reviewer_name},  {dateConverter(t.date)}</span>
-                              </div>
-                              <h3>{t.summary}</h3>
-                              <div>{t.body}</div>
-                            </Review>
-                          )
-                        })}
-                      </div>
-                    </Scrollbar>
-                    : renderedReviews.map(t => {
-                      return (
-                        <Review>
-                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                            <St average={t.rating}>★★★★★</St>
-                            <span style={{ fontSize: '13px', color: '#a3a3a3' }}>{t.reviewer_name},  {dateConverter(t.date)}</span>
-                          </div>
-                          <h3>{t.summary}</h3>
-                          <div>{t.body}</div>
-                        </Review>
-                      )
-                    }))
-                }
-                {renderedReviews.length !== reviews.length ? <PrimaryButton onClick={renderMore}>More Reviews</PrimaryButton> : null}
-              </ReviewsList>
+            isFiltered ? <RenderReviews renderMore={renderMore} renderedReviews={renderedReviews} mainList={filteredRatings[renderedReviews[0].rating]} />
+              : <RenderReviews renderMore={renderMore} renderedReviews={renderedReviews} mainList={reviews} />
           }
         </Body>
       </ThemeProvider >
