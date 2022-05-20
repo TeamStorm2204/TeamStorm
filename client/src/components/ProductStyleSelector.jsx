@@ -47,10 +47,11 @@ const ProductStyleSelector =({styles, selectedStyle, setSelectedIndex})=> {
                 </select>
                 <input type="submit" value="Add to Cart" />
             </form>
-
+            <div style={{display:'flex', flexWrap: 'wrap'}}>
             {(styles.length > 0)? styles.map((style, index)=>{
                 return (<img src={style.photos[0].thumbnail_url}  width="100" key={index} value={index} onClick={()=>setSelectedIndex(index)}/>)
             }): null}
+            </div>
         </div>
 
     )
