@@ -1,9 +1,10 @@
-
 import React from 'react';
 import API from '../../API';
 import { useEffect, useState } from 'react';
 import ProductStyleSelector from './ProductStyleSelector.jsx';
 import ProductView from './ProductView.jsx';
+import { ThemeProvider } from 'styled-components';
+import {Header, SubHeader} from './OverviewStyles.js';
 
 const Overview =(props)=> {
     const [product, setProduct] = useState([]);
@@ -25,14 +26,17 @@ const Overview =(props)=> {
       }, []);
 
     return (
-        <div>
-            <div>
-            <h4>{product.category}</h4>
-            <h1>{product.name}</h1>
-            {/* <h3>$ {product.default_price}</h3> */}
-            </div>
-            {styles.length? <ProductStyleSelector id={props.id} styles={styles} setSelectedIndex={setSelectedIndex} selectedStyle={styles[(selectedIndex || 0)] }></ProductStyleSelector> :null}
+        <div style={{display:'flex', flexWrap: 'wrap', flexDirection: 'row'}}>
+          <div>
             {styles.length? <ProductView selectedStyle={styles[selectedIndex || 0]}></ProductView>:null}
+          </div> 
+          <div>
+            <div>
+            <SubHeader>{product.category}</SubHeader>
+            <Header>{product.name}</Header>
+            {styles.length? <ProductStyleSelector id={props.id} styles={styles} setSelectedIndex={setSelectedIndex} selectedStyle={styles[(selectedIndex || 0)] }></ProductStyleSelector> :null}
+            </div>
+          </div> 
         </div>
     )
 }
