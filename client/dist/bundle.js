@@ -874,9 +874,10 @@ var GlobalStyle = (0,styled_components__WEBPACK_IMPORTED_MODULE_0__.createGlobal
   \*******************/
 /***/ ((module) => {
 
-module.exports = {
-  TOKEN: ' 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'
+var config = {
+  TOKEN: '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'
 };
+module.exports = config;
 
 /***/ }),
 
