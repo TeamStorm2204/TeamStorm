@@ -1247,6 +1247,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var Average = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.createContext)();
+var filterTags = [];
 var theme = {
   colors: {
     header: '#e3d5d5',
@@ -1298,15 +1299,21 @@ var Reviews = function Reviews() {
       filteredRatings = _useState10[0],
       setFilteredRatings = _useState10[1];
 
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState12 = _slicedToArray(_useState11, 2),
-      isFiltered = _useState12[0],
-      setIsFiltered = _useState12[1];
+      filteredArrs = _useState12[0],
+      setFilteredArrs = _useState12[1];
 
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState14 = _slicedToArray(_useState13, 2),
-      meta = _useState14[0],
-      setMeta = _useState14[1];
+      isFiltered = _useState14[0],
+      setIsFiltered = _useState14[1];
+
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+      _useState16 = _slicedToArray(_useState15, 2),
+      meta = _useState16[0],
+      setMeta = _useState16[1]; // const [filterTags, setFilterTags] = useState([])
+
 
   var AvgContext = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.createContext)();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
@@ -1372,14 +1379,27 @@ var Reviews = function Reviews() {
   };
 
   var handleFilter = function handleFilter(ratingNum) {
+    console.log('filterTags: ', filterTags);
     var arr = filteredRatings[ratingNum];
 
     if (arr.length === 0) {
       return;
     }
 
-    arr.length <= 2 ? setRenderedReviews(arr) : setRenderedReviews(arr.slice(0, 2));
-    setIsFiltered(true);
+    var bigArr = [];
+    filterTags.map(function (t) {
+      var a = filteredRatings[t];
+      bigArr.push(a);
+    });
+    console.log('bigArr: ', bigArr.flat());
+    setFilteredArrs(bigArr.flat());
+    setRenderedReviews(bigArr.flat().slice(0, 2));
+
+    if (bigArr.flat().length > 0) {
+      setIsFiltered(true);
+    } else {
+      setIsFiltered(false);
+    }
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(AvgContext.Provider, {
@@ -1411,10 +1431,10 @@ var Reviews = function Reviews() {
             })
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_Styles_styled_js__WEBPACK_IMPORTED_MODULE_5__.SubHeader, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h6", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h5", {
             children: "Filter Reviews"
           }), isFiltered ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("h6", {
-            children: ["Showing ", renderedReviews.length, " of ", filteredRatings[renderedReviews[0].rating].length, " results"]
+            children: ["Showing ", renderedReviews.length, " of ", filteredArrs.length, " results"]
           }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("h6", {
             children: ["Showing ", renderedReviews.length, " of ", reviews.length, " results"]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h5", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
@@ -1447,12 +1467,28 @@ var Reviews = function Reviews() {
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_Styles_styled_js__WEBPACK_IMPORTED_MODULE_5__.Body, {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_Styles_styled_js__WEBPACK_IMPORTED_MODULE_5__.Ratings, {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Styles_styled_js__WEBPACK_IMPORTED_MODULE_5__.RatingCheck, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+              style: {
+                display: 'flex'
+              },
+              children: filterTags.map(function (t) {
+                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("span", {
+                  style: {
+                    backgroundColor: 'grey',
+                    padding: '5px',
+                    fontSize: '12px'
+                  },
+                  children: [t, " stars"]
+                });
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Styles_styled_js__WEBPACK_IMPORTED_MODULE_5__.RatingCheck, {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                 children: arr.map(function (t) {
                   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                     onClick: function onClick() {
-                      return handleFilter(t);
+                      filterTags.push(t); // setFilterTags([...filterTags, t])
+
+                      handleFilter(t);
                     },
                     style: {
                       alignItems: 'center',
@@ -1509,7 +1545,7 @@ var Reviews = function Reviews() {
           }), isFiltered ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_RenderReviews_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
             renderMore: renderMore,
             renderedReviews: renderedReviews,
-            mainList: filteredRatings[renderedReviews[0].rating]
+            mainList: filteredArrs
           }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_RenderReviews_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
             renderMore: renderMore,
             renderedReviews: renderedReviews,
@@ -1595,7 +1631,7 @@ var ProgressBar = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(
   return props.percentNum;
 });
 var RangeSlider = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject16 || (_templateObject16 = _taggedTemplateLiteral(["\n  .slider {\n  -webkit-appearance: none;\n  appearance: none;\n  width: 100%;\n  height: 7px;\n  background: #d3d3d3;\n  outline: none;\n  opacity: 0.7;\n  -webkit-transition: .2s;\n  transition: opacity .2s;\n}\n.slider::-webkit-slider-thumb {\n  -webkit-appearance: none;\n  appearance: none;\n  width: 7px;\n  height: 15px;\n  background: black;\n}\n"])));
-var Scrollbar = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject17 || (_templateObject17 = _taggedTemplateLiteral(["\n    width: 80%;\n    height: 500px;\n    overflow: scroll;\n    position: relative;\n    box-shadow: inset 1px 1px 10px #d1d1d1;\n    margin-left:50px;\n    &:: -webkit - scrollbar {\n      -webkit-appearance: auto;\n      width: 20px;\n      border: 1px solid #d8d8d8;\n    }\n"])));
+var Scrollbar = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject17 || (_templateObject17 = _taggedTemplateLiteral(["\n    width: 100%;\n    height: 500px;\n    overflow: scroll;\n    position: relative;\n    box-shadow: inset 1px 1px 10px #d1d1d1;\n    &:: -webkit - scrollbar {\n      -webkit-appearance: auto;\n      width: 20px;\n      border: 1px solid #d8d8d8;\n    }\n"])));
 var DropdownMenu = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject18 || (_templateObject18 = _taggedTemplateLiteral(["\n  display: none;\n  position: absolute;\n  background-color: #f9f9f9;\n  min-width: 160px;\n  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);\n  padding: 12px 16px;\n  z-index: 1;\n"])));
 var InputBox = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].input.attrs({
   type: 'text'

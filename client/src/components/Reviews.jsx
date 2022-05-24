@@ -8,7 +8,7 @@ import RenderReviews from './RenderReviews.jsx';
 import { Body, RangeSlider, Dropdown, DropdownMenu, DrpItem, St, ProgressBar, Scrollbar, PrimaryButton, Stars, Header, Ratings, RatingCheck, SubHeader, GlobalStyles, StyledButton } from './Styles.styled.js';
 
 export const Average = createContext();
-
+let filterTags = []
 const theme = {
   colors: {
     header: '#e3d5d5',
@@ -32,8 +32,10 @@ const Reviews = () => {
   const [avg, setAvg] = useState(0);
   const [maxRevCt, setMaxRevCt] = useState(0);
   const [filteredRatings, setFilteredRatings] = useState({ 1: [], 2: [], 3: [], 4: [], 5: [] });
+  const [filteredArrs, setFilteredArrs] = useState([])
   const [isFiltered, setIsFiltered] = useState(false);
   const [meta, setMeta] = useState({});
+  // const [filterTags, setFilterTags] = useState([])
 
   const AvgContext = createContext();
   useEffect(() => {
@@ -79,12 +81,24 @@ const Reviews = () => {
     }
   }
   let handleFilter = (ratingNum) => {
+    console.log('filterTags: ', filterTags)
     let arr = filteredRatings[ratingNum]
     if (arr.length === 0) {
       return
     }
-    arr.length <= 2 ? setRenderedReviews(arr) : setRenderedReviews(arr.slice(0, 2))
-    setIsFiltered(true)
+    let bigArr = []
+    filterTags.map(t => {
+      let a = filteredRatings[t]
+      bigArr.push(a)
+    })
+    console.log('bigArr: ', bigArr.flat())
+    setFilteredArrs(bigArr.flat())
+    setRenderedReviews(bigArr.flat().slice(0, 2))
+    if (bigArr.flat().length > 0) {
+      setIsFiltered(true)
+    } else {
+      setIsFiltered(false)
+    }
   }
   return (
     <AvgContext.Provider value={avg}>
@@ -107,8 +121,8 @@ const Reviews = () => {
             </div>
           </Header>
           <SubHeader>
-            <h6>Filter Reviews</h6>
-            {isFiltered ? <h6>Showing {renderedReviews.length} of {filteredRatings[renderedReviews[0].rating].length} results</h6> : <h6>Showing {renderedReviews.length} of {reviews.length} results</h6>}
+            <h5>Filter Reviews</h5>
+            {isFiltered ? <h6>Showing {renderedReviews.length} of {filteredArrs.length} results</h6> : <h6>Showing {renderedReviews.length} of {reviews.length} results</h6>}
             <h5></h5>
             <div>
               <Dropdown>
@@ -123,12 +137,23 @@ const Reviews = () => {
           </SubHeader>
           <Body>
             <Ratings>
+              <br></br>
+              <div style={{ display: 'flex' }}>
+                {filterTags.map(t => {
+                  return <span style={{ backgroundColor: 'grey', padding: '5px', fontSize: '12px' }}>{t} stars</span>
+                })}
+              </div>
+              <br></br>
               <RatingCheck>
                 <div>
                   {
                     arr.map(t => {
                       return (
-                        <div onClick={() => handleFilter(t)} style={{ alignItems: 'center', display: 'flex', textDecoration: 'underline', fontSize: '16px', color: '#4f4e4e' }}>
+                        <div onClick={() => {
+                          filterTags.push(t)
+                          // setFilterTags([...filterTags, t])
+                          handleFilter(t)
+                        }} style={{ alignItems: 'center', display: 'flex', textDecoration: 'underline', fontSize: '16px', color: '#4f4e4e' }}>
                           {t} stars
                           <div style={{ marginLeft: '20px', height: '7px', width: '150px', backgroundColor: 'grey' }}>
                             <ProgressBar percentNum={filteredRatings[t].length / maxRevCt * 100}></ProgressBar>
@@ -159,7 +184,7 @@ const Reviews = () => {
               }
             </Ratings>
             {
-              isFiltered ? <RenderReviews renderMore={renderMore} renderedReviews={renderedReviews} mainList={filteredRatings[renderedReviews[0].rating]} />
+              isFiltered ? <RenderReviews renderMore={renderMore} renderedReviews={renderedReviews} mainList={filteredArrs} />
                 : <RenderReviews renderMore={renderMore} renderedReviews={renderedReviews} mainList={reviews} />
             }
           </Body>

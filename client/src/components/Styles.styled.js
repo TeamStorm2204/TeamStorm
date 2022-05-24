@@ -206,12 +206,11 @@ export const RangeSlider = styled.div`
 }
 `
 export const Scrollbar = styled.div`
-    width: 80%;
+    width: 100%;
     height: 500px;
     overflow: scroll;
     position: relative;
     box-shadow: inset 1px 1px 10px #d1d1d1;
-    margin-left:50px;
     &:: -webkit - scrollbar {
       -webkit-appearance: auto;
       width: 20px;
