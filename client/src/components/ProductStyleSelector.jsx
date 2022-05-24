@@ -13,7 +13,9 @@ const ProductStyleSelector =({styles, selectedStyle, setSelectedIndex})=> {
     let skus=[];
     for(let key in selectedStyle.skus) {
         let sku = selectedStyle.skus[key]
-        skus.push({id: key, size: sku.size, quantity: sku.quantity})
+        if (sku.quantity > 0) {
+            skus.push({id: key, size: sku.size, quantity: sku.quantity})
+        }
     }
 
     const selectSize = function(event) {

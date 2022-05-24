@@ -453,11 +453,14 @@ var ProductStyleSelector = function ProductStyleSelector(_ref) {
 
   for (var key in selectedStyle.skus) {
     var sku = selectedStyle.skus[key];
-    skus.push({
-      id: key,
-      size: sku.size,
-      quantity: sku.quantity
-    });
+
+    if (sku.quantity > 0) {
+      skus.push({
+        id: key,
+        size: sku.size,
+        quantity: sku.quantity
+      });
+    }
   }
 
   var selectSize = function selectSize(event) {
