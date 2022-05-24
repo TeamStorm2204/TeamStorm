@@ -6,7 +6,6 @@ import {Input, ImgWrapper, Select, StylesWrapper, StyleName, SubStyleName, Price
 
 const ProductStyleSelector =({styles, selectedStyle, setSelectedIndex})=> {
     const [quantity, setQuantity] = useState([]);
-    const [inStock, setInStock] = useState(false);
     // const [isEnabled, setIsEnabled] = useState(true);
     
     console.log({selectedStyle});
@@ -48,9 +47,8 @@ const ProductStyleSelector =({styles, selectedStyle, setSelectedIndex})=> {
             </StylesWrapper>
             <form>
                 <Select  style={{width: '60%'}} onChange={selectSize}>
-                    <option >Select Size</option>
+                    {skus.length? <option >Select Size</option> : <option >Out of Stock</option>}
                     {skus.map((sku, index)=>(<option key={index} value={sku.quantity} >{sku.size}</option>))}
-                    {inStock?  <option >Out of Stock</option>: null}
   
                 </Select>
                 <Select style={{width: '40%'}} value={quantity.length? null:'-'} >

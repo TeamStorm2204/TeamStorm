@@ -440,12 +440,7 @@ var ProductStyleSelector = function ProductStyleSelector(_ref) {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
       _useState2 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState, 2),
       quantity = _useState2[0],
-      setQuantity = _useState2[1];
-
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
-      _useState4 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState3, 2),
-      inStock = _useState4[0],
-      setInStock = _useState4[1]; // const [isEnabled, setIsEnabled] = useState(true);
+      setQuantity = _useState2[1]; // const [isEnabled, setIsEnabled] = useState(true);
 
 
   console.log({
@@ -508,16 +503,16 @@ var ProductStyleSelector = function ProductStyleSelector(_ref) {
           width: '60%'
         },
         onChange: selectSize,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("option", {
+        children: [skus.length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("option", {
           children: "Select Size"
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("option", {
+          children: "Out of Stock"
         }), skus.map(function (sku, index) {
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("option", {
             value: sku.quantity,
             children: sku.size
           }, index);
-        }), inStock ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("option", {
-          children: "Out of Stock"
-        }) : null]
+        })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_OverviewStyles_js__WEBPACK_IMPORTED_MODULE_3__.Select, {
         style: {
           width: '40%'
