@@ -1355,6 +1355,7 @@ var Reviews = function Reviews() {
   }, []);
 
   var sorter = function sorter(sortType) {
+    setIsFiltered(false);
     _API__WEBPACK_IMPORTED_MODULE_2___default().getReviews({
       product_id: id.currentPD.id,
       sort: sortType,

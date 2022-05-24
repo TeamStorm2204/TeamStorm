@@ -64,6 +64,7 @@ const Reviews = () => {
   }, []);
 
   var sorter = (sortType) => {
+    setIsFiltered(false)
     api.getReviews({ product_id: id.currentPD.id, sort: sortType, count: 100 }, (err, data) => {
       setReviews(data.results);
       setRenderedReviews(data.results.slice(0, 2))
