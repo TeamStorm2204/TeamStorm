@@ -323,13 +323,13 @@ var Overview = function Overview(props) {
 
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     _API__WEBPACK_IMPORTED_MODULE_2___default().getProductStyles(props.id, function (err, data) {
-      console.log('dat', data.results);
+      // console.log('dat', data.results)
       setStyles(data.results);
     });
   }, []);
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     _API__WEBPACK_IMPORTED_MODULE_2___default().getProductInformation(props.id, function (err, data) {
-      console.log(data);
+      // console.log(data);
       setProduct(data);
     });
   }, []);
@@ -446,11 +446,9 @@ var ProductStyleSelector = function ProductStyleSelector(_ref) {
       _useState4 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState3, 2),
       inStock = _useState4[0],
       setInStock = _useState4[1]; // const [isEnabled, setIsEnabled] = useState(true);
+  // console.log({selectedStyle});
 
 
-  console.log({
-    selectedStyle: selectedStyle
-  });
   var strikethoughStyle = selectedStyle.sale_price ? {
     textDecorationLine: 'line-through'
   } : {};
@@ -468,23 +466,27 @@ var ProductStyleSelector = function ProductStyleSelector(_ref) {
   var selectSize = function selectSize(event) {
     // console.log({quantity})
     // console.log('event', event.target.value)
-    var amount = event.target.value > 15 ? 15 : event.target.value;
-    var quantities = Array.from(Array(Number(amount) + 1).keys());
-    quantities.shift();
-    setQuantity(quantities);
+    if (event.target.value === 'Select Size') {
+      setQuantity([]);
+    } else {
+      var amount = event.target.value > 15 ? 15 : event.target.value;
+      var quantities = Array.from(Array(Number(amount) + 1).keys());
+      quantities.shift();
+      setQuantity(quantities);
+    }
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_OverviewStyles_js__WEBPACK_IMPORTED_MODULE_3__.StyleName, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_OverviewStyles_js__WEBPACK_IMPORTED_MODULE_3__.Price, {
-        style: strikethoughStyle,
-        children: ["$", selectedStyle.original_price, " "]
-      }), selectedStyle.sale_price ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_OverviewStyles_js__WEBPACK_IMPORTED_MODULE_3__.Price, {
+      children: [selectedStyle.sale_price ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_OverviewStyles_js__WEBPACK_IMPORTED_MODULE_3__.Price, {
         style: {
           color: 'red'
         },
         children: [" $", selectedStyle.sale_price]
-      }) : null]
+      }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_OverviewStyles_js__WEBPACK_IMPORTED_MODULE_3__.Price, {
+        style: strikethoughStyle,
+        children: ["$", selectedStyle.original_price, " "]
+      })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_OverviewStyles_js__WEBPACK_IMPORTED_MODULE_3__.StyleName, {
       children: [" Style:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_OverviewStyles_js__WEBPACK_IMPORTED_MODULE_3__.SubStyleName, {
         children: [" ", selectedStyle.name]
@@ -1079,7 +1081,7 @@ var GlobalStyle = (0,styled_components__WEBPACK_IMPORTED_MODULE_1__.createGlobal
 /***/ ((module) => {
 
 var config = {
-  TOKEN: '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'
+  TOKEN: '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'
 };
 module.exports = config;
 

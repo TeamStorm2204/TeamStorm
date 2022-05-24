@@ -13,14 +13,14 @@ const Overview =(props)=> {
 
     useEffect(() => {
         API.getProductStyles(props.id, (err, data) => {
-            console.log('dat', data.results)
+            // console.log('dat', data.results)
           setStyles(data.results);
         })
       }, []);
 
     useEffect(() => {
         API.getProductInformation(props.id, (err, data) => {
-            console.log(data);
+            // console.log(data);
           setProduct(data);
         })
       }, []);

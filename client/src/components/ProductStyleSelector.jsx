@@ -9,7 +9,7 @@ const ProductStyleSelector =({styles, selectedStyle, setSelectedIndex})=> {
     const [inStock, setInStock] = useState(false);
     // const [isEnabled, setIsEnabled] = useState(true);
     
-    console.log({selectedStyle});
+    // console.log({selectedStyle});
     const strikethoughStyle= selectedStyle.sale_price? {textDecorationLine: 'line-through'} : {};
     let skus=[];
     for(let key in selectedStyle.skus) {
@@ -20,16 +20,20 @@ const ProductStyleSelector =({styles, selectedStyle, setSelectedIndex})=> {
     const selectSize = function(event) {
         // console.log({quantity})
         // console.log('event', event.target.value)
-        let amount = (event.target.value > 15)? 15: event.target.value;
-        let quantities = Array.from(Array(Number(amount)+1).keys());
-        quantities.shift()
-        setQuantity(quantities);
+        if (event.target.value === 'Select Size') {
+            setQuantity([]);
+        } else {
+            let amount = (event.target.value > 15)? 15: event.target.value;
+            let quantities = Array.from(Array(Number(amount)+1).keys());
+            quantities.shift()
+            setQuantity(quantities);
+        }
     }
     return (
         <div>
             <StyleName>
-                <Price style={strikethoughStyle}>${selectedStyle.original_price} </Price>
                 {selectedStyle.sale_price? <Price style={{color: 'red' }}> ${selectedStyle.sale_price}</Price> :null}
+                <Price style={strikethoughStyle}>${selectedStyle.original_price} </Price>
             </StyleName>
 
             <StyleName> Style: 
