@@ -108,6 +108,15 @@ module.exports = {
       headers: headers
     };
     axiosRequest(options, callback);
+  },
+  getReviewsMeta: function getReviewsMeta(obj, callback) {
+    var options = {
+      method: 'GET',
+      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta?',
+      params: obj,
+      headers: headers
+    };
+    axiosRequest(options, callback);
   }
 }; // https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40344
 // https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=40344

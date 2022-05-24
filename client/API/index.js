@@ -65,6 +65,7 @@ module.exports = {
     };
     axiosRequest(options, callback);
   },
+
   editReview: function (obj, callback) {
     let options = {
       method: 'PUT',
@@ -100,7 +101,15 @@ module.exports = {
     };
     axiosRequest(options, callback);
   },
-
+  getReviewsMeta: function (obj, callback) {
+    let options = {
+      method: 'GET',
+      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta?',
+      params: obj,
+      headers,
+    };
+    axiosRequest(options, callback);
+  },
 }
 
 // https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40344
