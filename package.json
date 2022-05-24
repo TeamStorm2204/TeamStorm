@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@babel/runtime": "^7.18.0",
     "@types/body-parser": "^1.19.2",
     "axios": "^0.27.2",
     "dotenv": "^16.0.1",
@@ -22,8 +23,10 @@
   "devDependencies": {
     "@babel/core": "^7.17.12",
     "@babel/plugin-syntax-jsx": "^7.17.12",
+    "@babel/plugin-transform-runtime": "^7.18.0",
     "@babel/preset-env": "^7.17.12",
     "@babel/preset-react": "^7.17.12",
+    "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "babel-loader": "^8.2.5",
     "global-jsdom": "^8.4.0",
