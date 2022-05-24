@@ -21,6 +21,19 @@ const ReviewItem = ({ t }) => {
       <div>{t.body.length >= 250 ? 'Read More' : null}</div>
       <br />
       {t.recommend ? <div style={{ fontSize: '16px' }}>✔️ I recommend this product</div> : null}
+      <div>
+        {
+          t.photos.length !== 0 ?
+            t.photos.map(i => {
+              return <img
+                src={i.url}
+                width="100"
+                marginTop='20px'
+                alt="header image"
+              />
+            }) : null
+        }
+      </div>
       <br />
       <div style={{ display: 'flex', fontSize: '13px', color: '#8a8a8a' }}>
         <div>Helpful?&nbsp;</div>

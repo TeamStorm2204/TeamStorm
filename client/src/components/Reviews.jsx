@@ -3,9 +3,9 @@ import React from 'react';
 import { useEffect, useState, createContext, useContext } from 'react';
 import { UserContext } from './App.jsx';
 import api from '../../API';
-import NewReview from './NewReview.jsx';
+import NewRev1 from './NewRev1.jsx';
 import RenderReviews from './RenderReviews.jsx';
-import { Body, Dropdown, DropdownMenu, DrpItem, St, ProgressBar, Scrollbar, PrimaryButton, Stars, Header, Ratings, RatingCheck, SubHeader, GlobalStyles, StyledButton } from './Styles.styled.js';
+import { Body, RangeSlider, Dropdown, DropdownMenu, DrpItem, St, ProgressBar, Scrollbar, PrimaryButton, Stars, Header, Ratings, RatingCheck, SubHeader, GlobalStyles, StyledButton } from './Styles.styled.js';
 
 export const Average = createContext();
 
@@ -17,20 +17,27 @@ const theme = {
   }
 }
 const Reviews = () => {
+  let metaStrings = {
+    size: ['Too small', 'Too big'],
+    width: ['Too narrow', 'Too wide'],
+    comfort: ['Poor', 'Perfect'],
+    quality: ['Poor', 'Perfect'],
+    length: ['Too short', 'Too long'],
+    fit: ['Too tight', 'Too loose'],
+  }
   let id = useContext(UserContext)
   let arr = [5, 4, 3, 2, 1]
   const [reviews, setReviews] = useState([]);
   const [renderedReviews, setRenderedReviews] = useState([]);
-  const [seen, setSeen] = useState(false);
   const [avg, setAvg] = useState(0);
   const [maxRevCt, setMaxRevCt] = useState(0);
   const [filteredRatings, setFilteredRatings] = useState({ 1: [], 2: [], 3: [], 4: [], 5: [] });
   const [isFiltered, setIsFiltered] = useState(false);
+  const [meta, setMeta] = useState({});
 
   const AvgContext = createContext();
   useEffect(() => {
-    api.getReviews({ product_id: id.currentPD.id }, (err, data) => {
-      console.log('data: ', data)
+    api.getReviews({ product_id: id.currentPD.id, count: 100 }, (err, data) => {
       if (data.results.length > 0) {
         let sum = 0
         let obj = { 1: [], 2: [], 3: [], 4: [], 5: [] }
@@ -47,16 +54,15 @@ const Reviews = () => {
       }
       setReviews(data.results);
       setRenderedReviews(data.results.slice(0, 2))
+
+      api.getReviewsMeta({ product_id: id.currentPD.id }, (err, data) => {
+        setMeta(data.characteristics)
+      })
     })
   }, []);
 
-  let togglePop = () => {
-    setSeen(!seen);
-  };
-
   var sorter = (sortType) => {
-    api.getReviews({ product_id: id.currentPD.id, sort: sortType }, (err, data) => {
-      console.log('data: ', data)
+    api.getReviews({ product_id: id.currentPD.id, sort: sortType, count: 100 }, (err, data) => {
       setReviews(data.results);
       setRenderedReviews(data.results.slice(0, 2))
     })
@@ -65,15 +71,14 @@ const Reviews = () => {
   let renderMore = () => {
     let leng = renderedReviews.length
     if (!isFiltered) {
-      let add = reviews.slice(leng, leng + 2)
+      let add = reviews.slice(leng)
       setRenderedReviews([...renderedReviews, ...add])
     } else {
-      let add = filteredRatings[renderedReviews[0].rating].slice(leng, leng + 2)
+      let add = filteredRatings[renderedReviews[0].rating].slice(leng)
       setRenderedReviews([...renderedReviews, ...add])
     }
   }
   let handleFilter = (ratingNum) => {
-    console.log('ratingNum: ', ratingNum)
     let arr = filteredRatings[ratingNum]
     if (arr.length === 0) {
       return
@@ -83,65 +88,83 @@ const Reviews = () => {
   }
   return (
     <AvgContext.Provider value={avg}>
-      <ThemeProvider theme={theme}>
-        <Header>
-          <h1>Reviews</h1>
-          {
-            reviews.length !== 0 ?
-              <Stars>
-                <p style={{ fontSize: '40px' }} >{avg}</p>
-                <St average={avg}>★★★★★</St>
-              </Stars> : <div></div>
-          }
-          <h5>Fit Slide Bar</h5>
-          <div>
-            <div className="btn" onClick={togglePop}>
-              <StyledButton>New Review</StyledButton>
+      <div>
+      </div>
+      <div style={{ height: '700px' }}>
+        <ThemeProvider theme={theme}>
+          <Header>
+            <h1>Reviews</h1>
+            {
+              reviews.length !== 0 ?
+                <Stars>
+                  <p style={{ fontSize: '40px' }} >{Math.floor(avg * 2) / 2}</p>
+                  <St average={Math.floor(avg * 2) / 2}>★★★★★</St>
+                </Stars> : <div></div>
+            }
+            <h5>Fit Slide Bar</h5>
+            <div>
+              <NewRev1 meta={meta} />
             </div>
-            {seen ? <NewReview toggle={togglePop} /> : null}
-          </div>
-        </Header>
-        <SubHeader>
-          <h6>Filter Reviews</h6>
-          {isFiltered ? <h6>Showing {renderedReviews.length} of {filteredRatings[renderedReviews[0].rating].length} results</h6> : <h6>Showing {renderedReviews.length} of {reviews.length} results</h6>}
-          <h5></h5>
-          <div>
-            <Dropdown>
-              <span style={{ textDecoration: 'underline', fontSize: '15px' }}>Filter by...🔽</span>
-              <DropdownMenu>
-                <DrpItem onClick={() => sorter('newest')}>Newest</DrpItem>
-                <DrpItem onClick={() => sorter('helpful')}>Helpfulness</DrpItem>
-                <DrpItem onClick={() => sorter('relevant')}>Recommended</DrpItem>
-              </DropdownMenu>
-            </Dropdown>
-          </div>
-        </SubHeader>
-        <Body>
-          <Ratings>
-            <RatingCheck>
-              <div>
-                {
-                  arr.map(t => {
-                    return (
-                      <div onClick={() => handleFilter(t)} style={{ alignItems: 'center', display: 'flex', textDecoration: 'underline', fontSize: '16px', color: '#4f4e4e' }}>
-                        {t} stars
-                        <div style={{ marginLeft: '20px', height: '7px', width: '150px', backgroundColor: 'grey' }}>
-                          <ProgressBar percentNum={filteredRatings[t].length / maxRevCt * 100}></ProgressBar>
+          </Header>
+          <SubHeader>
+            <h6>Filter Reviews</h6>
+            {isFiltered ? <h6>Showing {renderedReviews.length} of {filteredRatings[renderedReviews[0].rating].length} results</h6> : <h6>Showing {renderedReviews.length} of {reviews.length} results</h6>}
+            <h5></h5>
+            <div>
+              <Dropdown>
+                <span style={{ textDecoration: 'underline', fontSize: '15px' }}>Filter by...🔽</span>
+                <DropdownMenu>
+                  <DrpItem onClick={() => sorter('newest')}>Newest</DrpItem>
+                  <DrpItem onClick={() => sorter('helpful')}>Helpfulness</DrpItem>
+                  <DrpItem onClick={() => sorter('relevant')}>Recommended</DrpItem>
+                </DropdownMenu>
+              </Dropdown>
+            </div>
+          </SubHeader>
+          <Body>
+            <Ratings>
+              <RatingCheck>
+                <div>
+                  {
+                    arr.map(t => {
+                      return (
+                        <div onClick={() => handleFilter(t)} style={{ alignItems: 'center', display: 'flex', textDecoration: 'underline', fontSize: '16px', color: '#4f4e4e' }}>
+                          {t} stars
+                          <div style={{ marginLeft: '20px', height: '7px', width: '150px', backgroundColor: 'grey' }}>
+                            <ProgressBar percentNum={filteredRatings[t].length / maxRevCt * 100}></ProgressBar>
+                          </div>
                         </div>
+                      )
+                    })
+                  }
+                </div>
+              </RatingCheck>
+              <br />
+              {
+                Object.keys(meta).map(t => {
+                  let lowT = t.toLowerCase()
+                  return (
+                    <div style={{ width: '200px', fontSize: '16px', color: '#4f4e4e', marginTop: '15px' }}>
+                      {t}
+                      <RangeSlider>
+                        <input type="range" min="1" max="5" value={meta[t].value} className="slider" ></input>
+                      </RangeSlider>
+                      <div style={{ display: 'flex', fontSize: '12px', justifyContent: 'space-between' }}>
+                        <div>{metaStrings[lowT][0]}</div>
+                        <div>{metaStrings[lowT][1]}</div>
                       </div>
-                    )
-                  })
-                }
-              </div>
-            </RatingCheck>
-            <div onClick={() => setIsFiltered(false)} style={{ textDecoration: 'underline', fontSize: '16px', color: '#4f4e4e' }}>see all ratings...</div>
-          </Ratings>
-          {
-            isFiltered ? <RenderReviews renderMore={renderMore} renderedReviews={renderedReviews} mainList={filteredRatings[renderedReviews[0].rating]} />
-              : <RenderReviews renderMore={renderMore} renderedReviews={renderedReviews} mainList={reviews} />
-          }
-        </Body>
-      </ThemeProvider >
+                    </div>
+                  )
+                })
+              }
+            </Ratings>
+            {
+              isFiltered ? <RenderReviews renderMore={renderMore} renderedReviews={renderedReviews} mainList={filteredRatings[renderedReviews[0].rating]} />
+                : <RenderReviews renderMore={renderMore} renderedReviews={renderedReviews} mainList={reviews} />
+            }
+          </Body>
+        </ThemeProvider >
+      </div>
     </AvgContext.Provider >
   )
 }

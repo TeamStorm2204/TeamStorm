@@ -56,14 +56,27 @@ module.exports = {
     };
     axiosRequest(options, callback);
   },
-  createReview: function (obj, callback) {
+  getReviewsMeta: function (obj, callback) {
     let options = {
-      method: 'POST',
-      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/',
-      data: obj,
+      method: 'GET',
+      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta?',
+      params: obj,
       headers,
     };
     axiosRequest(options, callback);
+  },
+  createReview: function (obj, callback) {
+    console.log('createReview obj: ', obj)
+    // let options = {
+    //   method: 'POST',
+    //   url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews',
+    //   data: obj,
+    //   headers,
+    // };
+    // axiosRequest(options, callback);
+    axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews', obj, { headers: headers })
+      .then(() => console.log('Success'))
+      .catch(err => console.log(err))
   },
   editReview: function (obj, callback) {
     let options = {
