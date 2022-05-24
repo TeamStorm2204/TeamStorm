@@ -9,7 +9,7 @@ const ProductStyleSelector =({styles, selectedStyle, setSelectedIndex})=> {
     const [inStock, setInStock] = useState(false);
     // const [isEnabled, setIsEnabled] = useState(true);
     
-    // console.log({selectedStyle});
+    console.log({selectedStyle});
     const strikethoughStyle= selectedStyle.sale_price? {textDecorationLine: 'line-through'} : {};
     let skus=[];
     for(let key in selectedStyle.skus) {
@@ -29,6 +29,7 @@ const ProductStyleSelector =({styles, selectedStyle, setSelectedIndex})=> {
             setQuantity(quantities);
         }
     }
+
     return (
         <div>
             <StyleName>
@@ -52,7 +53,7 @@ const ProductStyleSelector =({styles, selectedStyle, setSelectedIndex})=> {
                     {inStock?  <option >Out of Stock</option>: null}
   
                 </Select>
-                <Select style={{width: '40%'}} value={'-'}>
+                <Select style={{width: '40%'}} value={quantity.length? null:'-'} >
                     {quantity.length? null: <option disabled={true}>-</option>}
                     {quantity.map((num, index)=>(<option key={index} >{num}</option>))}
                 </Select>

@@ -446,9 +446,11 @@ var ProductStyleSelector = function ProductStyleSelector(_ref) {
       _useState4 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState3, 2),
       inStock = _useState4[0],
       setInStock = _useState4[1]; // const [isEnabled, setIsEnabled] = useState(true);
-  // console.log({selectedStyle});
 
 
+  console.log({
+    selectedStyle: selectedStyle
+  });
   var strikethoughStyle = selectedStyle.sale_price ? {
     textDecorationLine: 'line-through'
   } : {};
@@ -520,7 +522,7 @@ var ProductStyleSelector = function ProductStyleSelector(_ref) {
         style: {
           width: '40%'
         },
-        value: '-',
+        value: quantity.length ? null : '-',
         children: [quantity.length ? null : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("option", {
           disabled: true,
           children: "-"
