@@ -7,66 +7,71 @@ import OverView from './Overview.jsx';
 import { Body, Header, Ratings, ReviewsList, Review, SubHeader, GlobalStyle, StyledButton } from './Styles.styled.js';
 import Outfit from './Outfit.jsx';
 
+// import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+// import {library} from '@fortawesome/fontawesome-svg-core';
+// import {fas, faFontAwesome} from '@fortawesome/free-solid-svg-icons';
+// //import { faBrands, faFontAwesome } from '@fortawesome/free-brands-svg-icons';
+// library.add(fas,faFontAwesome);
 
-export const UserContext=createContext();
 
- const App = (props) => {
+
+
+
+export const UserContext = createContext();
+
+const App = (props) => {
   const [products, setProducts] = useState([]);
-  //new
-  const [styles, setStyles]=useState([]);
+  const [styles, setStyles] = useState([]);
 
   useEffect(() => {
     api.getProducts((err, data) => {
-      if(err)  {
+      if (err) {
         console.log(err)
       } else {
-         setProducts(data[0]);
-         //new
-         var id=data[0].id;
-         api.getProductStyles( id, (err, data)=> {
-           if(err) {
-             console.log(err);
-           } else {
-             setStyles(data);
-           }
-
-         })
+        setProducts(data[0]);
+        var id = data[0].id;
+        api.getProductStyles(id, (err, data) => {
+          if (err) {
+            console.log(err);
+          } else {
+            setStyles(data);
+          }
+        })
       }
-
     })
   }, []);
 
-  if(styles.product_id) {
-  return (
-   <UserContext.Provider value={{currentPD: products, Img:styles}}>
-    <div>
-      <GlobalStyle color='#f5f5f5' />
-      <h1>Products </h1>
-      <div>
-       {products.id? <OverView id={products.id} />:null}
-      </div>
+  if (products.name) {
+    return (
+      <UserContext.Provider value={{ currentPD: products, Img: styles }}>
+        <div>
+          <GlobalStyle color='#f5f5f5' />
+          <h1>Products </h1>
+          <div>
+            {products.id ? <OverView id={products.id} /> : null}
+          </div>
           <div>
             <br></br>
             <h2>{products.name}</h2>
             <h3>{products.slogan}</h3>
             <div>{products.description}</div>
+          </div>
+          <div>
+            <h2> Related Product</h2>
+             <RelatedProducts />
+          </div>
+          <div>
+            <h2>Outfit List</h2>
+            <Outfit />
+          </div>
+          {/* <div>
+            <Reviews />
+          </div> */}
         </div>
-      <div>
-        <h2> Related Product</h2>
-       <RelatedProducts  />
-      </div>
-      <div>
-        <h2> Outfit Lists</h2>
-        <Outfit /*styles={} name={} price={}*/ />
-      </div>
-      <div>
-        {products.id? <Reviews id={products.id} />:null}
-      </div>
-    </div>
-    </UserContext.Provider>
-  )
+      </UserContext.Provider>
+    )
   }
 }
 
-
 export default App;
+
