@@ -9,7 +9,7 @@ export const Header = styled.h1`
   `
 export const SubHeader = styled.div`
     color: var(--text-light);
-    font: 100 1.2rem/1.4 Helvetica,Arial,sans-serif;
+    font: 100 1.0rem/1.2 Helvetica,Arial,sans-serif;
     letter-spacing: .05rem;
     margin-bottom: 5px;
 `
@@ -21,6 +21,7 @@ export const StyleName = styled.div`
   font: 700 1.2rem/1.4 Helvetica,Arial,sans-serif;
   letter-spacing: .05rem;
 `;
+
 
 export const SubStyleName = styled.span`
   color: var(--text-medium);
@@ -42,8 +43,13 @@ export const StylesWrapper = styled.div`
 export const ImgWrapper = styled.img`
   min-width: 23%;
   max-width: 69px;
-  margin: 3px;
 `;
+
+export const SelectImgWrap = styled.div`
+  min-width: 23%;
+  max-width: 69px;
+  border: 2px solid #707070;
+  `
 
 export const Select = styled.select`
     background-color: #fff;

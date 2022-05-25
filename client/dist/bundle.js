@@ -293,7 +293,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ProductStyleSelector_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ProductStyleSelector.jsx */ "./client/src/components/ProductStyleSelector.jsx");
 /* harmony import */ var _ProductView_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ProductView.jsx */ "./client/src/components/ProductView.jsx");
 /* harmony import */ var _OverviewStyles_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./OverviewStyles.js */ "./client/src/components/OverviewStyles.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _Stars_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Stars.jsx */ "./client/src/components/Stars.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
 
@@ -321,6 +323,11 @@ var Overview = function Overview(props) {
       styles = _useState6[0],
       setStyles = _useState6[1];
 
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(5),
+      _useState8 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState7, 2),
+      reviewCount = _useState8[0],
+      setReviewCount = _useState8[1];
+
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     _API__WEBPACK_IMPORTED_MODULE_2___default().getProductStyles(props.id, function (err, data) {
       // console.log('dat', data.results)
@@ -329,31 +336,37 @@ var Overview = function Overview(props) {
   }, []);
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     _API__WEBPACK_IMPORTED_MODULE_2___default().getProductInformation(props.id, function (err, data) {
-      // console.log(data);
+      console.log(data);
       setProduct(data);
     });
   }, []);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
     style: {
       display: 'flex',
       flexWrap: 'wrap',
       flexDirection: 'row'
     },
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-      children: styles.length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ProductView_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+      children: styles.length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_ProductView_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
         selectedStyle: styles[selectedIndex || 0]
       }) : null
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_OverviewStyles_js__WEBPACK_IMPORTED_MODULE_5__.SubHeader, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_OverviewStyles_js__WEBPACK_IMPORTED_MODULE_5__.SubHeader, {
           children: product.category
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_OverviewStyles_js__WEBPACK_IMPORTED_MODULE_5__.Header, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_OverviewStyles_js__WEBPACK_IMPORTED_MODULE_5__.Header, {
           children: product.name
-        }), styles.length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ProductStyleSelector_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        }), product.description ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_OverviewStyles_js__WEBPACK_IMPORTED_MODULE_5__.SubHeader, {
+          children: product.description
+        }) : null, reviewCount > 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_OverviewStyles_js__WEBPACK_IMPORTED_MODULE_5__.SubHeader, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Stars_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], {
+            id: props.id
+          }), " Read all [#] reviews"]
+        }) : null, styles.length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_ProductStyleSelector_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
           id: props.id,
           styles: styles,
           setSelectedIndex: setSelectedIndex,
-          selectedStyle: styles[selectedIndex || 0]
+          selectedIndex: selectedIndex || 0
         }) : null]
       })
     })]
@@ -379,6 +392,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "Input": () => (/* binding */ Input),
 /* harmony export */   "Price": () => (/* binding */ Price),
 /* harmony export */   "Select": () => (/* binding */ Select),
+/* harmony export */   "SelectImgWrap": () => (/* binding */ SelectImgWrap),
 /* harmony export */   "StyleName": () => (/* binding */ StyleName),
 /* harmony export */   "StylesWrapper": () => (/* binding */ StylesWrapper),
 /* harmony export */   "SubHeader": () => (/* binding */ SubHeader),
@@ -388,20 +402,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 
 
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11;
 
 
 
 var Header = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].h1(_templateObject || (_templateObject = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    color: var(--text-dark);\n    font: 100 2.2rem/1.4 Helvetica,Arial,sans-serif;\n    letter-spacing: .05rem;\n    margin-bottom: 5px;\n  "])));
-var SubHeader = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject2 || (_templateObject2 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    color: var(--text-light);\n    font: 100 1.2rem/1.4 Helvetica,Arial,sans-serif;\n    letter-spacing: .05rem;\n    margin-bottom: 5px;\n"])));
+var SubHeader = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject2 || (_templateObject2 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    color: var(--text-light);\n    font: 100 1.0rem/1.2 Helvetica,Arial,sans-serif;\n    letter-spacing: .05rem;\n    margin-bottom: 5px;\n"])));
 var StyleName = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject3 || (_templateObject3 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  color: var(--text-dark);\n  display: in-line\n  letter-spacing: .05rem;\n  margin-bottom: 5px;\n  font: 700 1.2rem/1.4 Helvetica,Arial,sans-serif;\n  letter-spacing: .05rem;\n"])));
 var SubStyleName = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].span(_templateObject4 || (_templateObject4 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  color: var(--text-medium);\n  font: 1.2rem/normal Helvetica,Arial,sans-serif;\n  letter-spacing: .05rem;\n"])));
 var Price = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].span(_templateObject5 || (_templateObject5 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  color: var(--text-medium);\n  font: 1.2rem/normal Helvetica,Arial,sans-serif;\n  letter-spacing: .05rem;\n  padding-right: 5px;\n"])));
 var StylesWrapper = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject6 || (_templateObject6 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  display: flex;\n  flex-flow: row wrap;\n  gap: 3px;\n"])));
-var ImgWrapper = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].img(_templateObject7 || (_templateObject7 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  min-width: 23%;\n  max-width: 69px;\n  margin: 3px;\n"])));
-var Select = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].select(_templateObject8 || (_templateObject8 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    background-color: #fff;\n    border: 2px solid #707070;\n    border-radius: 5px;\n    color: #222;\n    height: 40px;\n    letter-spacing: .02rem;\n    padding: 0 10px 0 10px;\n"])));
-var Input = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].input(_templateObject9 || (_templateObject9 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    background-color: black;\n    border: none;\n    color: white;\n    padding: 15px 40px;\n    text-align: center;\n    display: inline-block;\n    font-size: 16px;\n    width: 100%;\n"])));
-var GlobalStyle = (0,styled_components__WEBPACK_IMPORTED_MODULE_1__.createGlobalStyle)(_templateObject10 || (_templateObject10 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n   body {\n    display: flex;\n    margin: 0;\n    padding: 100px;\n    background: #f5f5f5;\n    font - family: sans-serif;\n    flex-direction: column;\n  }\n"])));
+var ImgWrapper = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].img(_templateObject7 || (_templateObject7 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  min-width: 23%;\n  max-width: 69px;\n"])));
+var SelectImgWrap = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject8 || (_templateObject8 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  min-width: 23%;\n  max-width: 69px;\n  border: 2px solid #707070;\n  "])));
+var Select = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].select(_templateObject9 || (_templateObject9 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    background-color: #fff;\n    border: 2px solid #707070;\n    border-radius: 5px;\n    color: #222;\n    height: 40px;\n    letter-spacing: .02rem;\n    padding: 0 10px 0 10px;\n"])));
+var Input = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].input(_templateObject10 || (_templateObject10 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    background-color: black;\n    border: none;\n    color: white;\n    padding: 15px 40px;\n    text-align: center;\n    display: inline-block;\n    font-size: 16px;\n    width: 100%;\n"])));
+var GlobalStyle = (0,styled_components__WEBPACK_IMPORTED_MODULE_1__.createGlobalStyle)(_templateObject11 || (_templateObject11 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n   body {\n    display: flex;\n    margin: 0;\n    padding: 100px;\n    background: #f5f5f5;\n    font - family: sans-serif;\n    flex-direction: column;\n  }\n"])));
 
 /***/ }),
 
@@ -434,8 +449,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var ProductStyleSelector = function ProductStyleSelector(_ref) {
   var styles = _ref.styles,
-      selectedStyle = _ref.selectedStyle,
-      setSelectedIndex = _ref.setSelectedIndex;
+      setSelectedIndex = _ref.setSelectedIndex,
+      selectedIndex = _ref.selectedIndex;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
       _useState2 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState, 2),
@@ -443,6 +458,7 @@ var ProductStyleSelector = function ProductStyleSelector(_ref) {
       setQuantity = _useState2[1]; // const [isEnabled, setIsEnabled] = useState(true);
 
 
+  var selectedStyle = styles[selectedIndex];
   console.log({
     selectedStyle: selectedStyle
   });
@@ -493,7 +509,20 @@ var ProductStyleSelector = function ProductStyleSelector(_ref) {
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_OverviewStyles_js__WEBPACK_IMPORTED_MODULE_3__.StylesWrapper, {
       children: styles.length > 0 ? styles.map(function (style, index) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_OverviewStyles_js__WEBPACK_IMPORTED_MODULE_3__.ImgWrapper, {
+        return selectedIndex === index ?
+        /*#__PURE__*/
+        // <SelectImgWrap imgUrl={style.photos[0].thumbnail_url} style={{width: '100%'}} key={index}>
+        (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_OverviewStyles_js__WEBPACK_IMPORTED_MODULE_3__.SelectImgWrap, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+            src: style.photos[0].thumbnail_url,
+            style: {
+              width: '100%'
+            },
+            onClick: function onClick() {
+              return setSelectedIndex(index);
+            }
+          }, index)
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_OverviewStyles_js__WEBPACK_IMPORTED_MODULE_3__.ImgWrapper, {
           src: style.photos[0].thumbnail_url,
           onClick: function onClick() {
             return setSelectedIndex(index);
@@ -520,7 +549,7 @@ var ProductStyleSelector = function ProductStyleSelector(_ref) {
         style: {
           width: '40%'
         },
-        value: quantity.length ? null : '-',
+        value: quantity.length ? undefined : '-',
         children: [quantity.length ? null : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("option", {
           disabled: true,
           children: "-"
@@ -996,6 +1025,74 @@ var Reviews = function Reviews() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Reviews);
+
+/***/ }),
+
+/***/ "./client/src/components/Stars.jsx":
+/*!*****************************************!*\
+  !*** ./client/src/components/Stars.jsx ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/esm/slicedToArray.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _API__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../API */ "./client/API/index.js");
+/* harmony import */ var _API__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_API__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Styles_styled_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Styles.styled.js */ "./client/src/components/Styles.styled.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+
+
+var Stars = function Stars(props) {
+  var sum = 0;
+  var count = 0;
+  var id = props.id;
+  var avg = 0;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
+      _useState2 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState, 2),
+      star = _useState2[0],
+      setStars = _useState2[1];
+
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    _API__WEBPACK_IMPORTED_MODULE_2___default().getReviewsMeta({
+      product_id: id
+    }, function (err, data) {
+      if (err) {
+        console.log(err);
+      } else {
+        for (var key in data.ratings) {
+          sum += Number(data.ratings[key]) * Number(key);
+          count += Number(data.ratings[key]);
+        }
+
+        avg = sum / count;
+        setStars(avg);
+      }
+    });
+  }, []);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+    style: {
+      display: 'inline-block'
+    },
+    children: star > 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Styles_styled_js__WEBPACK_IMPORTED_MODULE_3__.St, {
+      average: Math.floor(star * 2) / 2,
+      children: "\u2605\u2605\u2605\u2605\u2605"
+    }) : null
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Stars);
 
 /***/ }),
 

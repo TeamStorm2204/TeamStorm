@@ -5,11 +5,14 @@ import ProductStyleSelector from './ProductStyleSelector.jsx';
 import ProductView from './ProductView.jsx';
 import { ThemeProvider } from 'styled-components';
 import {Header, SubHeader} from './OverviewStyles.js';
+import Stars from './Stars.jsx';
 
 const Overview =(props)=> {
     const [product, setProduct] = useState([]);
     const [selectedIndex, setSelectedIndex] = useState(null);
     const [styles, setStyles] = useState([]);
+    const [reviewCount, setReviewCount] = useState(5);
+
 
     useEffect(() => {
         API.getProductStyles(props.id, (err, data) => {
@@ -20,7 +23,7 @@ const Overview =(props)=> {
 
     useEffect(() => {
         API.getProductInformation(props.id, (err, data) => {
-            // console.log(data);
+            console.log(data);
           setProduct(data);
         })
       }, []);
@@ -34,7 +37,9 @@ const Overview =(props)=> {
             <div>
             <SubHeader>{product.category}</SubHeader>
             <Header>{product.name}</Header>
-            {styles.length? <ProductStyleSelector id={props.id} styles={styles} setSelectedIndex={setSelectedIndex} selectedStyle={styles[(selectedIndex || 0)] }></ProductStyleSelector> :null}
+            {product.description? <SubHeader>{product.description}</SubHeader>: null}
+            {(reviewCount > 0)? <SubHeader><Stars id={props.id}></Stars> Read all [#] reviews</SubHeader>: null}
+            {styles.length? <ProductStyleSelector id={props.id} styles={styles} setSelectedIndex={setSelectedIndex} selectedIndex={selectedIndex || 0} ></ProductStyleSelector> :null}
             </div>
           </div> 
         </div>

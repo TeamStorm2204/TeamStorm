@@ -2,12 +2,12 @@ import React from 'react';
 import API from '../../API';
 import { useEffect, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
-import {Input, ImgWrapper, Select, StylesWrapper, StyleName, SubStyleName, Price} from './OverviewStyles.js';
+import {Input, ImgWrapper, Select, StylesWrapper, StyleName, SubStyleName, Price, SelectImgWrap} from './OverviewStyles.js';
 
-const ProductStyleSelector =({styles, selectedStyle, setSelectedIndex})=> {
+const ProductStyleSelector =({styles, setSelectedIndex, selectedIndex})=> {
     const [quantity, setQuantity] = useState([]);
     // const [isEnabled, setIsEnabled] = useState(true);
-    
+    const selectedStyle = styles[selectedIndex];
     console.log({selectedStyle});
     const strikethoughStyle= selectedStyle.sale_price? {textDecorationLine: 'line-through'} : {};
     let skus=[];
@@ -44,16 +44,23 @@ const ProductStyleSelector =({styles, selectedStyle, setSelectedIndex})=> {
 
             <StylesWrapper>
             {(styles.length > 0)? styles.map((style, index)=>{
-                return (<ImgWrapper src={style.photos[0].thumbnail_url} key={index}  onClick={()=>setSelectedIndex(index)}/>)
+                return (
+                    (selectedIndex === index) ?
+                // <SelectImgWrap imgUrl={style.photos[0].thumbnail_url} style={{width: '100%'}} key={index}>
+                <SelectImgWrap>
+                <img src={style.photos[0].thumbnail_url} key={index} style={{width: '100%'}} onClick={()=>setSelectedIndex(index) }/>
+                </SelectImgWrap> : 
+                <ImgWrapper src={style.photos[0].thumbnail_url} key={index}  onClick={()=>setSelectedIndex(index)}/>)
             }): null}
             </StylesWrapper>
+
             <form>
                 <Select  style={{width: '60%'}} onChange={selectSize}>
                     {skus.length? <option >Select Size</option> : <option >Out of Stock</option>}
                     {skus.map((sku, index)=>(<option key={index} value={sku.quantity} >{sku.size}</option>))}
   
                 </Select>
-                <Select style={{width: '40%'}} value={quantity.length? null:'-'} >
+                <Select style={{width: '40%'}} value={quantity.length? undefined:'-'} >
                     {quantity.length? null: <option disabled={true}>-</option>}
                     {quantity.map((num, index)=>(<option key={index} >{num}</option>))}
                 </Select>
