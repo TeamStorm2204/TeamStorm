@@ -7,7 +7,6 @@ const Stars= (props)=> {
   let sum = 0;
   let count =0;
   var id=props.id;
-
   var avg=0;
   const [star, setStars] = useState(0);
   useEffect(() => {
