@@ -462,8 +462,12 @@ var ProductStyleSelector = function ProductStyleSelector(_ref) {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
       _useState2 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState, 2),
       quantity = _useState2[0],
-      setQuantity = _useState2[1]; // const [isEnabled, setIsEnabled] = useState(true);
+      setQuantity = _useState2[1];
 
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
+      _useState4 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState3, 2),
+      message = _useState4[0],
+      setMessage = _useState4[1];
 
   var selectedStyle = styles[selectedIndex];
   console.log({
@@ -488,16 +492,37 @@ var ProductStyleSelector = function ProductStyleSelector(_ref) {
     }
   }
 
+  console.log(skus);
+
   var selectSize = function selectSize(event) {
-    // console.log({quantity})
-    // console.log('event', event.target.value)
     if (event.target.value === 'Select Size') {
       setQuantity([]);
     } else {
-      var amount = event.target.value > 15 ? 15 : event.target.value;
+      var sizeQuantity = Number(event.target.value.split(',')[0]);
+      var amount = sizeQuantity > 15 ? 15 : sizeQuantity;
       var quantities = Array.from(Array(Number(amount) + 1).keys());
       quantities.shift();
       setQuantity(quantities);
+    }
+  };
+
+  var addToCart = function addToCart(event) {
+    event.preventDefault();
+
+    if (event.target.elements[0].value === 'Select Size') {
+      setMessage(true);
+    } else {
+      setMessage(false);
+      var selectedQuant = event.target.elements[1].value;
+      var selectedSku = event.target.elements[0].value.split(',')[1];
+      _API__WEBPACK_IMPORTED_MODULE_2___default().addToCart({
+        selectedSku: selectedSku,
+        selectedQuant: selectedQuant
+      }, function (err) {
+        if (err) {
+          console.log(err);
+        }
+      });
     }
   };
 
@@ -538,7 +563,10 @@ var ProductStyleSelector = function ProductStyleSelector(_ref) {
           }
         }, index);
       }) : null
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("form", {
+    }), message ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+      children: "Please select size"
+    }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("form", {
+      onSubmit: addToCart,
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_OverviewStyles_js__WEBPACK_IMPORTED_MODULE_3__.Select, {
         style: {
           width: '60%'
@@ -550,7 +578,8 @@ var ProductStyleSelector = function ProductStyleSelector(_ref) {
           children: "Out of Stock"
         }), skus.map(function (sku, index) {
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("option", {
-            value: sku.quantity,
+            name: sku.id,
+            value: [sku.quantity, sku.id],
             children: sku.size
           }, index);
         })]

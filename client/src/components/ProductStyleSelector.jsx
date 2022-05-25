@@ -6,7 +6,7 @@ import {Input, ImgWrapper, Select, StylesWrapper, StyleName, SubStyleName, Price
 
 const ProductStyleSelector =({styles, setSelectedIndex, selectedIndex})=> {
     const [quantity, setQuantity] = useState([]);
-    // const [isEnabled, setIsEnabled] = useState(true);
+    const [message, setMessage] =  useState(false);
     const selectedStyle = styles[selectedIndex];
     console.log({selectedStyle});
     const strikethoughStyle= selectedStyle.sale_price? {textDecorationLine: 'line-through'} : {};
@@ -19,17 +19,32 @@ const ProductStyleSelector =({styles, setSelectedIndex, selectedIndex})=> {
             }
         }
     }
-
+    console.log(skus);
+    
     const selectSize = function(event) {
-        // console.log({quantity})
-        // console.log('event', event.target.value)
         if (event.target.value === 'Select Size') {
             setQuantity([]);
         } else {
-            let amount = (event.target.value > 15)? 15: event.target.value;
+            let sizeQuantity = Number(event.target.value.split(',')[0]);
+            let amount = (sizeQuantity > 15)? 15: sizeQuantity;
             let quantities = Array.from(Array(Number(amount)+1).keys());
             quantities.shift()
             setQuantity(quantities);
+        }
+    }
+    const addToCart = function(event) {
+        event.preventDefault();
+        if(event.target.elements[0].value === 'Select Size') {
+            setMessage(true)
+        } else {
+            setMessage(false);
+            const selectedQuant = event.target.elements[1].value
+            const selectedSku = event.target.elements[0].value.split(',')[1]
+            API.addToCart({selectedSku, selectedQuant},(err) => {
+                if(err) {
+                    console.log(err);
+                }
+            })
         }
     }
 
@@ -55,17 +70,20 @@ const ProductStyleSelector =({styles, setSelectedIndex, selectedIndex})=> {
                 <ImgWrapper src={style.photos[0].thumbnail_url} key={index}  onClick={()=>setSelectedIndex(index)}/>)
             }): null}
             </StylesWrapper>
+            {message? <p>Please select size</p>: null}
 
-            <form>
+            <form onSubmit={addToCart} >
+
                 <Select  style={{width: '60%'}} onChange={selectSize}>
                     {skus.length? <option >Select Size</option> : <option >Out of Stock</option>}
-                    {skus.map((sku, index)=>(<option key={index} value={sku.quantity} >{sku.size}</option>))}
-  
+                    {skus.map((sku, index)=>(<option key={index} name={sku.id} value={[sku.quantity, sku.id]} >{sku.size}</option>))}
                 </Select>
+
                 <Select style={{width: '40%'}} value={quantity.length? undefined:'-'} >
                     {quantity.length? null: <option disabled={true}>-</option>}
                     {quantity.map((num, index)=>(<option key={index} >{num}</option>))}
                 </Select>
+                
                 {skus.length? <Input type="submit" value="Add to Cart" />: null}
             </form>
         </div>
