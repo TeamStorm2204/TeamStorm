@@ -11,7 +11,7 @@ export const SubHeader = styled.div`
     color: var(--text-light);
     font: 100 1.0rem/1.2 Helvetica,Arial,sans-serif;
     letter-spacing: .05rem;
-    margin-bottom: 5px;
+    margin: 5px 0 5px 0;
 `
 export const StyleName = styled.div`
   color: var(--text-dark);

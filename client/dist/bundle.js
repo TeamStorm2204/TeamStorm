@@ -407,7 +407,7 @@ var _templateObject, _templateObject2, _templateObject3, _templateObject4, _temp
 
 
 var Header = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].h1(_templateObject || (_templateObject = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    color: var(--text-dark);\n    font: 100 2.2rem/1.4 Helvetica,Arial,sans-serif;\n    letter-spacing: .05rem;\n    margin-bottom: 5px;\n  "])));
-var SubHeader = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject2 || (_templateObject2 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    color: var(--text-light);\n    font: 100 1.0rem/1.2 Helvetica,Arial,sans-serif;\n    letter-spacing: .05rem;\n    margin-bottom: 5px;\n"])));
+var SubHeader = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject2 || (_templateObject2 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    color: var(--text-light);\n    font: 100 1.0rem/1.2 Helvetica,Arial,sans-serif;\n    letter-spacing: .05rem;\n    margin: 5px 0 5px 0;\n"])));
 var StyleName = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject3 || (_templateObject3 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  color: var(--text-dark);\n  display: in-line\n  letter-spacing: .05rem;\n  margin-bottom: 5px;\n  font: 700 1.2rem/1.4 Helvetica,Arial,sans-serif;\n  letter-spacing: .05rem;\n"])));
 var SubStyleName = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].span(_templateObject4 || (_templateObject4 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  color: var(--text-medium);\n  font: 1.2rem/normal Helvetica,Arial,sans-serif;\n  letter-spacing: .05rem;\n"])));
 var Price = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].span(_templateObject5 || (_templateObject5 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  color: var(--text-medium);\n  font: 1.2rem/normal Helvetica,Arial,sans-serif;\n  letter-spacing: .05rem;\n  padding-right: 5px;\n"])));
@@ -470,12 +470,14 @@ var ProductStyleSelector = function ProductStyleSelector(_ref) {
   for (var key in selectedStyle.skus) {
     var sku = selectedStyle.skus[key];
 
-    if (sku.quantity > 0) {
-      skus.push({
-        id: key,
-        size: sku.size,
-        quantity: sku.quantity
-      });
+    if (sku !== 'null') {
+      if (sku.quantity > 0) {
+        skus.push({
+          id: key,
+          size: sku.size,
+          quantity: sku.quantity
+        });
+      }
     }
   }
 
@@ -558,10 +560,10 @@ var ProductStyleSelector = function ProductStyleSelector(_ref) {
             children: num
           }, index);
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_OverviewStyles_js__WEBPACK_IMPORTED_MODULE_3__.Input, {
+      }), skus.length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_OverviewStyles_js__WEBPACK_IMPORTED_MODULE_3__.Input, {
         type: "submit",
         value: "Add to Cart"
-      })]
+      }) : null]
     })]
   });
 };

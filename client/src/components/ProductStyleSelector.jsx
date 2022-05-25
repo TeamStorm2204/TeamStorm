@@ -13,8 +13,10 @@ const ProductStyleSelector =({styles, setSelectedIndex, selectedIndex})=> {
     let skus=[];
     for(let key in selectedStyle.skus) {
         let sku = selectedStyle.skus[key]
-        if (sku.quantity > 0) {
-            skus.push({id: key, size: sku.size, quantity: sku.quantity})
+        if (sku !== 'null'){
+            if (sku.quantity > 0) {
+                skus.push({id: key, size: sku.size, quantity: sku.quantity})
+            }
         }
     }
 
@@ -64,7 +66,7 @@ const ProductStyleSelector =({styles, setSelectedIndex, selectedIndex})=> {
                     {quantity.length? null: <option disabled={true}>-</option>}
                     {quantity.map((num, index)=>(<option key={index} >{num}</option>))}
                 </Select>
-                <Input type="submit" value="Add to Cart" />
+                {skus.length? <Input type="submit" value="Add to Cart" />: null}
             </form>
         </div>
     )
