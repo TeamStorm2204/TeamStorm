@@ -7,6 +7,7 @@ const Stars= (props)=> {
   let sum = 0;
   let count =0;
   var id=props.id;
+
   var avg=0;
   const [star, setStars] = useState(0);
   useEffect(() => {
@@ -28,9 +29,9 @@ const Stars= (props)=> {
 
 
 return(
-  <div style={{display: 'inline-block'}}>
 
-   {star>0? <St average={Math.floor(star * 2) / 2}>★★★★★</St>:null}
+  <div style={{display: 'inline-block'}}>
+   {star>0? <St average={Math.floor(star * 10) / 10}>★★★★★</St>:null}
   </div>
 )
 }

@@ -84,7 +84,8 @@ const RelatedProducts =(props)=> {
       },[]);
 
       if (hover.length>0) {
-        return (  <ImageSlider images={relatedItems} /> )
+
+        return (  <ImageSlider overViewData= {id} images={relatedItems} /> )
       }
 
     }

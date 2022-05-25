@@ -6,12 +6,13 @@ import {IconContext} from 'react-icons';
 import {ImStarEmpty} from 'react-icons/im';
 import { Card, Description, Icon} from './StyleRelated.js';
 import Modal from './Modal.jsx';
-
+import Stars from './Stars.jsx';
 
 const ImageSlider = ({
   images = [],
+  overViewData
   }) => {
-    const [modal, setModal] = useState(false);
+
 
 var imagesUpdate=[];//collect all data that has url
 for (var i=0; i<images.length;i++) {
@@ -22,8 +23,10 @@ for (var i=0; i<images.length;i++) {
 
   const [current, setCurrent] = useState(0);
   const length=imagesUpdate.length;
-  const [color, setColor]=useState(Array(length).fill('black'));
-  const [hover, setHover]=useState(Array(length).fill('200'));
+
+  const [hover, setHover] = useState(Array(length).fill('150'));
+  const [modal, setModal] = useState(Array(length).fill(false));
+
   const nextSlide=()=> {
     setCurrent(current===length-1?0:current+1);
   }
@@ -59,6 +62,7 @@ for (var i=0; i<images.length;i++) {
 
        {imagesUpdate.map((item, index) => {
          var sizeData=hover.slice();
+         var modals=modal.slice();
          if(item.image[0].url!==null) {
            if(index===current || index===current+1) {
            return (
@@ -67,32 +71,36 @@ for (var i=0; i<images.length;i++) {
           <img
           src={item.image[0].url}
           key={index}
-          onMouseEnter={()=>{sizeData[index]='220'; setHover(sizeData)}}
-          onMouseLeave={()=>{sizeData[index]='200'; setHover(sizeData)}}
-
+          onMouseEnter={()=>{sizeData[index]='180'; setHover(sizeData)}}
+          onMouseLeave={()=>{sizeData[index]='150'; setHover(sizeData)}}
           height={sizeData[index]}
           alt='pictures'
          />
 
          <Icon>
-             <IconContext.Provider value={{ color: color[index], size: '1.5em' }}>
-                 <div onClick={()=>{toggleColor(index); setModal(true)}} >
+             <IconContext.Provider value={ {size: '1.5em'} }>
+                 <div onClick={()=>{ modals[index]=true; setModal(modals)}} >
                      <ImStarEmpty/ >
                 </div>
              </IconContext.Provider>
          </Icon>
-         {modal&&<Modal closeModal={setModal} />}
+         {modal[index]&&<Modal closeModal={setModal} length={length} id={overViewData} relatedInf={item} />}
          </Card>
          <Description style={{fontSize:15}}>
-             <h4 key={index} > {item.name}   </h4>
-             <span key={index+3} >{item.category}</span>
+           <span key={index} style={{fontWeight:'bold'}}> {item.name} </span>
+          </Description>
+          <Description style={{fontSize:15}}>
+              <span key={index+3} >{item.category}</span>
                 {item.discount?
                   <div>
-                   <h4 key={index+1}> Price:${item.discount} </h4>
-                   <h4 key={index+4} style={{textDecoration:'line-though'}}> ${item.default_price} </h4>
+                   <span key={index+1}> Price:${item.discount} </span>
+                   <span key={index+4} style={{textDecoration:'line-though'}}> ${item.default_price} </span>
                   </div>
-                  :<h4 key={index+1}> Price:${item.default_price}</h4>
+                  :<span key={index+1}> Price:${item.default_price}</span>
                   }
+            </Description>
+            <Description>
+             <Stars id={item.id} />
           </Description>
 
          </div>

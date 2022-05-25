@@ -1,34 +1,129 @@
 import React from 'react';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import { Container, Close, CloseButton } from './StyleRelated.js';
+import API from '../../API';
+import styled from 'styled-components';
+import {VscError} from 'react-icons/vsc';
+const Modal =({closeModal, length, id, relatedInf})=> {
 
 
 
-const Modal =({closeModal})=> {
+const [totalFeatures, setFeatures]=useState({});
 
+useEffect( ()=> {
+  API.getProductInformation(id, (err, data)=> {
+    if(err) {
+      console.log(err);
+    }else {
+
+       var total=data.features.concat(relatedInf.features);
+       var featuresTitle=[];
+       for (let i=0; i<total.length;i++) {
+         if( !featuresTitle.includes(total[i].feature)) {
+            featuresTitle.push(total[i].feature);
+         }
+       }
+       var totalInfor={overView: data, related: relatedInf, featuresTitle:featuresTitle }; //data/related  has the name; deaturesTitle has all no repeative titles; data.feature or relatedInf.features has its features
+
+       setFeatures(totalInfor);
+    }
+  })
+},[])
+
+
+if(totalFeatures.overView!==undefined) {
+  console.log('waht is overView', totalFeatures);
 
 return (
-
-
 
   <Container>
 
     <Close>
-    <CloseButton onClick={()=>closeModal(false)}> X </CloseButton>
+    <CloseButton onClick={()=>closeModal(Array(length).fill(false))}>  <VscError/ > </CloseButton>
     </Close>
-    <div>
-      <h1> title Are you still here?</h1>
-    </div>
-    <div>
-      <p>body Next page is nice</p>
-    </div>
 
+    <table>
+        <thead>
+          {/* <tr style={{fontSize:15, position:'center'}}>Comparing</tr> */}
+          <tr>
+            <HeadL>{totalFeatures.overView.name}</HeadL>
+            <th> </th>
+            <HeadR>{totalFeatures.related.name}</HeadR>
+            <th> </th>
+          </tr>
+        </thead>
+        <tbody>
+        {totalFeatures.featuresTitle.map((item, key) => (
+            <tr key={key}>
+              <XfeatureL>
+                {totalFeatures.overView.features.map((item1) => (
+                  (item1.feature === item)
+                    ? (item1.value)
+                      ? `${item1.value}`
+                      : '✓'
+                    : ' '
+                ))}
+              </XfeatureL>
+
+              <Value>{item}</Value>
+
+              <XfeatureR>
+                {totalFeatures.related.features.map((item2) => (
+                  (item2.feature === item)
+                    ? (item2.value)
+                      ? `${item2.value}`
+                      : '✓'
+                    : ' '
+                ))}
+
+              </XfeatureR>
+
+            </tr>
+          ))}
+        </tbody>
+      </table>
 </Container>
 
 
 
 )
 }
+}
+
+
+const XfeatureL = styled.td`
+  position: flex;
+  text-align: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-style: italic;
+
+`;
+
+const XfeatureR = styled.td`
+  position: flex;
+  text-align: center;
+  padding-right: 10px;
+  padding-left: 10px;
+  font-style: italic;
+  fotn-size: 5px;
+`;
+
+const Value = styled.td`
+  text-align: center;
+  fotn-size:10px;
+
+  `;
+
+const HeadL = styled.th`
+  padding-left: 10px;
+
+`;
+
+const HeadR = styled.th`
+  padding-right: 10px;
+
+`;
 export default Modal;
 
 

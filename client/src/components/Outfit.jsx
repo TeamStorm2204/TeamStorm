@@ -7,9 +7,10 @@ import {IoAddOutline} from 'react-icons/io5';
 import {IconContext} from 'react-icons';
 import axios from 'axios';
 import {UserContext} from './App.jsx';
-import { Cd, Description, Fit, Space, Add, Cross} from './StyleRelated.js';
+import { Cd,Card, Description, Space, Add, Cross} from './StyleRelated.js';
 import Carousel from 'react-elastic-carousel';
 import {VscError} from 'react-icons/vsc';
+import Stars from './Stars.jsx';
 
 
 const Outfit=(props)=> {
@@ -19,8 +20,11 @@ const Outfit=(props)=> {
   const data=useContext(UserContext);
 
 
-  const [outfits, setOutfits]=useState([]);
+  const [outfits, setOutfits]=useState(localStorage.getItem('outfits')?JSON.parse(localStorage.getItem('outfits')):[]);
   const[ img, setImg]=useState([]);
+
+ console.log('list', outfits);
+
 
   function addOutfit(data) {
     var count=0;
@@ -36,8 +40,14 @@ const Outfit=(props)=> {
       var price=data.Img.results[0].original_price;
       var name=data.Img.results[0].name;
       var outfit={url:url, discount:discount, price:price, name:name};
-      //console.log('url', url)
+
+      var currentOutfits=outfits.slice();
+       //console.log('outfit', outfit, currentOutfits);
+      currentOutfits.push(outfit);
+      //console.log('total', currentOutfits);
+      localStorage.setItem("outfits", JSON.stringify(currentOutfits));
       setOutfits(prev=>[...prev, outfit]);
+
     }
   }
   function deleteFit(index) {
@@ -47,13 +57,15 @@ const Outfit=(props)=> {
         update.push(outfits[i])
       }
     }
+    localStorage.setItem("outfits", JSON.stringify(update));
     setOutfits(update);
   }
 
 
   return (
+
     <div>
-       <Fit>
+
          <Add>
                <IconContext.Provider value={{ size: '4em' }}>
                  <div>
@@ -63,11 +75,13 @@ const Outfit=(props)=> {
         </Add>
          <Space>
            { outfits.length>0?
-                 (<Carousel breakPoints={breakPoints}>
-                 {outfits.map( (item, index)=>{
+                 (
+                 <Carousel breakPoints={breakPoints}>
+                 {
+                   outfits.map( (item, index)=>{
                        return (
                          <div>
-                           <Cd>
+                           <Card>
                              <img
                                src={item.url}
                                key={index}
@@ -81,29 +95,34 @@ const Outfit=(props)=> {
                                  </div>
                              {/* </IconContext.Provider> */}
                              </Cross>
-                           </Cd>
-                           <Description>
-                             <h5 key={index+1} > {item.name}   </h5>
-                             <h5 key={index+2} style={{fontSize:10}}>{item.category}</h5>
-                             {item.discount?
-                             <div>
-                               <h5 key={index+5}> Price:${item.discount} </h5>
-                               <h5 key={index+4} style={{textDecoration:'line-though'}}> ${item.price} </h5>
-                             </div>
-                               :<h5 key={index+5}> Price:${item.price}</h5>
-                             }
-                           </Description>
+                           </Card>
+                           <Description style={{fontSize:15}}>
+           <span key={index} style={{fontWeight:'bold'}}> {item.name} </span>
+          </Description>
+          <Description style={{fontSize:15}}>
+              <span key={index+3} >{item.category}</span>
+                {item.discount?
+                  (<div>
+                   <span key={index+1}> Price:${item.discount} </span>
+                   <span key={index+4} style={{textDecoration:'line-though'}}> ${item.default_price} </span>
+                  </div>)
+                  :<span key={index+1}> Price:${item.price}</span>
+                  }
+            </Description>
+            <Description>
+             <Stars id={item.id} />
+          </Description>
 
                            </div>
                        )
                      }
-                 )
-                 }
+                  )
+                }
 
                  </Carousel>):null
            }
          </Space>
-      </Fit>
+
    </div>
  )
 

@@ -4,22 +4,24 @@ import { createGlobalStyle } from 'styled-components';
 
   export const Card =styled.div`
   position:relative;
-
   transition: 0.3s;
   display:flex;
   justify-content:space-around;
   align-items:center;
-  width:250px;
-  height:240px;
+  width:200px;
+  height:200px;
   margin-top: 5px;
   margin-left:100px;
   z-index: 1;
 
+
    `
 
    export const Description=styled.div`
-   position: absolute;
+   position: relative;
    display:flex;
+   z-index:15;
+
    margin-left: 100px;
    `
 
@@ -32,11 +34,12 @@ import { createGlobalStyle } from 'styled-components';
     width: 12px !important;
     height: 12px !important;
     `
-  export const Fit=styled.div`
-  margin:0;
-  padding:0;
-  height:100px;
-  `
+  // export const Fit=styled.div`
+  // margin:0;
+  // padding:0;
+  // height:100px;
+  // border: 3px solid black;
+  // `
   export const Space=styled.div`
    display: inline-block;
    width: 600px;
@@ -68,14 +71,12 @@ import { createGlobalStyle } from 'styled-components';
   margin-bottom: 10px;
    `
    export const Slide =styled.div`
-   postion:relative;
-   height:60vh;
-   display:flex;
-   width:250px;
-   height:280px;
-   justify-content:center;
-   aligh-items:center;
-   margin-left:300px;
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+   overflow: hidden;
+   position: relative;
+
    `
 
    export const Images =styled.div`
@@ -86,8 +87,8 @@ import { createGlobalStyle } from 'styled-components';
    `
    export const RightArrow =styled.div`
    position:absolute;
-   top:60%;
-   right:400px;
+   top:50%;
+   right:32px;
    font-size:2em;
    z-index:10;
    cursor:pointer;
@@ -96,7 +97,7 @@ import { createGlobalStyle } from 'styled-components';
    `
    export const LeftArrow =styled.div`
    position:absolute;
-   top:60%;
+   top:50%;
    left:32px;
    font-size:2em;
    z-index:10;
@@ -106,14 +107,14 @@ import { createGlobalStyle } from 'styled-components';
    `
    export const  Container=styled.div`
    width:1000px;
-   height:300px;
+   height:200px;
+   font-size:12px;
+   z-index:12;
    border-radius:12px;
-   border:3px solid red;
    background-color:white;
    box-shadow:rgba(0, 0, 0, 0.35) 0px 5px 15px;
    display:flex;
-
-   padding:25px;
+   padding:15px;
 
    `
    export const Close=styled.div`
@@ -123,6 +124,6 @@ import { createGlobalStyle } from 'styled-components';
    export const CloseButton=styled.div`
    background-color:transparent;
    border:none;
-   fort-size:10px;
+   font-size:20px;
    cursor:pointer;
    `
