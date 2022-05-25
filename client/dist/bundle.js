@@ -340,6 +340,12 @@ var Overview = function Overview(props) {
       setProduct(data);
     });
   }, []);
+
+  var scrollTo = function scrollTo() {
+    console.log('hi');
+    window.scrollBy(0, 600);
+  };
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
     style: {
       display: 'flex',
@@ -359,6 +365,7 @@ var Overview = function Overview(props) {
         }), product.description ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_OverviewStyles_js__WEBPACK_IMPORTED_MODULE_5__.SubHeader, {
           children: product.description
         }) : null, reviewCount > 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_OverviewStyles_js__WEBPACK_IMPORTED_MODULE_5__.SubHeader, {
+          onClick: scrollTo,
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Stars_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], {
             id: props.id
           }), " Read all [#] reviews"]

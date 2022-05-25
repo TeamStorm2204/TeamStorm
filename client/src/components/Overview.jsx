@@ -28,6 +28,11 @@ const Overview =(props)=> {
         })
       }, []);
 
+    const scrollTo = function(){
+      console.log('hi');
+      window.scrollBy(0, 600);
+    }
+
     return (
         <div style={{display:'flex', flexWrap: 'wrap', flexDirection: 'row'}}>
           <div>
@@ -38,7 +43,7 @@ const Overview =(props)=> {
             <SubHeader>{product.category}</SubHeader>
             <Header>{product.name}</Header>
             {product.description? <SubHeader>{product.description}</SubHeader>: null}
-            {(reviewCount > 0)? <SubHeader><Stars id={props.id}></Stars> Read all [#] reviews</SubHeader>: null}
+            {(reviewCount > 0)? <SubHeader onClick={scrollTo}><Stars id={props.id}></Stars> Read all [#] reviews</SubHeader>: null}
             {styles.length? <ProductStyleSelector id={props.id} styles={styles} setSelectedIndex={setSelectedIndex} selectedIndex={selectedIndex || 0} ></ProductStyleSelector> :null}
             </div>
           </div> 
