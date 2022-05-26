@@ -1,9 +1,9 @@
 import { ThemeProvider } from 'styled-components'
 import React from 'react';
 import { useEffect, useState, useContext } from 'react';
-import { UserContext } from './App.jsx';
-import api from '../../API';
-import { InputBox, StyledButton, RadioButton, PrimaryButton } from './Styles.styled.js';
+import { UserContext } from '../../App.jsx';
+import api from '../../../../API';
+import { InputBox, StyledButton, RadioButton, PrimaryButton } from '../../Styles.styled.js';
 
 const Form2 = ({ setSubmitted, form1, form2, setForm2, incPage, decPage }) => {
   let charStObj = {
@@ -16,7 +16,6 @@ const Form2 = ({ setSubmitted, form1, form2, setForm2, incPage, decPage }) => {
   }
   let labels = ['Size', 'Width', 'Comfort', 'Quality', 'Length', 'Fit']
   let product = useContext(UserContext)
-
   var handleForm2Inputs = (e, num) => {
     let arr = Object.keys(form2);
     let obj = {};
@@ -55,7 +54,7 @@ const Form2 = ({ setSubmitted, form1, form2, setForm2, incPage, decPage }) => {
     div: {
       display: 'flex',
       justifyContent: 'space-between',
-      marginTop: '10px',
+      margintop: '10px',
       paddingBottom: '20px',
       borderBottom: '1px solid grey',
     },

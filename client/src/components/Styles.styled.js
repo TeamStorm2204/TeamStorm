@@ -116,7 +116,7 @@ export const Review = styled.div`
     padding:25px;
     border-bottom: 1px solid grey;
   `
-export const Stars = styled.div`
+export const Star = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -132,7 +132,7 @@ export const InteractiveStars = styled.div`
   font-size: 0;
   /* flip the order so we can use the + and ~ combinators */
   unicode-bidi: bidi-override;
-  direction: rtl;
+  direction:rtl;
   /* the hidden clearer */
 }
 .star-cb-group * {
@@ -145,14 +145,14 @@ export const InteractiveStars = styled.div`
   /* only enough room for the star */
   display: inline-block;
   overflow: hidden;
-  text-indent: 9999px;
+
   width: 1em;
   white-space: nowrap;
   cursor: pointer;
 }
 .star-cb-group > input + label:before {
   display: inline-block;
-  text-indent: -9999px;
+
   content: "☆";
   color: #888;
 }

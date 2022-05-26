@@ -56,36 +56,16 @@ module.exports = {
     };
     axiosRequest(options, callback);
   },
-  getReviewsMeta: function (obj, callback) {
-    let options = {
-      method: 'GET',
-      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta?',
-      params: obj,
-      headers,
-    };
-    axiosRequest(options, callback);
-  },
   createReview: function (obj, callback) {
     console.log('createReview obj: ', obj)
-    // let options = {
-    //   method: 'POST',
-    //   url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews',
-    //   data: obj,
-    //   headers,
-    // };
-    // axiosRequest(options, callback);
     axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews', obj, { headers: headers })
-      .then(() => console.log('Success'))
+      .then(() => this.getReviews())
       .catch(err => console.log(err))
   },
-  editReview: function (obj, callback) {
-    let options = {
-      method: 'PUT',
-      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/',
-      data: obj,
-      headers,
-    };
-    axiosRequest(options, callback);
+  editHelpful: function (id, callback) {
+    axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${id}/helpful`, { headers: headers })
+      .then(() => this.getReviews())
+      .catch(err => console.log(err))
   },
   getCart: function (callback) {
     let options = {
@@ -113,7 +93,15 @@ module.exports = {
     };
     axiosRequest(options, callback);
   },
-
+  getReviewsMeta: function (obj, callback) {
+    let options = {
+      method: 'GET',
+      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta?',
+      params: obj,
+      headers,
+    };
+    axiosRequest(options, callback);
+  },
 }
 
 // https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40344

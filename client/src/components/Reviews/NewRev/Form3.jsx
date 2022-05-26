@@ -1,9 +1,9 @@
 import { ThemeProvider } from 'styled-components'
 import React from 'react';
 import { useEffect, useState, useContext } from 'react';
-import { UserContext } from './App.jsx';
-import api from '../../API';
-import { InputBox, StyledButton } from './Styles.styled.js';
+import { UserContext } from '../../App.jsx';
+import api from '../../../../API';
+import { InputBox, StyledButton } from '../../Styles.styled.js';
 
 const Form3 = ({ form1, form2, submitted }) => {
   useEffect(() => {

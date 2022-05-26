@@ -1,14 +1,17 @@
-import { ThemeProvider } from 'styled-components'
 import React from 'react';
 import { useEffect, useState, useContext } from 'react';
-import { UserContext } from './App.jsx';
-import api from '../../API';
-import { InteractiveStars, InputBox, InputEmail, StyledButton } from './Styles.styled.js';
+import { UserContext } from '../../App.jsx';
+import api from '../../../../API';
+import { InteractiveStars, InputBox, InputEmail, StyledButton } from '../../Styles.styled.js';
 import Axios from 'axios';
 
 const Form1 = ({ form1, setForm1, incPage }) => {
-  let product = useContext(UserContext)
-  // var count = 0
+  // let product = useContext(UserContext)
+  let product = {
+    currentPD: {
+      id: 40350
+    }
+  }
   const [urls, setUrls] = useState([])
   const [cloud, setCloud] = useState([])
   const [count, setCount] = useState(50)
@@ -19,7 +22,6 @@ const Form1 = ({ form1, setForm1, incPage }) => {
     for (let i = list.length - 1; i >= 0; i--) {
       arr.push(list[i].checked)
     }
-    console.log('Star Arr: ', arr)
     incPage()
     setForm1({
       product_id: product.currentPD.id,
@@ -41,7 +43,6 @@ const Form1 = ({ form1, setForm1, incPage }) => {
         <InteractiveStars>
           <span className="star-cb-group">
             {[0, 1, 2, 3, 4, 5].map(t => {
-              console.log('form1 rating: ', form1.rating)
               if (t > 0) {
                 return (
                   <>
@@ -52,7 +53,7 @@ const Form1 = ({ form1, setForm1, incPage }) => {
               } else {
                 return (
                   <>
-                    <input type="radio" id="rating-0" name="rating" value="0" class="star-cb-clear" />
+                    <input type="radio" id="rating-0" name="rating" value="0" className="star-cb-clear" />
                     <label for="rating-0">0</label>
                   </>
                 )
@@ -106,25 +107,23 @@ const Form1 = ({ form1, setForm1, incPage }) => {
 
         Axios.post("https://api.cloudinary.com/v1_1/djtk4ap6i/image/upload", formData)
           .then((data) => {
-            console.log(data)
+            console.log(data.data.secure_url)
             setCloud([...cloud, data.data.secure_url])
           })
           .catch(err => console.log(err))
         setUrls([...urls, URL.createObjectURL(e.target.files[0])])
       }}
         disable={urls.length === 5 ? true : false} /> : null}
-      {console.log('urls: ', urls,)}
       <br />
       <div style={{ display: 'flex', alignItems: 'flex-end' }}>
         {urls.length !== 0 ?
           urls.map((t, i) => {
-            console.log('urls.map: ', t)
             return (
               <div style={{ position: 'relative', width: '100px', height: '120px' }}>
                 <img
                   src={t}
                   width="100"
-                  marginTop='20px'
+                  margintop='20px'
                   alt="header image"
                 />
                 <div style={{ position: 'absolute' }} onClick={() => {
@@ -139,7 +138,7 @@ const Form1 = ({ form1, setForm1, incPage }) => {
           : null}
       </div>
       <br />
-      <div style={{ marginTop: '20px', display: 'flex', flexDirection: 'row-reverse' }}>
+      <div style={{ margintop: '20px', display: 'flex', flexDirection: 'row-reverse' }}>
         <br />
         <StyledButton>Next</StyledButton>
       </div>

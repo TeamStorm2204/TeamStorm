@@ -1,9 +1,9 @@
 import { ThemeProvider } from 'styled-components'
 import React from 'react';
 import { Suspense, useEffect, useState, useContext } from 'react';
-import { UserContext } from './App.jsx';
-import api from '../../API';
-import { InputBox, Header, Modal, ModalContent, StyledButton, Close } from './Styles.styled.js';
+import { UserContext } from '../../App.jsx';
+import api from '../../../../API';
+import { InputBox, Header, Modal, ModalContent, StyledButton, Close } from '../../Styles.styled.js';
 import Form1 from './Form1.jsx';
 import Form2 from './Form2.jsx';
 import Form3 from './Form3.jsx';
@@ -50,7 +50,6 @@ const NewRev1 = ({ meta }) => {
   }, [])
 
   let toggle = () => {
-    console.log(dist)
     setPgNum(1)
     setForm1({
       product_id: product.currentPD.id,

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReviewItem from './ReviewItem.jsx';
-import { Body, Scrollbar, PrimaryButton, ReviewsList } from './Styles.styled.js';
+import { Body, Scrollbar, PrimaryButton, ReviewsList } from '../Styles.styled.js';
 const RenderReviews = ({ renderMore, renderedReviews, mainList }) => {
   return (
     <Body>
