@@ -66,19 +66,11 @@ export const SelectImgWrap = styled.div`
   border: 2px solid black;
   background-image: url(${props => props.img});
   background-size: cover;
-  justify-content: right;
   `
 export const CheckMark = styled.div`
-  max-width: 20px;
-  box-sizing: border-box;
+  max-width: 19px;
   background-color: white;
-  border: 1px solid black;
-  border-radius: 10px;
-  position: relative;
-  top: 2px;
-  font-size: 16px;
-  justify-content:center;
-  // src: url(${props => props.img});
+  border-radius: 11px;
 `;
 
 export const Select = styled.select`

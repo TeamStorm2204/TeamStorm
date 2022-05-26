@@ -433,12 +433,10 @@ var ImgWrapper = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].img(_
 //   border: 2px solid #707070;
 //   `
 
-var SelectImgWrap = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject8 || (_templateObject8 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  box-sizing: border-box;\n  min-width: 23%;\n  max-width: 69px;\n  border: 2px solid black;\n  background-image: url(", ");\n  background-size: cover;\n  justify-content: right;\n  "])), function (props) {
+var SelectImgWrap = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject8 || (_templateObject8 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  box-sizing: border-box;\n  min-width: 23%;\n  max-width: 69px;\n  border: 2px solid black;\n  background-image: url(", ");\n  background-size: cover;\n  "])), function (props) {
   return props.img;
 });
-var CheckMark = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject9 || (_templateObject9 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  max-width: 20px;\n  box-sizing: border-box;\n  background-color: white;\n  border: 1px solid black;\n  border-radius: 10px;\n  position: relative;\n  top: 2px;\n  font-size: 16px;\n  justify-content:center;\n  // src: url(", ");\n"])), function (props) {
-  return props.img;
-});
+var CheckMark = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject9 || (_templateObject9 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  max-width: 19px;\n  background-color: white;\n  border-radius: 11px;\n"])));
 var Select = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].select(_templateObject10 || (_templateObject10 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    background-color: #fff;\n    border: 2px solid #707070;\n    border-radius: 5px;\n    color: #222;\n    height: 40px;\n    letter-spacing: .02rem;\n    padding: 0 10px 0 10px;\n    margin-bottom: 5px;\n"])));
 var Input = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].input(_templateObject11 || (_templateObject11 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    background-color: black;\n    border: none;\n    color: white;\n    padding: 15px 40px;\n    text-align: center;\n    display: inline-block;\n    font-size: 16px;\n    width: 100%;\n"])));
 var ProductDetailsContainer = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject12 || (_templateObject12 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    position: relative;\n    min-width: 150px;\n    max-width: 350px;\n    padding: 20px;\n  "])));
@@ -570,8 +568,8 @@ var ProductStyleSelector = function ProductStyleSelector(_ref) {
           onClick: function onClick() {
             return setSelectedIndex(index);
           },
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_OverviewStyles_js__WEBPACK_IMPORTED_MODULE_3__.CheckMark, {
-            children: "\u2713"
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("i", {
+            "class": "far fa-check-circle fa-lg"
           })
         }, index) :
         /*#__PURE__*/
@@ -621,6 +619,14 @@ var ProductStyleSelector = function ProductStyleSelector(_ref) {
         type: "submit",
         value: "Add to Cart"
       }) : null]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_OverviewStyles_js__WEBPACK_IMPORTED_MODULE_3__.StylesWrapper, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("i", {
+        "class": "fab fa-facebook-f  fa-lg"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("i", {
+        "class": "fab fa-twitter fa-lg"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("i", {
+        "class": "fab fa-pinterest  fa-lg"
+      })]
     })]
   });
 };

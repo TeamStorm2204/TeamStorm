@@ -2,7 +2,7 @@ import React from 'react';
 import API from '../../API';
 import { useEffect, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
-import {Input, ImgWrapper, Select, StylesWrapper, StyleName, SubStyleName, Price, SelectImgWrap, CheckMark} from './OverviewStyles.js';
+import {Input, ImgWrapper, Select, StylesWrapper, StyleName, SubStyleName, Price, SelectImgWrap} from './OverviewStyles.js';
 
 const ProductStyleSelector =({styles, setSelectedIndex, selectedIndex})=> {
     const [quantity, setQuantity] = useState([]);
@@ -65,7 +65,7 @@ const ProductStyleSelector =({styles, setSelectedIndex, selectedIndex})=> {
                     (selectedIndex === index) ?
                 // <SelectImgWrap imgUrl={style.photos[0].thumbnail_url} style={{width: '100%'}} key={index}>
                 <SelectImgWrap img={style.photos[0].thumbnail_url} key={index} onClick={()=>setSelectedIndex(index) }>
-                <CheckMark>✓</CheckMark>
+                <i class="far fa-check-circle fa-lg"/>
                 </SelectImgWrap>:
                 // <ImgWrapper img={style.photos[0].thumbnail_url} key={index} onClick={()=>setSelectedIndex(index)}/>
                 <ImgWrapper src={style.photos[0].thumbnail_url} key={index} onClick={()=>setSelectedIndex(index)}/>
@@ -90,6 +90,11 @@ const ProductStyleSelector =({styles, setSelectedIndex, selectedIndex})=> {
                 
                 {skus.length? <Input type="submit" value="Add to Cart" />: null}
             </form>
+            <StylesWrapper>
+            <i class="fab fa-facebook-f  fa-lg" />
+            <i class="fab fa-twitter fa-lg"></i>
+            <i class="fab fa-pinterest  fa-lg"></i>
+            </StylesWrapper>
         </div>
     )
 }
