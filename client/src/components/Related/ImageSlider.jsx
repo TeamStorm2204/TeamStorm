@@ -58,9 +58,9 @@ const ImageSlider = ({
         }
         return (
 
-          <div>
+          <div >
             {modal.status&&<Modal closeModal={setModal} length={length} id={overViewData} relatedInf={modal.item} />}
-            <Slide>
+            <Slide data-testid="image-slider">
               {current!==0?
               (<LeftArrow onClick={prevSlide}>
               <FaArrowAltCircleLeft/>

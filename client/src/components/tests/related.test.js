@@ -1,9 +1,11 @@
-import { render, screen, cleanup, waitFor } from "@testing-library/react";
+import { render, screen, cleanup, waitFor, fireEvent } from "@testing-library/react";
 import '@testing-library/jest-dom'
 // import '@testing-library/jest-dom/extend-expect';
 import { debug } from "console";
 import renderer from "react-test-renderer";
 import App from "../App.jsx";
+import RelatedProducts from '../Related/RelatedProducts.jsx'
+
 // afterEach(cleanup);
 
 test('should render button', async ()=>{
@@ -21,4 +23,25 @@ test('should render heading of Outfit', async ()=>{
 
 })
 
+
+describe.only("Fetchy", () => {
+    beforeAll(() => {
+        jest.useFakeTimers();
+    })
+
+    afterAll(() => {
+        jest.useRealTimers()
+    })
+
+    it("shows Loading", async () => {
+        render(<App />);
+
+
+
+        jest.advanceTimersByTime(3000);
+
+        screen.debug();
+        expect(screen.getByText("Forest")).toBeInTheDocument();
+    });
+});
 
