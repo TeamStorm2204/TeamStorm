@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import ProductStyleSelector from './ProductStyleSelector.jsx';
 import ProductView from './ProductView.jsx';
 import { ThemeProvider } from 'styled-components';
-import {Header, SubHeader} from './OverviewStyles.js';
+import {Header, SubHeader, ProductDetailsContainer} from './OverviewStyles.js';
 import Stars from './Stars.jsx';
 
 const Overview =(props)=> {
@@ -38,7 +38,8 @@ const Overview =(props)=> {
           <div>
             {styles.length? <ProductView selectedStyle={styles[selectedIndex || 0]}></ProductView>:null}
           </div> 
-          <div>
+
+          <ProductDetailsContainer>
             <div>
             <SubHeader>{product.category}</SubHeader>
             <Header>{product.name}</Header>
@@ -46,7 +47,8 @@ const Overview =(props)=> {
             {(reviewCount > 0)? <SubHeader onClick={scrollTo}><Stars id={props.id}></Stars> Read all [#] reviews</SubHeader>: null}
             {styles.length? <ProductStyleSelector id={props.id} styles={styles} setSelectedIndex={setSelectedIndex} selectedIndex={selectedIndex || 0} ></ProductStyleSelector> :null}
             </div>
-          </div> 
+          </ProductDetailsContainer> 
+
         </div>
     )
 }

@@ -38,18 +38,48 @@ export const Price = styled.span`
 export const StylesWrapper = styled.div`
   display: flex;
   flex-flow: row wrap;
-  gap: 3px;
+  justify-content: flex-start;
+  gap: 5px;
+  margin-bottom: 5px;
 `;
+// export const ImgWrapper = styled.div`
+//   min-width: 23%;
+//   max-width: 69px;
+//   background-image: url(${props => props.img});
+//   background-size: cover;
+// `;
+
 export const ImgWrapper = styled.img`
   min-width: 23%;
   max-width: 69px;
 `;
 
+// export const SelectImgWrap = styled.div`
+//   min-width: 23%;
+//   max-width: 69px;
+//   border: 2px solid #707070;
+//   `
 export const SelectImgWrap = styled.div`
+  box-sizing: border-box;
   min-width: 23%;
   max-width: 69px;
-  border: 2px solid #707070;
+  border: 2px solid black;
+  background-image: url(${props => props.img});
+  background-size: cover;
+  justify-content: right;
   `
+export const CheckMark = styled.div`
+  max-width: 20px;
+  box-sizing: border-box;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+  position: relative;
+  top: 2px;
+  font-size: 16px;
+  justify-content:center;
+  // src: url(${props => props.img});
+`;
 
 export const Select = styled.select`
     background-color: #fff;
@@ -59,6 +89,7 @@ export const Select = styled.select`
     height: 40px;
     letter-spacing: .02rem;
     padding: 0 10px 0 10px;
+    margin-bottom: 5px;
 `
 
 export const Input = styled.input`
@@ -72,6 +103,13 @@ export const Input = styled.input`
     width: 100%;
 `
 
+export const ProductDetailsContainer = styled.div`
+    position: relative;
+    min-width: 150px;
+    max-width: 350px;
+    padding: 20px;
+  `
+  
 export const GlobalStyle = createGlobalStyle`
    body {
     display: flex;
