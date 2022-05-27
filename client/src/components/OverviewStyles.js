@@ -54,11 +54,33 @@ export const ImgWrapper = styled.img`
   max-width: 69px;
 `;
 
-// export const SelectImgWrap = styled.div`
-//   min-width: 23%;
-//   max-width: 69px;
-//   border: 2px solid #707070;
-//   `
+export const DefaultImgWrap = styled.div`
+  position: relative;
+  box-sizing: border-box;
+  min-width: 450px;
+  width: auto;
+  min-height: 675px;
+  background-color: lightGray;
+  background-image: url(${props => props.img});
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: center;
+`
+
+export const ImagesWrap = styled.div`
+  position: relative;
+  box-sizing: border-box;
+  min-width: 75px;
+  width: auto;
+  min-height: 50px;
+  background-color: lightGray;
+  background-image: url(${props => props.img});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: center;
+`
 export const SelectImgWrap = styled.div`
   box-sizing: border-box;
   min-width: 23%;

@@ -47,7 +47,6 @@ const ProductStyleSelector =({styles, setSelectedIndex, selectedIndex})=> {
             })
         }
     }
-
     return (
         <div>
             <StyleName>
