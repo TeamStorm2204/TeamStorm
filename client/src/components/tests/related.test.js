@@ -25,12 +25,12 @@ test('should render heading of Outfit', async ()=>{
 
 
 
-test('should testttt', async ()=>{
-    render(<App/>);
-    await waitFor(() => screen.getAllByRole('heading'))
-    expect(screen.getByRole('heading', {name: /Price/i })).toBeInTheDocument();//test add button on the outfit list part
+// test('should testttt', async ()=>{
+//     render(<App/>);
+//     await waitFor(() => screen.getAllByRole('heading'))
+//     expect(screen.getByRole('heading', {name: /Price/i })).toBeInTheDocument();//test add button on the outfit list part
 
-})
+// })
 // describe.only("Fetchy", () => {
 //     beforeAll(() => {
 //         jest.useFakeTimers();

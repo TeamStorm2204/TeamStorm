@@ -17,7 +17,7 @@ const theme = {
     footer: '#003333',
   }
 }
-const Reviews = () => {
+const Reviews = ({relatedId}) => {
   let metaStrings = {
     size: ['Too small', 'Too big'],
     width: ['Too narrow', 'Too wide'],
@@ -26,8 +26,9 @@ const Reviews = () => {
     length: ['Too short', 'Too long'],
     fit: ['Too tight', 'Too loose'],
   }
-   let id = useContext(UserContext)
-
+  let id = useContext(UserContext)
+  
+  console.log('id', id.currentPD.id);
   let arr = [5, 4, 3, 2, 1]
   const [reviews, setReviews] = useState([]);
   const [renderedReviews, setRenderedReviews] = useState([]);
@@ -62,7 +63,7 @@ const Reviews = () => {
         setMeta(data.characteristics)
       })
     })
-  }, [isFiltered]);
+  }, [isFiltered, setAvg, relatedId]);
 
   var sorter = (sortType) => {
     setIsFiltered(false)
