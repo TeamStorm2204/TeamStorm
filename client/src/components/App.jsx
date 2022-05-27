@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect, useState, createContext, useContext } from 'react';
 import RelatedProducts from './RelatedProducts.jsx';
 import api from '../../API';
-import Reviews from './Reviews.jsx';
+import Reviews from './Reviews/Reviews.jsx';
 import OverView from './Overview.jsx';
 import { Body, Header, Ratings, ReviewsList, Review, SubHeader, GlobalStyle, StyledButton } from './Styles.styled.js';
 
