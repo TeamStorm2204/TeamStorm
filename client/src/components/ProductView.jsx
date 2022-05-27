@@ -52,7 +52,7 @@ const ProductView =(props)=> {
               <BorderThumbImg src={photo.thumbnail_url} key={index} onClick={()=>setSelectedIndex(index)}/>:
             null
           ))}
-        {(photos.length > (indexEnd)) ? <Arrow onClick={mainLeftArrowClick}><i class="fas fa-angle-right fa-lg" /></Arrow > : null}
+        {(photos.length > (indexEnd)) ? <Arrow onClick={leftArrowClick}><i class="fas fa-angle-right fa-lg" /></Arrow > : null}
       </div>
       </DefaultImgWrap>
     )

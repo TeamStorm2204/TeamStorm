@@ -701,7 +701,7 @@ var ProductView = function ProductView(props) {
           }
         }, index) : null;
       }), photos.length > indexEnd ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_OverviewStyles_js__WEBPACK_IMPORTED_MODULE_3__.Arrow, {
-        onClick: mainLeftArrowClick,
+        onClick: leftArrowClick,
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("i", {
           "class": "fas fa-angle-right fa-lg"
         })
