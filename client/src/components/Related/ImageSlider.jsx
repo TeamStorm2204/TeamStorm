@@ -11,6 +11,7 @@ import Stars from '../Stars.jsx';
 
 const ImageSlider = ({
   images = [],
+  setRelatedId,
   overViewData
   }) => {
 
@@ -93,11 +94,12 @@ const ImageSlider = ({
                                 if(i===currentSub[index]) {
                                 return (
                                   <SubCard>
-                                  <img
+                                  <img 
                                   src={slid.url}
                                   key={index}
                                   onMouseEnter={()=>{sizeData[index]='180'; setHover(sizeData)}}
                                   onMouseLeave={()=>{sizeData[index]='150'; setHover(sizeData)}}
+                                  onClick={()=>{setRelatedId(item.id)}}
                                   height={sizeData[index]}
                                   alt='pictures'
                                   />
