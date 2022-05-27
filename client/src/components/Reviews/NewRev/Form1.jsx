@@ -6,12 +6,8 @@ import { InteractiveStars, InputBox, InputEmail, StyledButton } from '../../Styl
 import Axios from 'axios';
 
 const Form1 = ({ form1, setForm1, incPage }) => {
-  // let product = useContext(UserContext)
-  let product = {
-    currentPD: {
-      id: 40350
-    }
-  }
+let product = useContext(UserContext)
+
   const [urls, setUrls] = useState([])
   const [cloud, setCloud] = useState([])
   const [count, setCount] = useState(50)

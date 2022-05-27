@@ -9,7 +9,7 @@ import App from "../App.jsx";
 
 test('should render app', async ()=>{
     render(<App/>);
-    
+
     await waitFor(() => screen.getAllByRole('heading'))
 
     expect(screen.getByRole('heading', {name: 'Products' })).toBeInTheDocument();

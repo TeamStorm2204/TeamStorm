@@ -26,12 +26,8 @@ const Reviews = () => {
     length: ['Too short', 'Too long'],
     fit: ['Too tight', 'Too loose'],
   }
-  // let id = useContext(UserContext)
-  let id = {
-    currentPD: {
-      id: 40350
-    }
-  }
+   let id = useContext(UserContext)
+
   let arr = [5, 4, 3, 2, 1]
   const [reviews, setReviews] = useState([]);
   const [renderedReviews, setRenderedReviews] = useState([]);
@@ -44,7 +40,7 @@ const Reviews = () => {
   // const [filterTags, setFilterTags] = useState([])
   useEffect(() => {
     api.getReviews({ product_id: id.currentPD.id, count: 100 }, (err, data) => {
-      console.log('DATA, ', data)
+
       if (data.results.length > 0) {
         let sum = 0
         let obj = { 1: [], 2: [], 3: [], 4: [], 5: [] }
@@ -63,7 +59,6 @@ const Reviews = () => {
       setRenderedReviews(data.results.slice(0, 2))
 
       api.getReviewsMeta({ product_id: id.currentPD.id }, (err, data) => {
-        console.log('META DATA: ', data)
         setMeta(data.characteristics)
       })
     })
