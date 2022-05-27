@@ -1206,6 +1206,7 @@ var Stars = function Stars(props) {
 
         avg = sum / count;
         setStars(avg);
+        console.log('AVERAGE:  ', avg);
       }
     });
   }, []);
@@ -1214,7 +1215,7 @@ var Stars = function Stars(props) {
       display: 'inline-block'
     },
     children: star > 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Styles_styled_js__WEBPACK_IMPORTED_MODULE_3__.St, {
-      average: Math.floor(star * 2) / 2,
+      average: Math.round(star * 10) / 10,
       children: "\u2605\u2605\u2605\u2605\u2605"
     }) : null
   });
@@ -1234,11 +1235,21 @@ var Stars = function Stars(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Body": () => (/* binding */ Body),
+/* harmony export */   "Close": () => (/* binding */ Close),
+/* harmony export */   "Dropdown": () => (/* binding */ Dropdown),
+/* harmony export */   "DropdownMenu": () => (/* binding */ DropdownMenu),
+/* harmony export */   "DrpItem": () => (/* binding */ DrpItem),
 /* harmony export */   "GlobalStyle": () => (/* binding */ GlobalStyle),
 /* harmony export */   "Header": () => (/* binding */ Header),
-/* harmony export */   "Popup": () => (/* binding */ Popup),
+/* harmony export */   "InputBox": () => (/* binding */ InputBox),
+/* harmony export */   "InputEmail": () => (/* binding */ InputEmail),
+/* harmony export */   "InteractiveStars": () => (/* binding */ InteractiveStars),
+/* harmony export */   "Modal": () => (/* binding */ Modal),
+/* harmony export */   "ModalContent": () => (/* binding */ ModalContent),
 /* harmony export */   "PrimaryButton": () => (/* binding */ PrimaryButton),
 /* harmony export */   "ProgressBar": () => (/* binding */ ProgressBar),
+/* harmony export */   "RadioButton": () => (/* binding */ RadioButton),
+/* harmony export */   "RangeSlider": () => (/* binding */ RangeSlider),
 /* harmony export */   "RatingCheck": () => (/* binding */ RatingCheck),
 /* harmony export */   "Ratings": () => (/* binding */ Ratings),
 /* harmony export */   "Review": () => (/* binding */ Review),
@@ -1246,7 +1257,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "Scrollbar": () => (/* binding */ Scrollbar),
 /* harmony export */   "SearchBar": () => (/* binding */ SearchBar),
 /* harmony export */   "St": () => (/* binding */ St),
-/* harmony export */   "Stars": () => (/* binding */ Stars),
+/* harmony export */   "Star": () => (/* binding */ Star),
 /* harmony export */   "StyledButton": () => (/* binding */ StyledButton),
 /* harmony export */   "SubHeader": () => (/* binding */ SubHeader)
 /* harmony export */ });
@@ -1254,48 +1265,53 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 
 
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16, _templateObject17, _templateObject18, _templateObject19, _templateObject20, _templateObject21, _templateObject22, _templateObject23, _templateObject24, _templateObject25, _templateObject26;
 
 
 
-var Header = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject || (_templateObject = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    display: flex;\n    background-color:", ";\n    justify-content: space-between;\n    width: 90%;\n    max-width: 90%;\n    padding-left: 25px;\n    padding-right: 25px;\n    margin: 0 auto;\n    align-items: center;\n  "])), function (_ref) {
-  var theme = _ref.theme;
-  return theme.colors.header;
+var Modal = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject || (_templateObject = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  display: ", ";\n  position: fixed;\n  z-index: 1;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  overflow: auto;\n  background-color: rgb(0,0,0);\n  background-color: rgba(0,0,0,0.4);\n  "])), function (props) {
+  return props.dis[0];
 });
-var SubHeader = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject2 || (_templateObject2 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    display: flex;\n    justify-content: space-between;\n    width: 90%;\n    max-width: 90%;\n    padding-left: 25px;\n    padding-right: 25px;\n    margin: 0 auto;\n    font-size: 20px;\n    align-items: center;\n  "])));
-var PrimaryButton = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].button(_templateObject3 || (_templateObject3 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    background-color: white;\n    border: none;\n    color: black;\n    padding: 15px 40px;\n    text-align: center;\n    display: inline-block;\n    font-size: 16px;\n    box-shadow: 0 8px 10px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);\n  "])));
-var StyledButton = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].button(_templateObject4 || (_templateObject4 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    background-color: black;\n    border: none;\n    color: white;\n    padding: 15px 40px;\n    text-align: center;\n    display: inline-block;\n    font-size: 16px;\n    box-shadow: 0 8px 10px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);\n  "])));
-var Body = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject5 || (_templateObject5 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    background-color:", ";\n    display: flex;\n    justify-content: flex-start;\n    width: 95%;\n    max-width: 95%;\n    padding-left: 25px;\n    padding-right: 25px;\n    margin: 0 auto;\n    font-size: 20px;\n    align-items: flex-start;\n  "])), function (_ref2) {
-  var theme = _ref2.theme;
+var ModalContent = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject2 || (_templateObject2 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    background-color: #fefefe;\n  margin: 2% auto;\n  padding: 20px;\n  border: 1px solid #888;\n  width: 60%;\n  padding-bottom:20px;\n  "])));
+var Close = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].span(_templateObject3 || (_templateObject3 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\ndisplay:flex;\n    color: #aaa;\n  float: right;\n  font-size: 28px;\n  font-weight: bold;\n  &:hover {\n      color:red;\n    }\n  "])));
+var Header = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject4 || (_templateObject4 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    display: flex;\n    background-color:#e3d5d5;\n    justify-content: space-between;\n    width: 90%;\n    max-width: 90%;\n    padding-left: 25px;\n    padding-right: 25px;\n    margin: 0 auto;\n    align-items: center;\n  "])));
+var SubHeader = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject5 || (_templateObject5 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    display: flex;\n    justify-content: space-between;\n    width: 90%;\n    max-width: 90%;\n    padding-left: 25px;\n    padding-right: 25px;\n    margin: 0 auto;\n    font-size: 20px;\n    align-items: center;\n  "])));
+var PrimaryButton = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].button(_templateObject6 || (_templateObject6 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    background-color: white;\n    border: none;\n    color: black;\n    padding: 15px 40px;\n    text-align: center;\n    display: inline-block;\n    font-size: 16px;\n    box-shadow: 0 8px 10px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);\n    &:hover {\n      box-shadow: 0 5px 3px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);\n    }\n  "])));
+var StyledButton = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].button(_templateObject7 || (_templateObject7 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    background-color: black;\n    border: none;\n    color: white;\n    padding: 15px 40px;\n    text-align: center;\n    display: inline-block;\n    font-size: 16px;\n    box-shadow: 0 8px 10px 0 rgba(0,0,0,0.3), 0 6px 20px 0 rgba(0,0,0,0.19);\n    &:hover {\n      box-shadow: 0 5px 3px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);\n    }\n  "])));
+var Body = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject8 || (_templateObject8 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    background-color:", ";\n    display: flex;\n    justify-content: flex-start;\n    width: 95%;\n    max-width: 95%;\n    padding-left: 25px;\n    padding-right: 25px;\n    margin: 0 auto;\n    font-size: 20px;\n    align-items: flex-start;\n  "])), function (_ref) {
+  var theme = _ref.theme;
   return theme.colors.body;
 });
-var Ratings = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject6 || (_templateObject6 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    display: flex;\n    justify-content: space-around;\n    width: 35%;\n    max-width: 35%;\n    padding: 0px;\n    margin-left: 10px;\n    font-size: 20px;\n    align-items: center;\n    flex-direction: column;\n    align-items: flex-start;\n  "])));
-var ReviewsList = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject7 || (_templateObject7 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    box-sizing: content-box;\n    width: 100%;\n  "])));
-var Review = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject8 || (_templateObject8 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    box-sizing: content-box;\n    width: 95%;\n    margin-right:10px;\n    margin-top:5px;\n    margin-bottom:5px;\n    padding:25px;\n    border-bottom: 1px solid grey;\n  "])));
-var Stars = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject9 || (_templateObject9 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n  "])));
-var St = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject10 || (_templateObject10 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    background: linear-gradient(90deg, #FDCC0D 0 ", "%, grey ", "% 100%);\n    -webkit-background-clip: text;\n    -webkit-text-fill-color: transparent;\n  "])), function (props) {
+var Ratings = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject9 || (_templateObject9 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    display: flex;\n    justify-content: space-around;\n    width: 35%;\n    max-width: 35%;\n    padding: 0px;\n    margin-left: 10px;\n    font-size: 20px;\n    align-items: center;\n    flex-direction: column;\n    align-items: flex-start;\n  "])));
+var ReviewsList = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject10 || (_templateObject10 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    box-sizing: content-box;\n    width: 100%;\n  "])));
+var Review = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject11 || (_templateObject11 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    box-sizing: content-box;\n    width: 95%;\n    margin-right:10px;\n    margin-top:5px;\n    margin-bottom:5px;\n    padding:25px;\n    border-bottom: 1px solid grey;\n  "])));
+var Star = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject12 || (_templateObject12 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n  "])));
+var St = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject13 || (_templateObject13 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    background: linear-gradient(90deg, #FDCC0D 0 ", "%, grey ", "% 100%);\n    -webkit-background-clip: text;\n    -webkit-text-fill-color: transparent;\n  "])), function (props) {
   return props.average / 5 * 100;
 }, function (props) {
   return props.average / 5 * 100;
 });
-var ProgressBar = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject11 || (_templateObject11 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  background-color: #FDCC0D;\n  width: ", "%;\n  height: 7px;\n"])), function (props) {
+var InteractiveStars = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject14 || (_templateObject14 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n.star-cb-group {\n  /* remove inline-block whitespace */\n  font-size: 0;\n  /* flip the order so we can use the + and ~ combinators */\n  unicode-bidi: bidi-override;\n  direction:rtl;\n  /* the hidden clearer */\n}\n.star-cb-group * {\n  font-size: 1rem;\n}\n.star-cb-group > input {\n  display: none;\n}\n.star-cb-group > input + label {\n  /* only enough room for the star */\n  display: inline-block;\n  overflow: hidden;\n\n  width: 1em;\n  white-space: nowrap;\n  cursor: pointer;\n}\n.star-cb-group > input + label:before {\n  display: inline-block;\n\n  content: \"\u2606\";\n  color: #888;\n}\n.star-cb-group > input:checked ~ label:before, .star-cb-group > input + label:hover ~ label:before, .star-cb-group > input + label:hover:before {\n  content: \"\u2605\";\n  color: #e52;\n  text-shadow: 0 0 1px #333;\n}\n.star-cb-group > .star-cb-clear + label {\n  text-indent: -9999px;\n  width: .5em;\n  margin-left: -.5em;\n}\n.star-cb-group > .star-cb-clear + label:before {\n  width: .5em;\n}\n.star-cb-group:hover > input + label:before {\n  content: \"\u2606\";\n  color: #888;\n  text-shadow: none;\n}\n.star-cb-group:hover > input + label:hover ~ label:before, .star-cb-group:hover > input + label:hover:before {\n  content: \"\u2605\";\n  color: #e52;\n  text-shadow: 0 0 1px #333;\n}\n  "])));
+var ProgressBar = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject15 || (_templateObject15 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  background-color: #FDCC0D;\n  width: ", "%;\n  height: 7px;\n"])), function (props) {
   return props.percentNum;
 });
-var Scrollbar = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject12 || (_templateObject12 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    width: 100 %;\n    height: 500px;\n    overflow: scroll;\n    position: relative;\n    &:: -webkit - scrollbar {\n      width: 20px;\n      border: 1px solid #d8d8d8;\n    }\n"])));
-var RatingCheck = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject13 || (_templateObject13 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    display: flex;\n    width: 80 %;\n    margin - right: 30px;\n    flex - direction: row;\n"])));
-var SearchBar = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject14 || (_templateObject14 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    background - color: #ffffff;\n    box - sizing: content - box;\n    width: 80 %;\n    margin - right: 20px;\n"])));
-var Popup = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject15 || (_templateObject15 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    position: fixed;\n    z - index: 1;\n    width: 100 %;\n    height: 100 %;\n    background - color: rgba(0, 0, 0, 0.25);\n"]))); // export const PopupContent = styled.div`
-//     background-color: white;
-//     position: absolute;
-//     top: 20%;
-//     left: 30%;
-//     width: 40%;
-//     padding: 20px;
-//     border-radius: 5px;
-//     border: 2px solid black;
-//   `
-
-var GlobalStyle = (0,styled_components__WEBPACK_IMPORTED_MODULE_1__.createGlobalStyle)(_templateObject16 || (_templateObject16 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n   body {\n    display: flex;\n    margin: 0;\n    padding: 100px;\n    background: #f5f5f5;\n    font - family: sans-serif;\n    flex-direction: column;\n  }\n"]))); //export styles;
+var RangeSlider = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject16 || (_templateObject16 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  .slider {\n  -webkit-appearance: none;\n  appearance: none;\n  width: 100%;\n  height: 7px;\n  background: #d3d3d3;\n  outline: none;\n  opacity: 0.7;\n  -webkit-transition: .2s;\n  transition: opacity .2s;\n}\n.slider::-webkit-slider-thumb {\n  -webkit-appearance: none;\n  appearance: none;\n  width: 7px;\n  height: 15px;\n  background: black;\n}\n"])));
+var Scrollbar = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject17 || (_templateObject17 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    width: 100%;\n    height: 500px;\n    overflow: scroll;\n    position: relative;\n    box-shadow: inset 1px 1px 10px #d1d1d1;\n    &:: -webkit - scrollbar {\n      -webkit-appearance: auto;\n      width: 20px;\n      border: 1px solid #d8d8d8;\n    }\n"])));
+var DropdownMenu = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject18 || (_templateObject18 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  display: none;\n  position: absolute;\n  background-color: #f9f9f9;\n  min-width: 160px;\n  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);\n  padding: 12px 16px;\n  z-index: 1;\n"])));
+var InputBox = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].input.attrs({
+  type: 'text'
+})(_templateObject19 || (_templateObject19 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  width: 100%;\n  padding: 12px 20px;\n  margin: 8px 0;\n  box-sizing: border-box;\n"])));
+var InputEmail = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].input.attrs({
+  type: 'email'
+})(_templateObject20 || (_templateObject20 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  width: 100%;\n  padding: 12px 20px;\n  margin: 8px 0;\n  box-sizing: border-box;\n"])));
+var RadioButton = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].input.attrs({
+  type: 'radio'
+})(_templateObject21 || (_templateObject21 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  width: 1.15em;\n  height: 1.15em;\n"])));
+var DrpItem = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].p(_templateObject22 || (_templateObject22 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    width: 170px;\n    height: 20px;\n    padding-bottom:10px;\n    border-bottom: 1px solid grey;\n\n"])));
+var Dropdown = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject23 || (_templateObject23 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    textDecoration: 'underline';\n    display: inline-block;\n    &:hover ", " {\n      display: block;\n    }\n"])), DropdownMenu);
+var RatingCheck = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject24 || (_templateObject24 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    display: flex;\n    width: 80 %;\n    margin - right: 30px;\n    flex - direction: row;\n"])));
+var SearchBar = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject25 || (_templateObject25 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    background - color: #ffffff;\n    box - sizing: content - box;\n    width: 80 %;\n    margin - right: 20px;\n"])));
+var GlobalStyle = (0,styled_components__WEBPACK_IMPORTED_MODULE_1__.createGlobalStyle)(_templateObject26 || (_templateObject26 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n   body {\n    display: flex;\n    margin: 0;\n    padding: 100px;\n    background: #f5f5f5;\n    font - family: sans-serif;\n    flex-direction: column;\n  }\n"]))); //export styles;
 
 /***/ }),
 
