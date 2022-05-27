@@ -144,13 +144,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/esm/slicedToArray.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _RelatedProducts_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./RelatedProducts.jsx */ "./client/src/components/RelatedProducts.jsx");
+/* harmony import */ var _Related_RelatedProducts_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Related/RelatedProducts.jsx */ "./client/src/components/Related/RelatedProducts.jsx");
 /* harmony import */ var _API__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../API */ "./client/API/index.js");
 /* harmony import */ var _API__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_API__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _Reviews_Reviews_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Reviews/Reviews.jsx */ "./client/src/components/Reviews/Reviews.jsx");
 /* harmony import */ var _Overview_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Overview.jsx */ "./client/src/components/Overview.jsx");
 /* harmony import */ var _Styles_styled_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Styles.styled.js */ "./client/src/components/Styles.styled.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _Related_Outfit_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Related/Outfit.jsx */ "./client/src/components/Related/Outfit.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 
@@ -158,6 +159,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+ // import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+// import {library} from '@fortawesome/fontawesome-svg-core';
+// import {fas, faFontAwesome} from '@fortawesome/free-solid-svg-icons';
+// //import { faBrands, faFontAwesome } from '@fortawesome/free-brands-svg-icons';
+// library.add(fas,faFontAwesome);
 
 
 
@@ -193,34 +200,38 @@ var App = function App(props) {
   }, []);
 
   if (products.name) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(UserContext.Provider, {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(UserContext.Provider, {
       value: {
         currentPD: products,
         Img: styles
       },
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Styles_styled_js__WEBPACK_IMPORTED_MODULE_6__.GlobalStyle, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Styles_styled_js__WEBPACK_IMPORTED_MODULE_6__.GlobalStyle, {
           color: "#f5f5f5"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h1", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h1", {
           children: "Products "
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-          children: products.id ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Overview_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+          children: products.id ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Overview_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], {
             id: products.id
           }) : null
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h2", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h2", {
             children: products.name
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h3", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h3", {
             children: products.slogan
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
             children: products.description
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h2", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h2", {
             children: " Related Product"
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Reviews_Reviews_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {})
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Related_RelatedProducts_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {})]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h2", {
+            children: "Outfit List"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Related_Outfit_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {})]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Reviews_Reviews_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {})
         })]
       })
     });
@@ -256,10 +267,340 @@ var Overview = function Overview(props) {};
 
 /***/ }),
 
-/***/ "./client/src/components/RelatedProducts.jsx":
-/*!***************************************************!*\
-  !*** ./client/src/components/RelatedProducts.jsx ***!
-  \***************************************************/
+/***/ "./client/src/components/Related/ImageSlider.jsx":
+/*!*******************************************************!*\
+  !*** ./client/src/components/Related/ImageSlider.jsx ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/esm/slicedToArray.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+Object(function webpackMissingModule() { var e = new Error("Cannot find module 'react-icons/fa'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var _StyleRelated_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./StyleRelated.js */ "./client/src/components/Related/StyleRelated.js");
+Object(function webpackMissingModule() { var e = new Error("Cannot find module 'react-icons'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+Object(function webpackMissingModule() { var e = new Error("Cannot find module 'react-icons/im'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var _Modal_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Modal.jsx */ "./client/src/components/Related/Modal.jsx");
+/* harmony import */ var _Stars_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Stars.jsx */ "./client/src/components/Stars.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var ImageSlider = function ImageSlider(_ref) {
+  var _ref$images = _ref.images,
+      images = _ref$images === void 0 ? [] : _ref$images,
+      overViewData = _ref.overViewData;
+  var imagesUpdate = []; //collect all data that has url
+
+  for (var i = 0; i < images.length; i++) {
+    if (images[i].image[0].url !== null) {
+      imagesUpdate.push(images[i]);
+    }
+  }
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
+      _useState2 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState, 2),
+      current = _useState2[0],
+      setCurrent = _useState2[1];
+
+  var length = imagesUpdate.length;
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(Array(length).fill(0)),
+      _useState4 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState3, 2),
+      currentSub = _useState4[0],
+      setCurrentSub = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(Array(length).fill('150')),
+      _useState6 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState5, 2),
+      hover = _useState6[0],
+      setHover = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
+    item: {},
+    status: false
+  }),
+      _useState8 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState7, 2),
+      modal = _useState8[0],
+      setModal = _useState8[1];
+
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    document.addEventListener('mousedown', function () {
+      setModal({
+        item: {},
+        status: false
+      });
+    });
+  });
+
+  var nextSlide = function nextSlide() {
+    setCurrent(current === length - 1 ? 0 : current + 2);
+  };
+
+  var prevSlide = function prevSlide() {
+    setCurrent(current === 0 ? length - 2 : current - 2);
+  };
+
+  var lengthSub = 0;
+
+  var nextSlideSub = function nextSlideSub(key) {
+    var lengthSub = imagesUpdate[key].image.length;
+    var subValue = currentSub.slice();
+    subValue[key] === lengthSub - 1 ? subValue[key] = 0 : subValue[key] = subValue[key] + 1;
+    setCurrentSub(subValue);
+  };
+
+  var prevSlideSub = function prevSlideSub(key) {
+    var lengthSub = imagesUpdate[key].image.length;
+    var subValue = currentSub.slice();
+    subValue[key] === lengthSub - 1 ? subValue[key] = 0 : subValue[key] = subValue[key] + 1;
+    setCurrentSub(subValue);
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+    children: [modal.status && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Modal_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      closeModal: setModal,
+      length: length,
+      id: overViewData,
+      relatedInf: modal.item
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_StyleRelated_js__WEBPACK_IMPORTED_MODULE_3__.Slide, {
+      "data-testid": "image-slider",
+      children: [current !== 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_StyleRelated_js__WEBPACK_IMPORTED_MODULE_3__.LeftArrow, {
+        onClick: prevSlide,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'react-icons/fa'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), {})
+      }) : null, current !== length - 1 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_StyleRelated_js__WEBPACK_IMPORTED_MODULE_3__.RightArrow, {
+        onClick: nextSlide,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'react-icons/fa'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), {})
+      }) : null, imagesUpdate.map(function (item, index) {
+        var sizeData = hover.slice();
+
+        if (index === current || index === current + 1) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_StyleRelated_js__WEBPACK_IMPORTED_MODULE_3__.Card, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_StyleRelated_js__WEBPACK_IMPORTED_MODULE_3__.Slide, {
+                children: [currentSub !== 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_StyleRelated_js__WEBPACK_IMPORTED_MODULE_3__.LeftArrowSub, {
+                  onClick: function onClick() {
+                    prevSlideSub(index);
+                  },
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'react-icons/im'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), {})
+                }) : null, currentSub !== lengthSub - 1 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_StyleRelated_js__WEBPACK_IMPORTED_MODULE_3__.RightArrowSub, {
+                  onClick: function onClick() {
+                    nextSlideSub(index);
+                  },
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'react-icons/im'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), {})
+                }) : null, item.image.map(function (slid, i) {
+                  if (i === currentSub[index]) {
+                    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_StyleRelated_js__WEBPACK_IMPORTED_MODULE_3__.SubCard, {
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
+                        src: slid.url,
+                        onMouseEnter: function onMouseEnter() {
+                          sizeData[index] = '180';
+                          setHover(sizeData);
+                        },
+                        onMouseLeave: function onMouseLeave() {
+                          sizeData[index] = '150';
+                          setHover(sizeData);
+                        },
+                        height: sizeData[index],
+                        alt: "pictures"
+                      }, index)
+                    });
+                  }
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_StyleRelated_js__WEBPACK_IMPORTED_MODULE_3__.Icon, {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'react-icons'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), {
+                  value: {
+                    size: '1.5em'
+                  },
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                    onClick: function onClick() {
+                      var modalNew = {
+                        item: item,
+                        status: true
+                      };
+                      setModal(modalNew);
+                    },
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'react-icons/im'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), {})
+                  })
+                })
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_StyleRelated_js__WEBPACK_IMPORTED_MODULE_3__.Description, {
+              style: {
+                fontSize: 15
+              },
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("span", {
+                style: {
+                  fontWeight: 'bold'
+                },
+                children: [" ", item.name, " "]
+              }, index)
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_StyleRelated_js__WEBPACK_IMPORTED_MODULE_3__.Description, {
+              style: {
+                fontSize: 15
+              },
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+                children: item.category
+              }, index + 3), item.discount ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("span", {
+                  children: [" Price:$", item.discount, " "]
+                }, index + 1), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("span", {
+                  style: {
+                    textDecoration: 'line-though'
+                  },
+                  children: [" $", item.default_price, " "]
+                }, index + 4)]
+              }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("span", {
+                children: [" Price:$", item.default_price]
+              }, index + 1)]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_StyleRelated_js__WEBPACK_IMPORTED_MODULE_3__.Description, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Stars_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                id: item.id
+              })
+            })]
+          });
+        }
+      })]
+    })]
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ImageSlider);
+
+/***/ }),
+
+/***/ "./client/src/components/Related/Modal.jsx":
+/*!*************************************************!*\
+  !*** ./client/src/components/Related/Modal.jsx ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/esm/slicedToArray.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _StyleRelated_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./StyleRelated.js */ "./client/src/components/Related/StyleRelated.js");
+/* harmony import */ var _API__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../API */ "./client/API/index.js");
+/* harmony import */ var _API__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_API__WEBPACK_IMPORTED_MODULE_3__);
+Object(function webpackMissingModule() { var e = new Error("Cannot find module 'react-icons/vsc'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+
+
+
+
+
+var Modal = function Modal(_ref) {
+  var closeModal = _ref.closeModal,
+      length = _ref.length,
+      id = _ref.id,
+      relatedInf = _ref.relatedInf;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({}),
+      _useState2 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState, 2),
+      totalFeatures = _useState2[0],
+      setFeatures = _useState2[1];
+
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    _API__WEBPACK_IMPORTED_MODULE_3___default().getProductInformation(id, function (err, data) {
+      if (err) {
+        console.log(err);
+      } else {
+        var total = data.features.concat(relatedInf.features);
+        var featuresTitle = [];
+
+        for (var i = 0; i < total.length; i++) {
+          if (!featuresTitle.includes(total[i].feature)) {
+            featuresTitle.push(total[i].feature);
+          }
+        }
+
+        var totalInfor = {
+          overView: data,
+          related: relatedInf,
+          featuresTitle: featuresTitle
+        }; //data/related  has the name; deaturesTitle has all no repeative titles; data.feature or relatedInf.features has its features
+
+        setFeatures(totalInfor);
+      }
+    });
+  }, []);
+
+  if (totalFeatures.overView !== undefined) {
+    console.log('waht is overView', totalFeatures);
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_StyleRelated_js__WEBPACK_IMPORTED_MODULE_2__.Container, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_StyleRelated_js__WEBPACK_IMPORTED_MODULE_2__.Close, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_StyleRelated_js__WEBPACK_IMPORTED_MODULE_2__.CloseButton, {
+          onClick: function onClick() {
+            return closeModal(Array(length).fill(false));
+          },
+          children: ["  ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'react-icons/vsc'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), {}), " "]
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("table", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("thead", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tr", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_StyleRelated_js__WEBPACK_IMPORTED_MODULE_2__.HeadL, {
+              children: totalFeatures.overView.name
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+              children: " "
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_StyleRelated_js__WEBPACK_IMPORTED_MODULE_2__.HeadR, {
+              children: totalFeatures.related.name
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+              children: " "
+            })]
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("tbody", {
+          children: totalFeatures.featuresTitle.map(function (item, key) {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tr", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_StyleRelated_js__WEBPACK_IMPORTED_MODULE_2__.XfeatureL, {
+                children: totalFeatures.overView.features.map(function (item1) {
+                  return item1.feature === item ? item1.value ? "".concat(item1.value) : '✓' : ' ';
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_StyleRelated_js__WEBPACK_IMPORTED_MODULE_2__.Value, {
+                children: item
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_StyleRelated_js__WEBPACK_IMPORTED_MODULE_2__.XfeatureR, {
+                children: totalFeatures.related.features.map(function (item2) {
+                  return item2.feature === item ? item2.value ? "".concat(item2.value) : '✓' : ' ';
+                })
+              })]
+            }, key);
+          })
+        })]
+      })]
+    });
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Modal);
+
+/***/ }),
+
+/***/ "./client/src/components/Related/Outfit.jsx":
+/*!**************************************************!*\
+  !*** ./client/src/components/Related/Outfit.jsx ***!
+  \**************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -271,9 +612,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/esm/slicedToArray.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _API__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../API */ "./client/API/index.js");
+/* harmony import */ var _API__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../API */ "./client/API/index.js");
 /* harmony import */ var _API__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_API__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+Object(function webpackMissingModule() { var e = new Error("Cannot find module 'react-icons/fa'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+Object(function webpackMissingModule() { var e = new Error("Cannot find module 'react-icons/io5'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+Object(function webpackMissingModule() { var e = new Error("Cannot find module 'react-icons'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _App_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../App.jsx */ "./client/src/components/App.jsx");
+/* harmony import */ var _StyleRelated_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./StyleRelated.js */ "./client/src/components/Related/StyleRelated.js");
+Object(function webpackMissingModule() { var e = new Error("Cannot find module 'react-elastic-carousel'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+Object(function webpackMissingModule() { var e = new Error("Cannot find module 'react-icons/vsc'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var _Stars_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../Stars.jsx */ "./client/src/components/Stars.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 
@@ -282,49 +633,366 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var RelatedProduct = function RelatedProduct(props) {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
+
+
+
+
+
+
+
+
+
+var Outfit = function Outfit(props) {
+  var breakPoints = [{
+    width: 150,
+    itemsToShow: 1
+  }, {
+    width: 300,
+    itemsToShow: 2
+  }];
+  var data = (0,react__WEBPACK_IMPORTED_MODULE_2__.useContext)(_App_jsx__WEBPACK_IMPORTED_MODULE_6__.UserContext);
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(localStorage.getItem('outfits') ? JSON.parse(localStorage.getItem('outfits')) : []),
       _useState2 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1__["default"])(_useState, 2),
+      outfits = _useState2[0],
+      setOutfits = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
+      _useState4 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1__["default"])(_useState3, 2),
+      img = _useState4[0],
+      setImg = _useState4[1];
+
+  function addOutfit(data) {
+    var count = 0;
+
+    for (var i = 0; i < outfits.length; i++) {
+      if (outfits[i].url === data.Img.results[0].photos[0].url) {
+        count++;
+        return;
+      }
+    }
+
+    if (count === 0) {
+      var url = data.Img.results[0].photos[0].url; //an array of object of default img urls
+
+      var discount = data.Img.results[0].sale_price;
+      var price = data.Img.results[0].original_price;
+      var name = data.Img.results[0].name;
+      var outfit = {
+        url: url,
+        discount: discount,
+        price: price,
+        name: name
+      };
+      var currentOutfits = outfits.slice(); //console.log('outfit', outfit, currentOutfits);
+
+      currentOutfits.push(outfit); //console.log('total', currentOutfits);
+
+      localStorage.setItem("outfits", JSON.stringify(currentOutfits));
+      setOutfits(function (prev) {
+        return [].concat((0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__["default"])(prev), [outfit]);
+      });
+    }
+  }
+
+  function deleteFit(index) {
+    var update = [];
+
+    for (var i = 0; i < outfits.length; i++) {
+      if (i !== index) {
+        update.push(outfits[i]);
+      }
+    }
+
+    localStorage.setItem("outfits", JSON.stringify(update));
+    setOutfits(update);
+  }
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_StyleRelated_js__WEBPACK_IMPORTED_MODULE_7__.Add, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'react-icons'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), {
+        value: {
+          size: '4em'
+        },
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("button", {
+            "aria-label": "add",
+            onClick: function onClick() {
+              addOutfit(data);
+            },
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'react-icons/io5'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), {})
+          })
+        })
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_StyleRelated_js__WEBPACK_IMPORTED_MODULE_7__.Space, {
+      children: outfits.length > 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'react-elastic-carousel'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), {
+        breakPoints: breakPoints,
+        children: outfits.map(function (item, index) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(_StyleRelated_js__WEBPACK_IMPORTED_MODULE_7__.Card, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("img", {
+                src: item.url,
+                width: "100",
+                alt: item.name
+              }, index), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_StyleRelated_js__WEBPACK_IMPORTED_MODULE_7__.Cross, {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+                  onClick: function onClick() {
+                    deleteFit(index);
+                  },
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'react-icons/vsc'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), {})
+                })
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_StyleRelated_js__WEBPACK_IMPORTED_MODULE_7__.Description, {
+              style: {
+                fontSize: 15
+              },
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("span", {
+                style: {
+                  fontWeight: 'bold'
+                },
+                children: [" ", item.name, " "]
+              }, index)
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(_StyleRelated_js__WEBPACK_IMPORTED_MODULE_7__.Description, {
+              style: {
+                fontSize: 15
+              },
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
+                children: item.category
+              }, index + 3), item.discount ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("span", {
+                  children: [" Price:$", item.discount, " "]
+                }, index + 1), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("span", {
+                  style: {
+                    textDecoration: 'line-though'
+                  },
+                  children: [" $", item.default_price, " "]
+                }, index + 4)]
+              }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("span", {
+                children: [" Price:$", item.price]
+              }, index + 1)]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_StyleRelated_js__WEBPACK_IMPORTED_MODULE_7__.Description, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Stars_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], {
+                id: item.id
+              })
+            })]
+          });
+        })
+      }) : null
+    })]
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Outfit);
+
+/***/ }),
+
+/***/ "./client/src/components/Related/RelatedProducts.jsx":
+/*!***********************************************************!*\
+  !*** ./client/src/components/Related/RelatedProducts.jsx ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/esm/slicedToArray.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _API__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../API */ "./client/API/index.js");
+/* harmony import */ var _API__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_API__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _App_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../App.jsx */ "./client/src/components/App.jsx");
+/* harmony import */ var _StyleRelated_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./StyleRelated.js */ "./client/src/components/Related/StyleRelated.js");
+Object(function webpackMissingModule() { var e = new Error("Cannot find module 'react-elastic-carousel'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+Object(function webpackMissingModule() { var e = new Error("Cannot find module 'react-icons/ti'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+Object(function webpackMissingModule() { var e = new Error("Cannot find module 'react-icons'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var _ImageSlider_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./ImageSlider.jsx */ "./client/src/components/Related/ImageSlider.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+var config = __webpack_require__(/*! ../../../../config.js */ "./config.js");
+
+
+
+
+
+
+
+
+var breakPoints = [{
+  width: 50,
+  itemsToShow: 1
+}, {
+  width: 300,
+  itemsToShow: 2
+}];
+
+var RelatedProducts = function RelatedProducts(props) {
+  var data = (0,react__WEBPACK_IMPORTED_MODULE_1__.useContext)(_App_jsx__WEBPACK_IMPORTED_MODULE_3__.UserContext);
+  var id = data.currentPD.id;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+      _useState2 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState, 2),
       relatedItems = _useState2[0],
       setRelative = _useState2[1];
 
-  (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
-    _API__WEBPACK_IMPORTED_MODULE_3___default().getRelatedProducts(props.id, function (err, data) {
-      if (err) {
-        alert('err getting related product');
-      } else {
-        var relatedInfor = [];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+      _useState4 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState3, 2),
+      hover = _useState4[0],
+      setHover = _useState4[1];
 
-        for (var i = 0; i < data.length; i++) {
-          _API__WEBPACK_IMPORTED_MODULE_3___default().getProductInformation(data[i], function (err, data) {
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(Array(10).fill('black')),
+      _useState6 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState5, 2),
+      color = _useState6[0],
+      setColor = _useState6[1];
+
+  function toggleColor(index) {
+    if (color[index] === 'black') {
+      var colorNew = color.slice();
+      colorNew[index] = 'red';
+      setColor(colorNew);
+    } else {
+      var colorNew = color.slice();
+      colorNew[index] = 'black';
+      setColor(colorNew);
+    }
+  }
+
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    _API__WEBPACK_IMPORTED_MODULE_2___default().getRelatedProducts(id, function (err, data) {
+      if (err) {
+        console.log(err);
+      } else {
+        var totalData = [];
+        var size = [];
+        var len = data.length;
+
+        var _loop = function _loop(i) {
+          _API__WEBPACK_IMPORTED_MODULE_2___default().getProductInformation(data[i], function (err, result) {
             if (err) {
               console.log(err);
             } else {
-              relatedInfor.push(data);
-              var updte = relatedItem.concat(data);
-              setRelative([].concat((0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__["default"])(relatedItems), [updte]));
+              _API__WEBPACK_IMPORTED_MODULE_2___default().getProductStyles(data[i], function (err, data) {
+                if (err) {
+                  console.log(err);
+                } else {
+                  for (var _i = 0; _i < data.results.length; _i++) {
+                    var urls = [];
+                    var price = '';
+                    var discount = '';
+
+                    if (data.results[_i]['default?'] === true) {
+                      urls = data.results[_i].photos; //an array of object of default img urls
+
+                      discount = data.results[_i].sale_price;
+                    }
+                  }
+
+                  if (urls.length === 0) {
+                    urls = data.results[0].photos;
+                    discount = data.results[i].sale_price;
+                  }
+
+                  result.image = urls;
+                  result.discount = discount;
+                  size.push('125');
+                  totalData.push(result);
+
+                  if (totalData.length === len) {
+                    setRelative(totalData);
+                    setHover(size);
+                  }
+                }
+              });
             }
           });
+        };
+
+        for (var i = 0; i < data.length; i++) {
+          _loop(i);
         }
       }
     });
   }, []);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-    children: relatedItems.map(function (item) {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-          children: "hello"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-          children: item.name
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-          children: item.default_price
-        })]
-      });
-    })
-  });
+
+  if (hover.length > 0) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_ImageSlider_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      overViewData: id,
+      images: relatedItems
+    });
+  }
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RelatedProduct);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RelatedProducts);
+
+/***/ }),
+
+/***/ "./client/src/components/Related/StyleRelated.js":
+/*!*******************************************************!*\
+  !*** ./client/src/components/Related/StyleRelated.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Add": () => (/* binding */ Add),
+/* harmony export */   "Card": () => (/* binding */ Card),
+/* harmony export */   "Cd": () => (/* binding */ Cd),
+/* harmony export */   "Close": () => (/* binding */ Close),
+/* harmony export */   "CloseButton": () => (/* binding */ CloseButton),
+/* harmony export */   "Container": () => (/* binding */ Container),
+/* harmony export */   "Cross": () => (/* binding */ Cross),
+/* harmony export */   "Description": () => (/* binding */ Description),
+/* harmony export */   "HeadL": () => (/* binding */ HeadL),
+/* harmony export */   "HeadR": () => (/* binding */ HeadR),
+/* harmony export */   "Icon": () => (/* binding */ Icon),
+/* harmony export */   "Images": () => (/* binding */ Images),
+/* harmony export */   "LeftArrow": () => (/* binding */ LeftArrow),
+/* harmony export */   "LeftArrowSub": () => (/* binding */ LeftArrowSub),
+/* harmony export */   "RightArrow": () => (/* binding */ RightArrow),
+/* harmony export */   "RightArrowSub": () => (/* binding */ RightArrowSub),
+/* harmony export */   "Slide": () => (/* binding */ Slide),
+/* harmony export */   "Space": () => (/* binding */ Space),
+/* harmony export */   "SubCard": () => (/* binding */ SubCard),
+/* harmony export */   "Value": () => (/* binding */ Value),
+/* harmony export */   "XfeatureL": () => (/* binding */ XfeatureL),
+/* harmony export */   "XfeatureR": () => (/* binding */ XfeatureR)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/taggedTemplateLiteral */ "./node_modules/@babel/runtime/helpers/esm/taggedTemplateLiteral.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+
+
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16, _templateObject17, _templateObject18, _templateObject19, _templateObject20, _templateObject21, _templateObject22;
+
+
+
+var Card = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject || (_templateObject = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  position:relative;\n  transition: 0.3s;\n  display:flex;\n  justify-content:space-around;\n  align-items:center;\n  width:200px;\n  height:200px;\n  margin-top: 5px;\n  margin-left:100px;\n  z-index: 1;\n   "])));
+var SubCard = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject2 || (_templateObject2 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n\n  width: 200px\n  flex-shrink: 0;\n  background-position: center;\n  background-size: cover;\n  transition: 750ms all ease-in-out;\n    "])));
+var Description = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject3 || (_templateObject3 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n   position: relative;\n   display:flex;\n   justify-content:space-between;\n\n   margin-left: 100px;\n   "])));
+var Icon = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject4 || (_templateObject4 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    position: absolute;\n    top: 0;\n    left: 85%;\n    z-index: 10;\n    width: 12px !important;\n    height: 12px !important;\n    "])));
+var Space = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject5 || (_templateObject5 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n   display: inline-block;\n   width: 600px;\n   padding:50px;\n\n  "])));
+var Add = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject6 || (_templateObject6 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  display:inline-block;\n  width:100px;\n  padding:50px"])));
+var Cross = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject7 || (_templateObject7 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  position: absolute;\n  top: 10px;\n  right:80%;\n  z-index: 1;\n  width: 5px !important;\n  height: 5px !important;\n  "])));
+var Cd = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject8 || (_templateObject8 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  position:relative;\n  transition: 0.3s;\n  display:flex;\n  justify-content:center;\n  align-items:center;\n  width:220px;\n  height:200px;\n  margin-bottom: 10px;\n   "])));
+var Slide = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject9 || (_templateObject9 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n   display: flex;\n   justify-content: space-around;\n   align-items: center;\n   overflow: hidden;\n   position: relative;\n\n   "])));
+var Images = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject10 || (_templateObject10 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n   margin-left:100px;\n   margin-top: 60px;\n   border-radius:10px;\n\n   "])));
+var RightArrow = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject11 || (_templateObject11 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n   position:absolute;\n   top:50%;\n   right:32px;\n   font-size:2em;\n   z-index:10;\n   cursor:pointer;\n   user-select:none;\n\n   "])));
+var LeftArrow = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject12 || (_templateObject12 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n   position:absolute;\n   top:50%;\n   left:32px;\n   font-size:2em;\n   z-index:10;\n   cursor:pointer;\n   user-select:none;\n\n   "])));
+var RightArrowSub = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject13 || (_templateObject13 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n\n   position:absolute;\n   color:white;\n   top:85%;\n   right:2px;\n   font-size:em;\n   z-index:10;\n   cursor:pointer;\n   user-select:none;\n\n   "])));
+var LeftArrowSub = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject14 || (_templateObject14 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n   position:absolute;\n   top:85%;\n   color:white;\n   left:2px;\n   font-size:em;\n   z-index:10;\n   cursor:pointer;\n   user-select:none;\n\n   "])));
+var Container = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject15 || (_templateObject15 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n   width:300px;\n   height:150px;\n   font-size:12px;\n   z-index:16;\n   top:30%;\n   border-radius:20px;\n   background-color:white;\n   box-shadow:rgba(0, 0, 0, 0.35) 0px 5px 15px;\n   display:flex;\n   position:absolute;\n   padding:15px;\n   margin-left:800px;\n\n   "])));
+var Close = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject16 || (_templateObject16 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n   display:flex;\n   justify-content:flex-end;\n   "])));
+var CloseButton = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject17 || (_templateObject17 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n   background-color:transparent;\n   border:none;\n   font-size:20px;\n   cursor:pointer;\n   "])));
+var XfeatureL = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].td(_templateObject18 || (_templateObject18 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    position: flex;\n    text-align: center;\n    padding-left: 10px;\n    padding-right: 10px;\n    font-style: italic;\n\n    "])));
+var XfeatureR = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].td(_templateObject19 || (_templateObject19 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    position: flex;\n    text-align: center;\n    padding-right: 10px;\n    padding-left: 10px;\n    font-style: italic;\n    fotn-size: 5px;\n    "])));
+var Value = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].td(_templateObject20 || (_templateObject20 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    text-align: center;\n    fotn-size:10px;\n\n    "])));
+var HeadL = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].th(_templateObject21 || (_templateObject21 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    padding-left: 10px;\n\n    "])));
+var HeadR = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].th(_templateObject22 || (_templateObject22 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n      padding-right: 10px;\n\n      "])));
 
 /***/ }),
 
@@ -366,12 +1034,7 @@ var Form1 = function Form1(_ref) {
   var form1 = _ref.form1,
       setForm1 = _ref.setForm1,
       incPage = _ref.incPage;
-  // let product = useContext(UserContext)
-  var product = {
-    currentPD: {
-      id: 40350
-    }
-  };
+  var product = (0,react__WEBPACK_IMPORTED_MODULE_2__.useContext)(_App_jsx__WEBPACK_IMPORTED_MODULE_3__.UserContext);
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
       _useState2 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1__["default"])(_useState, 2),
@@ -1226,13 +1889,8 @@ var Reviews = function Reviews() {
     quality: ['Poor', 'Perfect'],
     length: ['Too short', 'Too long'],
     fit: ['Too tight', 'Too loose']
-  }; // let id = useContext(UserContext)
-
-  var id = {
-    currentPD: {
-      id: 40350
-    }
   };
+  var id = (0,react__WEBPACK_IMPORTED_MODULE_1__.useContext)(_App_jsx__WEBPACK_IMPORTED_MODULE_2__.UserContext);
   var arr = [5, 4, 3, 2, 1];
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
@@ -1287,8 +1945,6 @@ var Reviews = function Reviews() {
       product_id: id.currentPD.id,
       count: 100
     }, function (err, data) {
-      console.log('DATA, ', data);
-
       if (data.results.length > 0) {
         var sum = 0;
         var obj = {
@@ -1317,7 +1973,6 @@ var Reviews = function Reviews() {
       _API__WEBPACK_IMPORTED_MODULE_3___default().getReviewsMeta({
         product_id: id.currentPD.id
       }, function (err, data) {
-        console.log('META DATA: ', data);
         setMeta(data.characteristics);
       });
     });
@@ -1584,7 +2239,6 @@ var Stars = function Stars(props) {
 
         avg = sum / count;
         setStars(avg);
-        console.log('AVERAGE:  ', avg);
       }
     });
   }, []);
