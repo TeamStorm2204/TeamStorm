@@ -393,6 +393,7 @@ var Overview = function Overview(props) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Arrow": () => (/* binding */ Arrow),
 /* harmony export */   "BorderThumbImg": () => (/* binding */ BorderThumbImg),
 /* harmony export */   "CheckMark": () => (/* binding */ CheckMark),
 /* harmony export */   "DefaultImgWrap": () => (/* binding */ DefaultImgWrap),
@@ -415,7 +416,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 
 
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16, _templateObject17;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16, _templateObject17, _templateObject18;
 
 
 
@@ -433,21 +434,22 @@ var StylesWrapper = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].di
 
 var ImgWrapper = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].img(_templateObject7 || (_templateObject7 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  min-width: 23%;\n  max-width: 69px;\n"])));
 var ThumbImg = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].img(_templateObject8 || (_templateObject8 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  width: 50px;\n  margin: 1px;\n  padding: 3px;\n"])));
-var BorderThumbImg = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].img(_templateObject9 || (_templateObject9 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  width: 50px;\n  margin: 1px;\n  padding: 3px;\n  border: 2px solid black;\n"])));
-var DefaultImgWrap = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject10 || (_templateObject10 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  position: relative;\n  box-sizing: border-box;\n  min-width: 450px;\n  width: auto;\n  min-height: 675px;\n  background-color: lightGray;\n  background-image: url(", ");\n  background-size: contain;\n  background-repeat: no-repeat;\n  background-position-y: center;\n  background-position-x: center;\n"])), function (props) {
+var Arrow = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].button(_templateObject9 || (_templateObject9 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  margin: 30px 0 30px 0;\n  padding: 10px 0 10px 0;\n"])));
+var BorderThumbImg = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].img(_templateObject10 || (_templateObject10 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  width: 50px;\n  margin: 1px;\n  padding: 3px;\n  border: 2px solid black;\n"])));
+var DefaultImgWrap = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject11 || (_templateObject11 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  position: relative;\n  box-sizing: border-box;\n  min-width: 450px;\n  width: auto;\n  min-height: 675px;\n  background-color: lightGray;\n  background-image: url(", ");\n  background-size: contain;\n  background-repeat: no-repeat;\n  background-position-y: center;\n  background-position-x: center;\n"])), function (props) {
   return props.img;
 });
-var ImagesWrap = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject11 || (_templateObject11 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  position: relative;\n  box-sizing: border-box;\n  min-width: 75px;\n  width: auto;\n  min-height: 50px;\n  background-color: lightGray;\n  background-image: url(", ");\n  background-size: cover;\n  background-repeat: no-repeat;\n  background-position-y: center;\n  background-position-x: center;\n"])), function (props) {
+var ImagesWrap = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject12 || (_templateObject12 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  position: relative;\n  box-sizing: border-box;\n  min-width: 75px;\n  width: auto;\n  min-height: 50px;\n  background-color: lightGray;\n  background-image: url(", ");\n  background-size: cover;\n  background-repeat: no-repeat;\n  background-position-y: center;\n  background-position-x: center;\n"])), function (props) {
   return props.img;
 });
-var SelectImgWrap = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject12 || (_templateObject12 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  box-sizing: border-box;\n  min-width: 23%;\n  max-width: 69px;\n  border: 2px solid black;\n  background-image: url(", ");\n  background-size: cover;\n  "])), function (props) {
+var SelectImgWrap = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject13 || (_templateObject13 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  box-sizing: border-box;\n  min-width: 23%;\n  max-width: 69px;\n  border: 2px solid black;\n  background-image: url(", ");\n  background-size: cover;\n  "])), function (props) {
   return props.img;
 });
-var CheckMark = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject13 || (_templateObject13 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  max-width: 19px;\n  background-color: white;\n  border-radius: 11px;\n"])));
-var Select = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].select(_templateObject14 || (_templateObject14 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    background-color: #fff;\n    border: 2px solid #707070;\n    border-radius: 5px;\n    color: #222;\n    height: 40px;\n    letter-spacing: .02rem;\n    padding: 0 10px 0 10px;\n    margin-bottom: 5px;\n"])));
-var Input = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].input(_templateObject15 || (_templateObject15 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    background-color: black;\n    border: none;\n    color: white;\n    padding: 15px 40px;\n    text-align: center;\n    display: inline-block;\n    font-size: 16px;\n    width: 100%;\n"])));
-var ProductDetailsContainer = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject16 || (_templateObject16 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    position: relative;\n    min-width: 150px;\n    max-width: 350px;\n    padding: 20px;\n  "])));
-var GlobalStyle = (0,styled_components__WEBPACK_IMPORTED_MODULE_1__.createGlobalStyle)(_templateObject17 || (_templateObject17 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n   body {\n    display: flex;\n    margin: 0;\n    padding: 100px;\n    background: #f5f5f5;\n    font - family: sans-serif;\n    flex-direction: column;\n  }\n"])));
+var CheckMark = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject14 || (_templateObject14 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  max-width: 19px;\n  background-color: white;\n  border-radius: 11px;\n"])));
+var Select = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].select(_templateObject15 || (_templateObject15 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    background-color: #fff;\n    border: 2px solid #707070;\n    border-radius: 5px;\n    color: #222;\n    height: 40px;\n    letter-spacing: .02rem;\n    padding: 0 10px 0 10px;\n    margin-bottom: 5px;\n"])));
+var Input = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].input(_templateObject16 || (_templateObject16 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    background-color: black;\n    border: none;\n    color: white;\n    padding: 15px 40px;\n    text-align: center;\n    display: inline-block;\n    font-size: 16px;\n    width: 100%;\n"])));
+var ProductDetailsContainer = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject17 || (_templateObject17 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    position: relative;\n    min-width: 150px;\n    max-width: 350px;\n    padding: 20px;\n  "])));
+var GlobalStyle = (0,styled_components__WEBPACK_IMPORTED_MODULE_1__.createGlobalStyle)(_templateObject18 || (_templateObject18 = (0,_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n   body {\n    display: flex;\n    margin: 0;\n    padding: 100px;\n    background: #f5f5f5;\n    font - family: sans-serif;\n    flex-direction: column;\n  }\n"])));
 
 /***/ }),
 
@@ -675,8 +677,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var ProductView = function ProductView(props) {
-  var photos = props.selectedStyle.photos; // photos.push(photos[1]);
+  var photos = props.selectedStyle.photos.concat(props.selectedStyle.photos); // photos.push(photos[1]);
   // photos.push(photos[1]);
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
@@ -694,15 +697,51 @@ var ProductView = function ProductView(props) {
       indexEnd = _useState6[0],
       setIndexEnd = _useState6[1];
 
+  var rightArrowClick = function rightArrowClick() {
+    setIndexStart(indexStart - 1);
+    setIndexEnd(indexEnd - 1);
+  };
+
+  var leftArrowClick = function leftArrowClick() {
+    setIndexStart(indexStart + 1);
+    setIndexEnd(indexEnd + 1);
+  };
+
+  var mainRightArrowClick = function mainRightArrowClick() {
+    index = selectedIndex - 1;
+    setSelectedIndex(index);
+
+    if (index < indexStart) {
+      var indexDifference = indexStart - index;
+      setIndexStart(index);
+      setIndexEnd(indexEnd - indexDifference);
+    }
+  };
+
+  var mainLeftArrowClick = function mainLeftArrowClick() {
+    index = selectedIndex + 1;
+    setSelectedIndex(selectedIndex + 1);
+
+    if (index < indexStart) {
+      setIndexEnd(index);
+      setIndexStart(index - 6);
+    }
+  };
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_OverviewStyles_js__WEBPACK_IMPORTED_MODULE_3__.DefaultImgWrap, {
     img: photos[selectedIndex].url,
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
       style: {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-evenly'
       },
-      children: photos.map(function (photo, index) {
+      children: [indexStart > 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_OverviewStyles_js__WEBPACK_IMPORTED_MODULE_3__.Arrow, {
+        onClick: rightArrowClick,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("i", {
+          "class": "fas fa-angle-left fa-lg"
+        })
+      }) : null, photos.map(function (photo, index) {
         return index >= indexStart && index <= indexEnd ? selectedIndex !== index ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_OverviewStyles_js__WEBPACK_IMPORTED_MODULE_3__.ThumbImg, {
           src: photo.thumbnail_url,
           onClick: function onClick() {
@@ -714,7 +753,12 @@ var ProductView = function ProductView(props) {
             return setSelectedIndex(index);
           }
         }, index) : null;
-      })
+      }), photos.length > indexEnd ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_OverviewStyles_js__WEBPACK_IMPORTED_MODULE_3__.Arrow, {
+        onClick: mainLeftArrowClick,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("i", {
+          "class": "fas fa-angle-right fa-lg"
+        })
+      }) : null]
     })
   });
 };

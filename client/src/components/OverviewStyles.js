@@ -60,6 +60,11 @@ export const ThumbImg = styled.img`
   padding: 3px;
 `;
 
+export const Arrow = styled.button`
+  margin: 30px 0 30px 0;
+  padding: 10px 0 10px 0;
+`;
+
 export const BorderThumbImg = styled.img`
   width: 50px;
   margin: 1px;
