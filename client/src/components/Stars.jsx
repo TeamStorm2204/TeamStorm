@@ -20,7 +20,6 @@ const Stars = (props) => {
         }
         avg = sum / count;
         setStars(avg);
-        console.log('AVERAGE:  ', avg)
       }
     })
   }, []);
