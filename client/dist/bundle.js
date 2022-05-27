@@ -292,13 +292,13 @@ var Overview = function Overview(props) {
   }, []);
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     _API__WEBPACK_IMPORTED_MODULE_2___default().getProductInformation(props.id, function (err, data) {
-      console.log(data);
+      // console.log(data);
       setProduct(data);
     });
   }, []);
 
   var scrollTo = function scrollTo() {
-    console.log('hi');
+    // console.log('hi');
     window.scrollBy(0, 600);
   };
 
@@ -451,10 +451,8 @@ var ProductStyleSelector = function ProductStyleSelector(_ref) {
       message = _useState4[0],
       setMessage = _useState4[1];
 
-  var selectedStyle = styles[selectedIndex];
-  console.log({
-    selectedStyle: selectedStyle
-  });
+  var selectedStyle = styles[selectedIndex]; // console.log({selectedStyle});
+
   var strikethoughStyle = selectedStyle.sale_price ? {
     textDecorationLine: 'line-through'
   } : {};
@@ -472,9 +470,8 @@ var ProductStyleSelector = function ProductStyleSelector(_ref) {
         });
       }
     }
-  }
+  } // console.log(skus);
 
-  console.log(skus);
 
   var selectSize = function selectSize(event) {
     if (event.target.value === 'Select Size') {
@@ -525,10 +522,7 @@ var ProductStyleSelector = function ProductStyleSelector(_ref) {
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_OverviewStyles_js__WEBPACK_IMPORTED_MODULE_3__.StylesWrapper, {
       children: styles.length > 0 ? styles.map(function (style, index) {
-        return selectedIndex === index ?
-        /*#__PURE__*/
-        // <SelectImgWrap imgUrl={style.photos[0].thumbnail_url} style={{width: '100%'}} key={index}>
-        (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_OverviewStyles_js__WEBPACK_IMPORTED_MODULE_3__.SelectImgWrap, {
+        return selectedIndex === index ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_OverviewStyles_js__WEBPACK_IMPORTED_MODULE_3__.SelectImgWrap, {
           img: style.photos[0].thumbnail_url,
           onClick: function onClick() {
             return setSelectedIndex(index);
@@ -536,10 +530,7 @@ var ProductStyleSelector = function ProductStyleSelector(_ref) {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("i", {
             "class": "far fa-check-circle fa-lg"
           })
-        }, index) :
-        /*#__PURE__*/
-        // <ImgWrapper img={style.photos[0].thumbnail_url} key={index} onClick={()=>setSelectedIndex(index)}/>
-        (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_OverviewStyles_js__WEBPACK_IMPORTED_MODULE_3__.ImgWrapper, {
+        }, index) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_OverviewStyles_js__WEBPACK_IMPORTED_MODULE_3__.ImgWrapper, {
           src: style.photos[0].thumbnail_url,
           onClick: function onClick() {
             return setSelectedIndex(index);

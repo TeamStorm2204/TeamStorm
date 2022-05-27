@@ -8,7 +8,7 @@ const ProductStyleSelector =({styles, setSelectedIndex, selectedIndex})=> {
     const [quantity, setQuantity] = useState([]);
     const [message, setMessage] =  useState(false);
     const selectedStyle = styles[selectedIndex];
-    console.log({selectedStyle});
+    // console.log({selectedStyle});
     const strikethoughStyle= selectedStyle.sale_price? {textDecorationLine: 'line-through'} : {};
     let skus=[];
     for(let key in selectedStyle.skus) {
@@ -19,7 +19,7 @@ const ProductStyleSelector =({styles, setSelectedIndex, selectedIndex})=> {
             }
         }
     }
-    console.log(skus);
+    // console.log(skus);
     
     const selectSize = function(event) {
         if (event.target.value === 'Select Size') {
@@ -62,12 +62,10 @@ const ProductStyleSelector =({styles, setSelectedIndex, selectedIndex})=> {
             {(styles.length > 0)? styles.map((style, index)=>{
                 return (
                     (selectedIndex === index) ?
-                // <SelectImgWrap imgUrl={style.photos[0].thumbnail_url} style={{width: '100%'}} key={index}>
-                <SelectImgWrap img={style.photos[0].thumbnail_url} key={index} onClick={()=>setSelectedIndex(index) }>
-                <i class="far fa-check-circle fa-lg"/>
-                </SelectImgWrap>:
-                // <ImgWrapper img={style.photos[0].thumbnail_url} key={index} onClick={()=>setSelectedIndex(index)}/>
-                <ImgWrapper src={style.photos[0].thumbnail_url} key={index} onClick={()=>setSelectedIndex(index)}/>
+                    <SelectImgWrap img={style.photos[0].thumbnail_url} key={index} onClick={()=>setSelectedIndex(index) }>
+                    <i class="far fa-check-circle fa-lg"/>
+                    </SelectImgWrap>:
+                    <ImgWrapper src={style.photos[0].thumbnail_url} key={index} onClick={()=>setSelectedIndex(index)}/>
                 )
             }): null}
             </StylesWrapper>

@@ -23,13 +23,13 @@ const Overview =(props)=> {
 
     useEffect(() => {
         API.getProductInformation(props.id, (err, data) => {
-            console.log(data);
+            // console.log(data);
           setProduct(data);
         })
       }, []);
 
     const scrollTo = function(){
-      console.log('hi');
+      // console.log('hi');
       window.scrollBy(0, 600);
     }
 
