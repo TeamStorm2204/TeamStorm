@@ -24,24 +24,31 @@ test('should render heading of Outfit', async ()=>{
 })
 
 
-describe.only("Fetchy", () => {
-    beforeAll(() => {
-        jest.useFakeTimers();
-    })
 
-    afterAll(() => {
-        jest.useRealTimers()
-    })
+test('should testttt', async ()=>{
+    render(<App/>);
+    await waitFor(() => screen.getAllByRole('heading'))
+    expect(screen.getByRole('heading', {name: /Price/i })).toBeInTheDocument();//test add button on the outfit list part
 
-    it("shows Loading", async () => {
-        render(<App />);
+})
+// describe.only("Fetchy", () => {
+//     beforeAll(() => {
+//         jest.useFakeTimers();
+//     })
+
+//     afterAll(() => {
+//         jest.useRealTimers()
+//     })
+
+//     it("shows Loading", async () => {
+//         render(<App />);
 
 
 
-        jest.advanceTimersByTime(3000);
+//         jest.advanceTimersByTime(3000);
 
-        screen.debug();
-        expect(screen.getByText("Forest")).toBeInTheDocument();
-    });
-});
+//         screen.debug();
+//         expect(screen.getByText("Forest")).toBeInTheDocument();
+//     });
+// });
 

@@ -23,8 +23,6 @@ const Outfit=(props)=> {
   const [outfits, setOutfits]=useState(localStorage.getItem('outfits')?JSON.parse(localStorage.getItem('outfits')):[]);
   const[ img, setImg]=useState([]);
 
- console.log('list', outfits);
-
 
   function addOutfit(data) {
     var count=0;

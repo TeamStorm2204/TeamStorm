@@ -1,37 +1,36 @@
 import React from 'react';
-import{useEffect, useState}from 'react';
+import { useEffect, useState } from 'react';
 import api from '../../API';
-import {St} from './Styles.styled.js';
+import { St } from './Styles.styled.js';
 
-const Stars= (props)=> {
+const Stars = (props) => {
   let sum = 0;
-  let count =0;
-  var id=props.id;
-  var avg=0;
+  let count = 0;
+  var id = props.id;
+  var avg = 0;
   const [star, setStars] = useState(0);
   useEffect(() => {
-     api.getReviewsMeta({product_id: id}, (err, data) => {
+    api.getReviewsMeta({ product_id: id }, (err, data) => {
       if (err) {
         console.log(err)
       } else {
-        for(let key in data.ratings) {
-          sum+=Number(data.ratings[key])*Number(key);
+        for (let key in data.ratings) {
+          sum += Number(data.ratings[key]) * Number(key);
           count += Number(data.ratings[key])
         }
-        avg =sum/count;
+        avg = sum / count;
         setStars(avg);
-
       }
     })
   }, []);
 
 
 
-return(
+  return (
+    <div style={{ display: 'inline-block' }}>
 
-  <div style={{display: 'inline-block'}}>
-   {star>0? <St average={Math.floor(star * 10) / 10}>★★★★★</St>:null}
-  </div>
-)
+      {star > 0 ? <St average={Math.round(star * 10) / 10}>★★★★★</St> : null}
+    </div>
+  )
 }
 export default Stars;

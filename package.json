@@ -3,6 +3,8 @@
     "@babel/runtime": "^7.18.0",
     "@types/body-parser": "^1.19.2",
     "axios": "^0.27.2",
+    "cloudinary": "^1.30.0",
+    "cloudinary-react": "^1.7.2",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "html-webpack-plugin": "^5.5.0",
