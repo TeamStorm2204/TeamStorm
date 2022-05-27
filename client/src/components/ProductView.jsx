@@ -2,26 +2,28 @@ import React from 'react';
 import API from '../../API';
 import { useEffect, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
-import {DefaultImgWrap, SelectImgWrap} from './OverviewStyles.js';
+import {DefaultImgWrap, ThumbImg, BorderThumbImg} from './OverviewStyles.js';
 
 const ProductView =(props)=> {
   const photos = props.selectedStyle.photos;
+  // photos.push(photos[1]);
+  // photos.push(photos[1]);
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [indexStart, setIndexStart] = useState(0);
+  const [indexEnd, setIndexEnd] = useState(6);
 
     return (
-        // <div style={{backgroundColor:'pink',  minWidth:'100%'}}>
-        //   hellofddddddddddddsfsadasfdasfdsafasd hellofddddddddddddsfsadasfdasfdsafasd
-        // <DefaultImgWrap img={photos[selectedIndex].thumbnail_url}> </DefaultImgWrap>
-        // </div>
-          <DefaultImgWrap img={photos[selectedIndex].url}>
-          <div style={{display:'flex', flexDirection: 'row', justifyContent:'space-evenly'}}>
-            {photos.map((photo, index)=>(
-              (selectedIndex !== index)? <img src={photo.thumbnail_url} key={index} width="50px" style={{margin: '1px', padding:"3px", bottom: '0px'}} onClick={()=>setSelectedIndex(index)}/>:
-              <img src={photo.thumbnail_url} key={index} width="50px" style={{margin: '1px', padding:"3px", border: '2px solid black'}} onClick={()=>setSelectedIndex(index)}/>
-              ))}
-          </div>
-          </DefaultImgWrap>
-
+      <DefaultImgWrap img={photos[selectedIndex].url}>
+      <div style={{display:'flex', flexDirection: 'row', justifyContent:'space-evenly'}}>
+        {photos.map((photo, index)=>(
+          (index >= indexStart && index <= indexEnd) ?
+            (selectedIndex !== index)? 
+              <ThumbImg src={photo.thumbnail_url} key={index}  onClick={()=>setSelectedIndex(index)}/>:
+              <BorderThumbImg src={photo.thumbnail_url} key={index} onClick={()=>setSelectedIndex(index)}/>:
+            null
+          ))}
+      </div>
+      </DefaultImgWrap>
     )
 }
 export default ProductView;

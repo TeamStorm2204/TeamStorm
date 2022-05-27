@@ -54,6 +54,19 @@ export const ImgWrapper = styled.img`
   max-width: 69px;
 `;
 
+export const ThumbImg = styled.img`
+  width: 50px;
+  margin: 1px;
+  padding: 3px;
+`;
+
+export const BorderThumbImg = styled.img`
+  width: 50px;
+  margin: 1px;
+  padding: 3px;
+  border: 2px solid black;
+`;
+
 export const DefaultImgWrap = styled.div`
   position: relative;
   box-sizing: border-box;
@@ -94,6 +107,7 @@ export const CheckMark = styled.div`
   background-color: white;
   border-radius: 11px;
 `;
+
 
 export const Select = styled.select`
     background-color: #fff;
