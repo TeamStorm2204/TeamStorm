@@ -22,15 +22,20 @@ export const UserContext = createContext();
 const App = (props) => {
   const [products, setProducts] = useState([]);
   const [styles, setStyles] = useState([]);
-
+  const [relatedId, setRelatedId] = useState(40344);
+  let id = 0;
   useEffect(() => {
-    api.getProducts((err, data) => {
+
+    api.getProductInformation(relatedId, (err, data) => {
+      
       if (err) {
         console.log(err)
       } else {
-        setProducts(data[0]);
-        var id = data[0].id;
+        console.log({data});
+        setProducts(data);
+        id = data.id
         api.getProductStyles(id, (err, data) => {
+          console.log(id);
           if (err) {
             console.log(err);
           } else {
@@ -39,9 +44,10 @@ const App = (props) => {
         })
       }
     })
-  }, []);
+  }, [relatedId]);
 
   if (products.name) {
+    console.log(products.id, styles);
     return (
       <UserContext.Provider value={{ currentPD: products, Img: styles }}>
         <div>
@@ -52,20 +58,17 @@ const App = (props) => {
           </div>
           <div>
             <br></br>
-            <h2>{products.name}</h2>
-            <h3>{products.slogan}</h3>
-            <div>{products.description}</div>
           </div>
           <div>
             <h2> Related Product</h2>
-             <RelatedProducts />
+             <RelatedProducts setRelatedId={setRelatedId}/>
           </div>
           <div>
             <h2>Outfit List</h2>
             <Outfit />
           </div>
           <div>
-            <Reviews />
+            <Reviews relatedId={relatedId}/>
           </div>
         </div>
       </UserContext.Provider>
