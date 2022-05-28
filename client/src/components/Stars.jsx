@@ -14,6 +14,7 @@ const Stars = (props) => {
       if (err) {
         console.log(err)
       } else {
+        console.log({data})
         for (let key in data.ratings) {
           sum += Number(data.ratings[key]) * Number(key);
           count += Number(data.ratings[key])
