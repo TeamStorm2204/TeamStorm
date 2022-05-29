@@ -3,6 +3,7 @@ import API from '../../API';
 import { useEffect, useState } from 'react';
 import ProductStyleSelector from './ProductStyleSelector.jsx';
 import ProductView from './ProductView.jsx';
+import ExpandedView from './ExpandedView.jsx';
 import { ThemeProvider } from 'styled-components';
 import {Header, SubHeader, ProductDetailsContainer} from './OverviewStyles.js';
 import Stars from './Stars.jsx';
@@ -35,10 +36,10 @@ const Overview =(props)=> {
 
     return (
         <div style={{display:'flex', flexWrap: 'wrap', flexDirection: 'row'}}>
+            {styles.length? <ExpandedView selectedStyle={styles[selectedIndex || 0]}></ExpandedView>:null}
           <div>
             {styles.length? <ProductView selectedStyle={styles[selectedIndex || 0]}></ProductView>:null}
           </div> 
-
           <ProductDetailsContainer>
             <div>
             <SubHeader>{product.category}</SubHeader>
