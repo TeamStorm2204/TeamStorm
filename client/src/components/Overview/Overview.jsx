@@ -32,8 +32,10 @@ const Overview =(props)=> {
       }, [props.id]);
 
     const scrollTo = function(){
-      // console.log('hi');
-      window.scrollBy(0, 600);
+
+        // console.log(window)
+      let reviews = window.document.getElementById('Reviews');
+      reviews.scrollIntoView({behavior: "smooth"});
     }
 
     return (

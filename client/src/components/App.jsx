@@ -65,7 +65,7 @@ const App = (props) => {
           </div>
           <div>
             <h2>Outfit List</h2>
-            {/* <Outfit /> */}
+            <Outfit />
           </div>
           <div>
             <Reviews relatedId={relatedId}/>

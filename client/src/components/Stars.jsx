@@ -21,7 +21,7 @@ const Stars = (props) => {
             if(Number(data.recommended[key])) {
             ratingsCount+=Number(data.recommended[key]);
             }
-            // console.log(ratingsCount)
+            console.log({ratingsCount})
             props.setReviewCount(ratingsCount);
           }
         }

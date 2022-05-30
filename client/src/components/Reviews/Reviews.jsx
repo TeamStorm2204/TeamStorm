@@ -113,7 +113,7 @@ const Reviews = ({relatedId}) => {
     <div style={{ height: '700px' }}>
       <ThemeProvider theme={theme}>
         <Header>
-          <h1>Reviews</h1>
+          <h1 id="Reviews">Reviews</h1>
           {
             reviews.length !== 0 ?
               <Star>
