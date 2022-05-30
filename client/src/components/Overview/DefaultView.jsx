@@ -37,14 +37,21 @@ const DefaultView =(props)=> {
     }
   }
 
+  const expandView = function(e) {
+      if(e.target.getAttribute('value') === 'magnify') {
+      props.setExpanded(true)
+      }
+  }
+
+
     return (
-      <DefaultImgWrap img={photos[selectedIndex].url} style={{display:'flex', justifyContent:'center'}}>
-      <div style={{display: 'flex', alignItems: 'center'}}>
+      <DefaultImgWrap img={photos[selectedIndex].url} style={{display:'flex', justifyContent:'center', cursor:'zoom-in'}} value="magnify" onClick={expandView}>
+      <div style={{display: 'flex', alignItems: 'center', cursor: 'default'}}>
       {(selectedIndex > 0)? <FaChevronCircleLeft color="white" fontSize="1.5em" style={{ position: 'absolute', left: '2px',}} onClick={mainArrowClick}></FaChevronCircleLeft> : null}
       {(photos.length > (selectedIndex + 1)) ? <FaChevronCircleRight color="white" fontSize="1.5em" style={{ position: 'absolute', right: '2px'}} onClick={()=>{mainArrowClick('left')}}></FaChevronCircleRight > : null}
       </div>
 
-      <div style={{display:'flex', flexDirection: 'row', justifyContent:'space-evenly', position: 'absolute', bottom: '0px', alignItems: 'center'}}>
+      <div style={{display:'flex', flexDirection: 'row', justifyContent:'space-evenly', position: 'absolute', bottom: '0px', alignItems: 'center', cursor: 'default'}}>
         {(indexStart > 0) ? <Arrow onClick={rightArrowClick}><i class="fas fa-angle-left fa-lg" /></Arrow> : null}
         {photos.map((photo, index)=>(
           (index >= indexStart && (index <= indexEnd)) ?

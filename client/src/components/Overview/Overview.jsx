@@ -37,9 +37,10 @@ const Overview =(props)=> {
     }
 
     return (
+        expanded? <ExpandedView selectedStyle={styles[selectedIndex || 0]} setExpanded={setExpanded}></ExpandedView>:
         <div style={{display:'flex', flexWrap:'wrap', flexDirection: 'row'}}>
             {/* {styles.length? <ExpandedView selectedStyle={styles[selectedIndex || 0]}></ExpandedView>:null} */}
-
+        
           {/* <div >
             {styles.length? <ProductView selectedStyle={styles[selectedIndex || 0]}></ProductView>:null}
           </div>  */}

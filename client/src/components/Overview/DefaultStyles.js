@@ -22,7 +22,6 @@ export const StyleName = styled.div`
   letter-spacing: .05rem;
 `;
 
-
 export const SubStyleName = styled.span`
   color: var(--text-medium);
   font: 1.2rem/normal Helvetica,Arial,sans-serif;
@@ -71,7 +70,7 @@ export const Arrow = styled.button`
 export const DefaultImgWrap = styled.div`
 //   position: relative;
   box-sizing: border-box;
-  width:100%
+  width:90%
 //   min-width: 45px;
   min-width: 100%;
 //   min-height: 675;
