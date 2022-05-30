@@ -13,7 +13,7 @@ const Overview =(props)=> {
     const [product, setProduct] = useState([]);
     const [selectedIndex, setSelectedIndex] = useState(null);
     const [styles, setStyles] = useState([]);
-    const [reviewCount, setReviewCount] = useState(5);
+    const [reviewCount, setReviewCount] = useState(1);
     const [expanded, setExpanded] = useState(false);
 
 
@@ -60,7 +60,7 @@ const Overview =(props)=> {
             <SubHeader>{product.category}</SubHeader>
             <Header>{product.name}</Header>
             {product.description? <SubHeader>{product.description}</SubHeader>: null}
-            {(reviewCount > 0)? <SubHeader onClick={scrollTo}><Stars id={props.id}></Stars> Read all [#] reviews</SubHeader>: null}
+            {(reviewCount > 0)? <SubHeader onClick={scrollTo}><Stars id={props.id} setReviewCount={setReviewCount}></Stars> Read all {reviewCount} reviews</SubHeader>: null}
             {styles.length? <ProductStyleSelector id={props.id} styles={styles} setSelectedIndex={setSelectedIndex} selectedIndex={selectedIndex || 0} ></ProductStyleSelector> :null}
           </ProductDetailsContainer> 
           </div>

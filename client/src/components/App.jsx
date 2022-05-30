@@ -61,14 +61,14 @@ const App = (props) => {
           </div>
           <div>
             <h2> Related Product</h2>
-             {/* <RelatedProducts setRelatedId={setRelatedId}/> */}
+             <RelatedProducts setRelatedId={setRelatedId}/>
           </div>
           <div>
             <h2>Outfit List</h2>
             {/* <Outfit /> */}
           </div>
           <div>
-            {/* <Reviews relatedId={relatedId}/> */}
+            <Reviews relatedId={relatedId}/>
           </div>
         </div>
       </UserContext.Provider>
