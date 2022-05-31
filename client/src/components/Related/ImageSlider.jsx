@@ -27,6 +27,7 @@ const ImageSlider = ({
         const [currentSub, setCurrentSub] = useState(Array(length).fill(0));
         const [hover, setHover] = useState(Array(length).fill('150'));
         const [modal, setModal] = useState({item: {}, status: false});
+        console.log('cureeeeet', modal.status);
 
         useEffect( ()=> {
           document.addEventListener( 'mousedown', ()=>{
@@ -35,10 +36,10 @@ const ImageSlider = ({
         })
 
         const nextSlide=()=> {
-          setCurrent(current===length-1?0:current+2);
+          setCurrent(current===length-1?0:current+1);
         }
         const prevSlide=()=> {
-          setCurrent(current===0? length-2:current-2);
+          setCurrent(current===0? length-1:current-1);
 
         }
 
@@ -58,95 +59,73 @@ const ImageSlider = ({
 
         }
         return (
+      <div>
+      {modal.status&&<Modal closeModal={setModal} length={length} id={overViewData} relatedInf={modal.item}/>}
+      <Slide>
+      {current!==0?
+      (<LeftArrow onClick={prevSlide}>
+      <FaArrowAltCircleLeft/>
+      </LeftArrow>):null}
 
-          <div >
-            {modal.status&&<Modal closeModal={setModal} length={length} id={overViewData} relatedInf={modal.item} />}
-            <Slide data-testid="image-slider">
-              {current!==0?
-              (<LeftArrow onClick={prevSlide}>
-              <FaArrowAltCircleLeft/>
-              </LeftArrow>):null}
+      {current!==length-1?
+      (<RightArrow onClick={nextSlide}>
+      <FaArrowAltCircleRight />
+      </RightArrow>):null}
 
-              {current!==length-1?
-              (<RightArrow onClick={nextSlide}>
-              <FaArrowAltCircleRight />
-              </RightArrow>):null}
+       {imagesUpdate.map((item, index) => {
+         var sizeData=hover.slice();
 
-              {imagesUpdate.map((item, index) => {
-                var sizeData=hover.slice();
-                   if(index===current || index===current+1) {
-                      return (
-                        <div>
-                          <Card>
-                            <Slide>
-                                {currentSub!==0?
-                                (<LeftArrowSub onClick={()=> {prevSlideSub(index)}}>
-                                <ImArrowLeft/>
-                                </LeftArrowSub>):null}
+         if(item.image[0].url!==null) {
+           if(index===current || index===current+1) {
+           return (
+             <div>
+          <Card id="carousel">
+          <img
+          src={item.image[0].url}
+          key={index}
+          onClick={()=>{setRelatedId(item.id)}}
+          onMouseEnter={()=>{sizeData[index]='180'; setHover(sizeData)}}
+          onMouseLeave={()=>{sizeData[index]='150'; setHover(sizeData)}}
+          height={sizeData[index]}
+          alt='pictures'
+         />
 
-                                {currentSub!==lengthSub-1?
-                                (<RightArrowSub onClick={()=>{nextSlideSub(index)}}>
-                                <ImArrowRight />
-                                </RightArrowSub>):null}
-
-
-                              {item.image.map( (slid, i)=>{
-                                if(i===currentSub[index]) {
-                                return (
-                                  <SubCard>
-                                  <img 
-                                  src={slid.url}
-                                  key={index}
-                                  onMouseEnter={()=>{sizeData[index]='180'; setHover(sizeData)}}
-                                  onMouseLeave={()=>{sizeData[index]='150'; setHover(sizeData)}}
-                                  onClick={()=>{setRelatedId(item.id)}}
-                                  height={sizeData[index]}
-                                  alt='pictures'
-                                  />
-                                </SubCard>
-                                )
-                               }
-
-                              })
-                            }
-                           </Slide>
-
-                              <Icon>
-                                  <IconContext.Provider value={ {size: '1.5em'} }>
-                                      <div onClick={()=>{ var modalNew={item:item, status:true}; setModal(modalNew)}} >
-                                          <ImStarEmpty/ >
-                                      </div>
-                                  </IconContext.Provider>
-                              </Icon>
-
-                          </Card>
-                          <Description style={{fontSize:15}}>
-                                <span key={index} style={{fontWeight:'bold'}}> {item.name} </span>
-                          </Description>
-                          <Description style={{fontSize:15}}>
-                              <span key={index+3} >{item.category}</span>
-                                  {item.discount?
-                                     <div>
-                                        <span key={index+1}> Price:${item.discount} </span>
-                                        <span key={index+4} style={{textDecoration:'line-though'}}> ${item.default_price} </span>
-                                      </div>
-                                      :<span key={index+1}> Price:${item.default_price}</span>
-                                  }
-                          </Description>
-                          <Description>
-                          <Stars id={item.id} />
-                          </Description>
-
-                        </div>
-                      )
+         <Icon>
+             <IconContext.Provider value={ {size: '1.5em'} }>
+                 <div onClick={()=>{ var modalNew={item:item, status:true}; setModal(modalNew)}} >
+                     <ImStarEmpty/ >
+                </div>
+             </IconContext.Provider>
+         </Icon>
+         </Card>
+         <Description style={{fontSize:15}}>
+           <span key={index} style={{fontWeight:'bold'}}> {item.name} </span>
+          </Description>
+          <Description style={{fontSize:15}}>
+              <span key={index+3} >{item.category}</span>
+                {item.discount?
+                  <div>
+                   <span key={index+1}> Price:${item.discount} </span>
+                   <span key={index+4} style={{textDecoration:'line-though'}}> ${item.default_price} </span>
+                  </div>
+                  :<span key={index+1}> Price:${item.default_price}</span>
                   }
-                }
-              )
-              }
-            </Slide>
-          </div>
-        )
+            </Description>
+            <Description>
+             <Stars id={item.id} />
+          </Description>
+
+         </div>
+           )
+          }
+         }
+        })
+      }
+     </Slide>
+    </div>
+  )
   }
+
 
 
 

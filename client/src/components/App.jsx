@@ -22,12 +22,12 @@ export const UserContext = createContext();
 const App = (props) => {
   const [products, setProducts] = useState([]);
   const [styles, setStyles] = useState([]);
-  const [relatedId, setRelatedId] = useState(40348);
+  const [relatedId, setRelatedId] = useState(40344);
   let id = 0;
   useEffect(() => {
 
     api.getProductInformation(relatedId, (err, data) => {
-      
+
       if (err) {
         console.log(err)
       } else {
@@ -61,7 +61,7 @@ const App = (props) => {
           </div>
           <div>
             <h2> Related Product</h2>
-             <RelatedProducts setRelatedId={setRelatedId}/>
+             <RelatedProducts id={relatedId} setRelatedId={setRelatedId}/>
           </div>
           <div>
             <h2>Outfit List</h2>

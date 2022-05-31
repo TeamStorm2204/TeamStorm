@@ -75,10 +75,12 @@ import { createGlobalStyle } from 'styled-components';
    `
    export const Slide =styled.div`
    display: flex;
+   padding-right:300px;
    justify-content: space-around;
    align-items: center;
    overflow: hidden;
    position: relative;
+
 
    `
 
@@ -90,6 +92,7 @@ import { createGlobalStyle } from 'styled-components';
    `
    export const RightArrow =styled.div`
    position:absolute;
+   padding-right:150px;
    top:50%;
    right:32px;
    font-size:2em;
@@ -112,6 +115,7 @@ import { createGlobalStyle } from 'styled-components';
    export const RightArrowSub =styled.div`
 
    position:absolute;
+   padding-right:300px;
    color:white;
    top:85%;
    right:2px;
@@ -138,8 +142,8 @@ import { createGlobalStyle } from 'styled-components';
    width:300px;
    height:150px;
    font-size:12px;
-   z-index:16;
-   top:30%;
+   z-index:20;
+   top:70%;
    border-radius:20px;
    background-color:white;
    box-shadow:rgba(0, 0, 0, 0.35) 0px 5px 15px;

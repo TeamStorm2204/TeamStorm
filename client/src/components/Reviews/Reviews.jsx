@@ -27,8 +27,8 @@ const Reviews = ({relatedId}) => {
     fit: ['Too tight', 'Too loose'],
   }
   let id = useContext(UserContext)
-  
-  console.log('id', id.currentPD.id);
+
+  // console.log('id', id.currentPD.id);
   let arr = [5, 4, 3, 2, 1]
   const [reviews, setReviews] = useState([]);
   const [renderedReviews, setRenderedReviews] = useState([]);

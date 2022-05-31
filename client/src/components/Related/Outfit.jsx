@@ -38,7 +38,6 @@ const Outfit=(props)=> {
       var price=data.Img.results[0].original_price;
       var name=data.Img.results[0].name;
       var outfit={url:url, discount:discount, price:price, name:name};
-
       var currentOutfits=outfits.slice();
        //console.log('outfit', outfit, currentOutfits);
       currentOutfits.push(outfit);
@@ -95,32 +94,29 @@ const Outfit=(props)=> {
                              </Cross>
                            </Card>
                            <Description style={{fontSize:15}}>
-           <span key={index} style={{fontWeight:'bold'}}> {item.name} </span>
-          </Description>
-          <Description style={{fontSize:15}}>
-              <span key={index+3} >{item.category}</span>
-                {item.discount?
-                  (<div>
-                   <span key={index+1}> Price:${item.discount} </span>
-                   <span key={index+4} style={{textDecoration:'line-though'}}> ${item.default_price} </span>
-                  </div>)
-                  :<span key={index+1}> Price:${item.price}</span>
-                  }
-            </Description>
-            <Description>
-             <Stars id={item.id} />
-          </Description>
-
-                           </div>
+                              <span key={index} style={{fontWeight:'bold'}}> {item.name} </span>
+                           </Description>
+                          <Description style={{fontSize:15}}>
+                              <span key={index+3} >{item.category}</span>
+                                {item.discount?
+                                  (<div>
+                                  <span key={index+1}> Price:${item.discount} </span>
+                                  <span key={index+4} style={{textDecoration:'line-though'}}> ${item.default_price} </span>
+                                  </div>)
+                                  :<span key={index+1}> Price:${item.price}</span>
+                                  }
+                            </Description>
+                            <Description>
+                            <Stars id={item.id} />
+                            </Description>
+                          </div>
                        )
                      }
                   )
                 }
-
                  </Carousel>):null
            }
          </Space>
-
    </div>
  )
 
