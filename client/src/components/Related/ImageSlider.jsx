@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import {FaArrowAltCircleRight, FaArrowAltCircleLeft} from 'react-icons/fa';
-import { Images, Slide, LeftArrow, RightArrow, SubCard, LeftArrowSub, RightArrowSub} from './StyleRelated.js';
+import { Slide, LeftArrow, RightArrow, Card, Description, Icon, OutCard, StarButton} from './StyleRelated.js';
 import {IconContext} from 'react-icons';
 import {ImStarEmpty} from 'react-icons/im';
 import {ImArrowLeft, ImArrowRight} from 'react-icons/im';
-import { Card, Description, Icon, OutCard, StarButton} from './StyleRelated.js';
+import {FaChevronCircleLeft, FaChevronCircleRight} from 'react-icons/fa';
 import Modal from './Modal.jsx';
 import Stars from '../Stars.jsx';
 
@@ -47,21 +47,22 @@ const ImageSlider = ({
       <div>
       {modal.status&&<Modal closeModal={setModal} length={length} id={overViewData} relatedInf={modal.item}/>}
       <Slide>
+        <div style={{marginLeft:'25', marginRight:'25', display:'flex', gap: '50px', alignItems:'center'}}>
       {current!==0?
       (<LeftArrow onClick={prevSlide}>
-      <FaArrowAltCircleLeft/>
+      <FaChevronCircleLeft/>
       </LeftArrow>):null}
 
       {current!==length-1?
       (<RightArrow onClick={nextSlide}>
-      <FaArrowAltCircleRight />
+      <FaChevronCircleRight />
       </RightArrow>):null}
 
        {imagesUpdate.map((item, index) => {
          var sizeData=hover.slice();
 
          if(item.image[0].url!==null) {
-           if(index===current || index===current+1) {
+           if(index===current || index===current+1||index===current+2) {
            return (
           <OutCard  >
           <Card id="carousel" url={item.image[0].url}  >
@@ -98,6 +99,7 @@ const ImageSlider = ({
          }
         })
       }
+      </div>
      </Slide>
     </div>
   )

@@ -1,9 +1,9 @@
 import React from 'react';
 import API from '../../../API';
-import { useEffect, useState, createContext, useContext } from 'react';
+import { useEffect, useState, createContext, useContext} from 'react';
 const config = require('../../../../config.js');
 import {UserContext} from '../App.jsx';
-import { Card, Description, Icon} from './StyleRelated.js';
+import { Card, Description, Icon, Title} from './StyleRelated.js';
 import Carousel from 'react-elastic-carousel';
 import {TiStarOutline} from 'react-icons/ti';
 import {IconContext} from 'react-icons';
@@ -75,11 +75,14 @@ const RelatedProducts =(props)=> {
       }
         })
       },[id]);
-
-      if (hover.length>0) {
-       // console.log ('idddd', id);
-        return (  <ImageSlider setRelatedId={props.setRelatedId} overViewData= {id} images={relatedItems} /> )
+  return (
+     <div>
+      <Title> You May Also Like</Title>
+      <hr style={{width:'50%', backgroundColor:'rgba(0,0,0,0.2)',height:'2px', display:'felx', margin:'-10'}}/>
+      { hover.length>0?
+         (<ImageSlider setRelatedId={props.setRelatedId} overViewData= {id} images={relatedItems} /> ):null
       }
-
+      </div>
+     )
     }
 export default RelatedProducts;

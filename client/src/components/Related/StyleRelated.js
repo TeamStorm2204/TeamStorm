@@ -7,7 +7,7 @@ import { createGlobalStyle } from 'styled-components';
   display:felx;
   position:relative;
   width:100%;
-  height:80%;
+  height:70%;
   z-index: 1;
   background-position: center;
   background-size: cover;
@@ -28,28 +28,30 @@ import { createGlobalStyle } from 'styled-components';
     `
 
     export const OutCard =styled.div`
-    margin-left:160px;
-    height: 350px;
-    width: 230px;
-    border: 1px solid black;
-    flex: 0 0 auto;
+    flex-direction:row;
+    justify-content:space-between;
+    border-radius: 10px;
+    height: 250px;
+    width: 200px;
+    border: 2px solid black;
+    float:left;
     &:hover {
-     cursor: pointer;
-    box-shadow: 2px 2px;
+     border: 2.5px solid black;
    }
-     `
+   `
    export const OutCardFit =styled.div`
+   flex-direction:row;
+   justify-content:space-between;
    border-radius: 10px;
    height: 250px;
-   width: 150px;
+   width: 200px;
    border: 2px solid black;
-   flex: 0 0 auto;
+   float:left;
    &:hover {
     height: 255px;
-    width: 155px;
+    width: 215px;
   }
-
-    `
+  `
 
    export const Description=styled.div`
    position: relative;
@@ -59,7 +61,14 @@ import { createGlobalStyle } from 'styled-components';
    padding-left:5px;
    padding-right:5px;
    `
+   export const Title=styled.div`
+   display:flex;
+   justify-content: center;
+   font: 100 1.5rem/1.4 Helvetica,Arial,sans-serif;
+   font-weight:bold;
+   padding-top:30px;
 
+   `
 
    export const Icon =styled.div`
     position: absolute;
@@ -77,7 +86,7 @@ import { createGlobalStyle } from 'styled-components';
   `
   export const Add=styled.div`
    top:40%;
-   left:25%;
+   left:35%;
    display:felx;
    position:relative;
    width:100%;
@@ -96,6 +105,7 @@ import { createGlobalStyle } from 'styled-components';
   border:none;
   &:hover {
    cursor: pointer;
+   color:red;
  }
   position: absolute;
   top: 10px;
@@ -117,22 +127,21 @@ import { createGlobalStyle } from 'styled-components';
   margin-bottom: 10px;
    `
    export const Slide =styled.div`
+   width:80%;
+   margin: 0 auto;
+   padding-left:25px;
+   padding-right:25px;
    display: flex;
-   height: 360px;
-   padding-right:300px;
+   height: 300px;
    justify-content: space-around;
-   align-items: center;
    overflow: hidden;
    position: relative;
-
-
    `
 
    export const Images =styled.div`
    margin-left:100px;
    margin-top: 60px;
    border-radius:10px;
-
    `
 
    export const StarButton=styled.div`
@@ -148,9 +157,8 @@ import { createGlobalStyle } from 'styled-components';
    `
    export const RightArrow =styled.div`
    position:absolute;
-   padding-right:150px;
    top:50%;
-   right:32px;
+   right:45px;
    font-size:2em;
    z-index:10;
    cursor:pointer;
@@ -162,9 +170,10 @@ import { createGlobalStyle } from 'styled-components';
 
    `
    export const LeftArrow =styled.div`
+
    position:absolute;
    top:50%;
-   left:35px;
+   left:45px;
    font-size:2em;
    z-index:10;
    cursor:pointer;
