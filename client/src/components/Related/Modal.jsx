@@ -51,7 +51,7 @@ const Modal =({closeModal, length, id, relatedInf})=> {
               <th> </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id='table'>
           {totalFeatures.featuresTitle.map((item, key) => (
               <tr key={key}>
                 <XfeatureL>
