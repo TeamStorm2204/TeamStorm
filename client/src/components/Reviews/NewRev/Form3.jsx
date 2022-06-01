@@ -8,10 +8,6 @@ import { InputBox, StyledButton } from '../../Styles.styled.js';
 const Form3 = ({ form1, form2, submitted }) => {
   useEffect(() => {
     if (submitted) {
-      let cha = {}
-      for (let key in form2) {
-        cha[form2[key].id.id] = form2[key].value
-      }
       let combined = { ...form1, characteristics: {} }
 
       console.log('combined: ', combined)

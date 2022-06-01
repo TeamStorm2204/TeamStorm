@@ -58,15 +58,31 @@ module.exports = {
     axiosRequest(options, callback);
   },
   createReview: function (obj, callback) {
-    console.log('createReview obj: ', obj)
-    axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews', obj, { headers: headers })
-      .then(() => this.getReviews())
-      .catch(err => console.log(err))
+    let options = {
+      method: 'POST',
+      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews',
+      data: obj,
+      headers,
+    };
+    axiosRequest(options, callback);
   },
   editHelpful: function (id, callback) {
-    axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${id}/helpful`, { headers: headers })
-      .then(() => this.getReviews())
-      .catch(err => console.log(err))
+    axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${id}/helpful`, undefined, { headers: headers })
+      .then((response) => {
+        callback(null, response.data)
+      })
+      .catch(err => {
+        callback(err)
+      })
+  },
+  report: function (id, callback) {
+    axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${id}/report`, undefined, { headers: headers })
+      .then((response) => {
+        callback(null, response.data)
+      })
+      .catch(err => {
+        callback(err)
+      })
   },
   getCart: function (callback) {
     let options = {
