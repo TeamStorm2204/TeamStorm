@@ -5,7 +5,7 @@ import { Images, Slide, LeftArrow, RightArrow, SubCard, LeftArrowSub, RightArrow
 import {IconContext} from 'react-icons';
 import {ImStarEmpty} from 'react-icons/im';
 import {ImArrowLeft, ImArrowRight} from 'react-icons/im';
-import { Card, Description, Icon} from './StyleRelated.js';
+import { Card, Description, Icon, OutCard, StarButton} from './StyleRelated.js';
 import Modal from './Modal.jsx';
 import Stars from '../Stars.jsx';
 
@@ -43,21 +43,6 @@ const ImageSlider = ({
 
         }
 
-        const lengthSub=0;
-        const nextSlideSub=(key)=> {
-          var lengthSub=imagesUpdate[key].image.length;
-          var subValue=currentSub.slice();
-          subValue[key]===lengthSub-1? subValue[key]= 0: subValue[key]=subValue[key]+1;
-          setCurrentSub(subValue);
-        }
-
-        const prevSlideSub=(key)=> {
-          var lengthSub=imagesUpdate[key].image.length;
-          var subValue=currentSub.slice();
-          subValue[key]===lengthSub-1? subValue[key]= 0: subValue[key]=subValue[key]+1;
-          setCurrentSub(subValue);
-
-        }
         return (
       <div>
       {modal.status&&<Modal closeModal={setModal} length={length} id={overViewData} relatedInf={modal.item}/>}
@@ -78,26 +63,18 @@ const ImageSlider = ({
          if(item.image[0].url!==null) {
            if(index===current || index===current+1) {
            return (
-             <div>
-          <Card id="carousel">
-          <img
-          src={item.image[0].url}
-          key={index}
-          onClick={()=>{setRelatedId(item.id)}}
-          onMouseEnter={()=>{sizeData[index]='180'; setHover(sizeData)}}
-          onMouseLeave={()=>{sizeData[index]='150'; setHover(sizeData)}}
-          height={sizeData[index]}
-          alt='pictures'
-         />
+          <OutCard  >
+          <Card id="carousel" url={item.image[0].url}  >
 
          <Icon>
              <IconContext.Provider value={ {size: '1.5em'} }>
-                 <div onClick={()=>{ var modalNew={item:item, status:true}; setModal(modalNew)}} >
+                 <StarButton onClick={()=>{ var modalNew={item:item, status:true}; setModal(modalNew)}}  >
                      <ImStarEmpty/ >
-                </div>
+                </StarButton>
              </IconContext.Provider>
          </Icon>
          </Card>
+         <div onClick={()=>{setRelatedId(item.id)}}>
          <Description style={{fontSize:15}}>
            <span key={index} style={{fontWeight:'bold'}}> {item.name} </span>
           </Description>
@@ -112,10 +89,10 @@ const ImageSlider = ({
                   }
             </Description>
             <Description>
-             <Stars id={item.id} />
+             <Stars id={item.id} value={ {size: '1.5em'} } />
           </Description>
-
-         </div>
+          </div>
+         </OutCard>
            )
           }
          }

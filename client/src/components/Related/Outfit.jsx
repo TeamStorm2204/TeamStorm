@@ -7,7 +7,7 @@ import {IoAddOutline} from 'react-icons/io5';
 import {IconContext} from 'react-icons';
 import axios from 'axios';
 import {UserContext} from '../App.jsx';
-import { Cd,Card, Description, Space, Add, Cross} from './StyleRelated.js';
+import { Cd,CardFit, Description, Space, Add, Cross, PlusButton, OutCardFit} from './StyleRelated.js';
 import Carousel from 'react-elastic-carousel';
 import {VscError} from 'react-icons/vsc';
 import Stars from '../Stars.jsx';
@@ -15,7 +15,7 @@ import Stars from '../Stars.jsx';
 
 const Outfit=(props)=> {
   const breakPoints= [
-    {width:150, itemsToShow:1}, {width:300,itemsToShow:2}
+    {width:1, itemsToShow:1}, {width:200,itemsToShow:2},{width:350,itemsToShow:3},{width:500,itemsToShow:4}
   ]
   const data=useContext(UserContext);
 
@@ -39,9 +39,7 @@ const Outfit=(props)=> {
       var name=data.Img.results[0].name;
       var outfit={url:url, discount:discount, price:price, name:name};
       var currentOutfits=outfits.slice();
-       //console.log('outfit', outfit, currentOutfits);
       currentOutfits.push(outfit);
-      //console.log('total', currentOutfits);
       localStorage.setItem("outfits", JSON.stringify(currentOutfits));
       setOutfits(prev=>[...prev, outfit]);
 
@@ -58,64 +56,54 @@ const Outfit=(props)=> {
     setOutfits(update);
   }
 
-
   return (
 
     <div>
 
-         <Add>
-               <IconContext.Provider value={{ size: '4em' }}>
-                 <div>
-                 <button  aria-label='add' onClick={()=> {addOutfit(data)}}><IoAddOutline/></button>
-                 </div>
-               </IconContext.Provider>
-        </Add>
          <Space>
-           { outfits.length>0?
-                 (
-                 <Carousel breakPoints={breakPoints}>
-                 {
-                   outfits.map( (item, index)=>{
-                       return (
-                         <div>
-                           <Card>
-                             <img
-                               src={item.url}
-                               key={index}
-                               width='100'
-                               alt={item.name}
-                               />
-                           <Cross>
-                             {/* <IconContext.Provider > */}
-                                 <div onClick={()=>{  deleteFit(index)}}>
-                                 <VscError/ >
-                                 </div>
-                             {/* </IconContext.Provider> */}
-                             </Cross>
-                           </Card>
-                           <Description style={{fontSize:15}}>
-                              <span key={index} style={{fontWeight:'bold'}}> {item.name} </span>
-                           </Description>
-                          <Description style={{fontSize:15}}>
-                              <span key={index+3} >{item.category}</span>
-                                {item.discount?
-                                  (<div>
-                                  <span key={index+1}> Price:${item.discount} </span>
-                                  <span key={index+4} style={{textDecoration:'line-though'}}> ${item.default_price} </span>
-                                  </div>)
-                                  :<span key={index+1}> Price:${item.price}</span>
-                                  }
-                            </Description>
-                            <Description>
-                            <Stars id={item.id} />
-                            </Description>
-                          </div>
-                       )
-                     }
+           <Carousel breakPoints={breakPoints} style={{width:'1150px'}}>
+              <OutCardFit onClick={()=> {addOutfit(data)}}>
+                <Add>
+                  <IconContext.Provider value={{ size: '4em' }}>
+                    <PlusButton  aria-label='add'><IoAddOutline/></PlusButton>
+                  </IconContext.Provider>
+                </Add>
+              </OutCardFit>
+                { outfits.length>0?
+                      (
+                        outfits.map( (item, index)=>{
+                            return (
+                              <OutCardFit>
+                                <CardFit url={item.url} >
+                                <Cross>
+                                      <div onClick={()=>{  deleteFit(index)}}>
+                                      <VscError/ >
+                                      </div>
+                                  </Cross>
+                                </CardFit >
+                                <Description style={{fontSize:15}}>
+                                    <span key={index} style={{fontWeight:'bold'}}> {item.name} </span>
+                                </Description>
+                                <Description style={{fontSize:15}}>
+                                    <span key={index+3} >{item.category}</span>
+                                      {item.discount?
+                                        (<div>
+                                        <span key={index+1}> Price:${item.discount} </span>
+                                        <span key={index+4} style={{textDecoration:'line-though'}}> ${item.default_price} </span>
+                                        </div>)
+                                        :<span key={index+1}> Price:${item.price}</span>
+                                        }
+                                  </Description>
+                                  <Description>
+                                  <Stars id={data.currentPD.id} value={ {size: '1.5em'} } />
+                                  </Description>
+                                </OutCardFit>
+                            )
+                          }
                   )
-                }
-                 </Carousel>):null
-           }
+                ):null
+              }
+              </Carousel>
          </Space>
    </div>
  )

@@ -29,9 +29,9 @@ const RelatedProducts =(props)=> {
         var totalData=[];
         var size=[];
         var len=data.length;
-    console.log('realted' , data);
           for (let i=0; i<data.length;i++) {
-            API.getProductInformation(data[i], (err, result)=> {
+            if(data[i]!==id) {
+             API.getProductInformation(data[i], (err, result)=> {
               if(err) {
                 console.log(err);
               }else {
@@ -69,6 +69,7 @@ const RelatedProducts =(props)=> {
                 })
               }
             })
+           }
 
           }
       }
