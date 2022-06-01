@@ -138,9 +138,8 @@ export const Input = styled.input`
 
 export const ProductDetailsContainer = styled.div`
     position: relative;
-    min-width: 300px;
+    min-width: 350px;
     max-width: 450px;
-    padding: 20px;
   `
   
 export const GlobalStyle = createGlobalStyle`

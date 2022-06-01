@@ -48,23 +48,20 @@ export const ImgWrapper = styled.img`
 `;
 
 export const ThumbImg = styled.img`
-  width: 10%;
-  margin: 1px;
-  padding: 2px;
+  width: 9%;
+  aspect-ratio: 1/1;
+  margin: 4px;
+  padding: 1px;
+  background-color: black;
 `;
 
 export const BorderThumbImg = styled.img`
-  width: 10%;
-  margin: 1px;
-  border: 2px solid black;
+  width: 9%;
+  aspect-ratio: 1/1;
+  margin: 4px;
+  padding: 1px;
+  background-color: white;
 `;
-
-
-export const Arrow = styled.button`
-  margin: 30px 0 30px 0;
-  padding: 10px 0 10px 0;
-`;
-
 
 
 export const DefaultImgWrap = styled.div`
@@ -87,23 +84,6 @@ export const DefaultImgWrap = styled.div`
 export const DefImg= styled.img`
     width: 55%;
 `
-
-// export const DefaultImgWrap = styled.div`
-//   position: relative;
-//   box-sizing: border-box;
-// //   width:100%
-// //   min-width: 45px;
-//   min-width: 450px;
-// //   height: (width * 1.5);
-//   max-height: auto;
-//   min-height: 675px;
-//   background-color: lightGray;
-//   background-image: url(${props => props.img});
-//   background-size: contain;
-//   background-repeat: no-repeat;
-//   background-position-y: center;
-//   background-position-x: center;
-// `
 
 export const ImagesWrap = styled.div`
   position: relative;
@@ -158,8 +138,12 @@ export const Input = styled.input`
 
 export const ProductDetailsContainer = styled.div`
     position: relative;
-    width: 370px;
-    margin-left: 7%;
+    min-width: 250px;
+    max-width: 540px;
+    // justifyContent:center;
+    flex-basis: 250px;
+    flex-grow: 1;
+    flex-shrink: 1;
   `
   
 export const GlobalStyle = createGlobalStyle`

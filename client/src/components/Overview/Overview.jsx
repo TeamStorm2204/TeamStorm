@@ -8,6 +8,7 @@ import DefaultView from './DefaultView.jsx';
 import { ThemeProvider } from 'styled-components';
 import {Header, SubHeader, ProductDetailsContainer} from './DefaultStyles.js';
 import Stars from '../Stars.jsx';
+import PracView from './PracView.jsx';
 
 const Overview =(props)=> {
     const [product, setProduct] = useState([]);
@@ -32,40 +33,30 @@ const Overview =(props)=> {
       }, [props.id]);
 
     const scrollTo = function(){
-
-        // console.log(window)
       let reviews = window.document.getElementById('Reviews');
       reviews.scrollIntoView({behavior: "smooth"});
     }
 
     return (
-        expanded? <ExpandedView selectedStyle={styles[selectedIndex || 0]} setExpanded={setExpanded}></ExpandedView>:
-        <div style={{display:'flex', flexWrap:'wrap', flexDirection: 'row'}}>
-            {/* {styles.length? <ExpandedView selectedStyle={styles[selectedIndex || 0]}></ExpandedView>:null} */}
         
-          {/* <div >
-            {styles.length? <ProductView selectedStyle={styles[selectedIndex || 0]}></ProductView>:null}
-          </div>  */}
 
-          
-          {/* <div style={{position:'relative', minWidth:'55%', height:'100%'}}>
-            <div style={{width:'100%', height: '100%'}}>
-            {styles.length? <DefaultView selectedStyle={styles[selectedIndex || 0]}></DefaultView>:null}
-            </div>
-          </div>  */}
-          <div style={{position:'relative', minWidth:'60%'}}>
+        // expanded? <ExpandedView selectedStyle={styles[selectedIndex || 0]} setExpanded={setExpanded}></ExpandedView>:
+        <div style={{display:'flex', flexFlow:'row wrap', gap:'5%', justifyContent:'space between'}}>
+          {/* <div style={{position:'relative', minWidth:'60%'}}>
           {styles.length? <DefaultView selectedStyle={styles[selectedIndex || 0]} setExpanded={setExpanded}></DefaultView>:null}
-          </div>
-          
-          <div style={{}}>
-          <ProductDetailsContainer flex>
+        </div> */}
+
+        <div style={{position:'relative', maxWidth:'540px', minWidth:'300px', flexGrow: '1', flexShrink: '1', flexBasis:'300px'}}>
+          {styles.length? <PracView selectedStyle={styles[selectedIndex || 0]} setExpanded={setExpanded}></PracView> : null}
+        </div>
+
+          <ProductDetailsContainer style={{}}>
             <SubHeader>{product.category}</SubHeader>
             <Header>{product.name}</Header>
             {product.description? <SubHeader>{product.description}</SubHeader>: null}
             {(reviewCount > 0)? <SubHeader onClick={scrollTo}><Stars id={props.id} setReviewCount={setReviewCount}></Stars> Read all {reviewCount} reviews</SubHeader>: null}
             {styles.length? <ProductStyleSelector id={props.id} styles={styles} setSelectedIndex={setSelectedIndex} selectedIndex={selectedIndex || 0} ></ProductStyleSelector> :null}
-          </ProductDetailsContainer> 
-          </div>
+          </ProductDetailsContainer>
 
         </div>
     )

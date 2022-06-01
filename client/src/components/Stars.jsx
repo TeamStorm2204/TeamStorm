@@ -18,8 +18,8 @@ const Stars = (props) => {
         if(props.setReviewCount) {
           let ratingsCount = 0;
           for(let key in data.recommended){
-            if(Number(data.recommended[key])) {
-            ratingsCount+=Number(data.recommended[key]);
+              if(Number(data.recommended[key])) {
+              ratingsCount+=Number(data.recommended[key]);
             }
             console.log({ratingsCount})
             props.setReviewCount(ratingsCount);
