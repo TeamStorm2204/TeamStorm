@@ -1,13 +1,14 @@
 
 import React from 'react';
 import API from '../../../API';
-import {FaArrowAltCircleRight, FaArrowAltCircleLeft} from 'react-icons/fa';
+import {ImArrowLeft, ImArrowRight} from 'react-icons/im';
+import {FaChevronCircleLeft, FaChevronCircleRight} from 'react-icons/fa';
 import { useEffect, useState, createContext, useContext } from 'react';
 import {IoAddOutline} from 'react-icons/io5';
 import {IconContext} from 'react-icons';
 import axios from 'axios';
 import {UserContext} from '../App.jsx';
-import { Cd,Card, Description, Space, Add, Cross} from './StyleRelated.js';
+import { Slide, CardFit, Description, Space, Add, Cross, PlusButton, OutCardFit, RightArrow, LeftArrow, Title} from './StyleRelated.js';
 import Carousel from 'react-elastic-carousel';
 import {VscError} from 'react-icons/vsc';
 import Stars from '../Stars.jsx';
@@ -15,11 +16,11 @@ import Stars from '../Stars.jsx';
 
 const Outfit=(props)=> {
   const breakPoints= [
-    {width:150, itemsToShow:1}, {width:300,itemsToShow:2}
+    {width:1, itemsToShow:1}, {width:200,itemsToShow:2},{width:350,itemsToShow:3},{width:500,itemsToShow:4}
   ]
   const data=useContext(UserContext);
 
-
+  const [current, setCurrent] = useState(-1);
   const [outfits, setOutfits]=useState(localStorage.getItem('outfits')?JSON.parse(localStorage.getItem('outfits')):[]);
   const[ img, setImg]=useState([]);
 
@@ -38,11 +39,8 @@ const Outfit=(props)=> {
       var price=data.Img.results[0].original_price;
       var name=data.Img.results[0].name;
       var outfit={url:url, discount:discount, price:price, name:name};
-
       var currentOutfits=outfits.slice();
-       //console.log('outfit', outfit, currentOutfits);
       currentOutfits.push(outfit);
-      //console.log('total', currentOutfits);
       localStorage.setItem("outfits", JSON.stringify(currentOutfits));
       setOutfits(prev=>[...prev, outfit]);
 
@@ -59,69 +57,81 @@ const Outfit=(props)=> {
     setOutfits(update);
   }
 
+  const length=outfits.length;
+  const nextSlide=()=> {
+    setCurrent(current===length-1?-1:current+1);
+  }
+  const prevSlide=()=> {
+    setCurrent(current===-1? length-1:current-1);
+
+  }
 
   return (
-
     <div>
+     <Title>Outfit List</Title>
+     <hr style={{width:'50%', backgroundColor:'rgba(0,0,0,0.2)',height:'2px', display:'felx', margin:'-10'}}/>
+      <Slide>
+        <div style={{marginLeft:'25', marginRight:'25', display:'flex', gap: '50px', alignItems:'center'}}>
+       {current!==-1?
+       (<LeftArrow onClick={prevSlide}>
+        <FaChevronCircleLeft/>
+        </LeftArrow>):null}
+        {current!==length-1?
+        (<RightArrow onClick={nextSlide}>
+        <FaChevronCircleRight />
+        </RightArrow>):null}
 
-         <Add>
-               <IconContext.Provider value={{ size: '4em' }}>
-                 <div>
-                 <button  aria-label='add' onClick={()=> {addOutfit(data)}}><IoAddOutline/></button>
-                 </div>
-               </IconContext.Provider>
-        </Add>
-         <Space>
-           { outfits.length>0?
-                 (
-                 <Carousel breakPoints={breakPoints}>
-                 {
-                   outfits.map( (item, index)=>{
-                       return (
-                         <div>
-                           <Card>
-                             <img
-                               src={item.url}
-                               key={index}
-                               width='100'
-                               alt={item.name}
-                               />
-                           <Cross>
-                             {/* <IconContext.Provider > */}
-                                 <div onClick={()=>{  deleteFit(index)}}>
-                                 <VscError/ >
-                                 </div>
-                             {/* </IconContext.Provider> */}
-                             </Cross>
-                           </Card>
-                           <Description style={{fontSize:15}}>
-           <span key={index} style={{fontWeight:'bold'}}> {item.name} </span>
-          </Description>
-          <Description style={{fontSize:15}}>
-              <span key={index+3} >{item.category}</span>
-                {item.discount?
-                  (<div>
-                   <span key={index+1}> Price:${item.discount} </span>
-                   <span key={index+4} style={{textDecoration:'line-though'}}> ${item.default_price} </span>
-                  </div>)
-                  :<span key={index+1}> Price:${item.price}</span>
+        {current===-1? (
+        <OutCardFit onClick={()=> {addOutfit(data)}}>
+          <Add>
+            <IconContext.Provider value={{ size: '4em' }}>
+              <PlusButton  aria-label='add'><IoAddOutline/></PlusButton>
+            </IconContext.Provider>
+          </Add>
+        </OutCardFit> ):null
+       }
+        { outfits.length>0?
+              (
+                outfits.map( (item, index)=>{
+                    if(index===current || index===current+1||index===current+2) {
+                    return (
+                      <OutCardFit>
+                        <CardFit url={item.url} >
+                        <Cross>
+                              <div onClick={()=>{  deleteFit(index)}}>
+                              <VscError/ >
+                              </div>
+                          </Cross>
+                        </CardFit >
+                        <Description style={{fontSize:15}}>
+                            <span key={index} style={{fontWeight:'bold'}}> {item.name} </span>
+                        </Description>
+                        <Description style={{fontSize:12}}>
+                            <span key={index+3} >{item.category}</span>
+                        </Description>
+                        <Description style={{fontSize:12}}>
+                              {item.discount?
+                                (<div>
+                                <span key={index+1}> Price:${item.discount} </span>
+                                <span key={index+4} style={{textDecoration:'line-though'}}> ${item.default_price} </span>
+                                </div>)
+                                :<span key={index+1}> Price:${item.price}</span>
+                                }
+                          </Description>
+                          <Description>
+                          <Stars id={data.currentPD.id} value={ {size: '1.5em'} } />
+                          </Description>
+                        </OutCardFit>
+                    )
                   }
-            </Description>
-            <Description>
-             <Stars id={item.id} />
-          </Description>
-
-                           </div>
-                       )
-                     }
-                  )
                 }
-
-                 </Carousel>):null
-           }
-         </Space>
-
-   </div>
+           )
+        ):null
+      }
+      </div>
+    </Slide>
+    <hr style={{width:'80%', display:'felx', marginTop:'5em'}}/>
+    </div>
  )
 
 }

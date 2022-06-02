@@ -37,7 +37,7 @@ const Overview =(props)=> {
         <div style={{display:'flex', flexWrap: 'wrap', flexDirection: 'row'}}>
           <div>
             {styles.length? <ProductView selectedStyle={styles[selectedIndex || 0]}></ProductView>:null}
-          </div> 
+          </div>
 
           <ProductDetailsContainer>
             <div>
@@ -47,7 +47,7 @@ const Overview =(props)=> {
             {(reviewCount > 0)? <SubHeader onClick={scrollTo}><Stars id={props.id}></Stars> Read all [#] reviews</SubHeader>: null}
             {styles.length? <ProductStyleSelector id={props.id} styles={styles} setSelectedIndex={setSelectedIndex} selectedIndex={selectedIndex || 0} ></ProductStyleSelector> :null}
             </div>
-          </ProductDetailsContainer> 
+          </ProductDetailsContainer>
 
         </div>
     )

@@ -1,26 +1,50 @@
 import { ThemeProvider } from 'styled-components'
 import React from 'react';
 import { useEffect, useState, createContext } from 'react';
-import { St, Review } from '../Styles.styled.js';
+import { St, Review, ReadMore, Yes, Report } from '../Styles.styled.js';
 import api from '../../../API'
 
-const ReviewItem = ({ t }) => {
+const ReviewItem = ({ helpfulList, setHelpfulList, t }) => {
   let [clicked, setClicked] = useState(false)
+  let [rev, setRev] = useState(t)
+  let [reported, setReported] = useState(false)
+  let [newHelp, setNewHelp] = useState(t.helpfulness)
+  let [readMore, setReadMore] = useState(false)
+
   let dateConverter = (dateString) => {
     const options = { year: "numeric", month: "long", day: "numeric" }
     return new Date(dateString).toLocaleDateString(undefined, options)
   }
 
   let handleYesClick = (id) => {
-    console.log(id)
+    if (helpfulList.includes(id)) {
+      return;
+    }
     api.editHelpful(id, (err, data) => {
       if (err) {
         console.log(err)
       } else {
+        setClicked(true)
+        setNewHelp(t.helpfulness + 1)
+        // setHelpfulList([...helpfulList, id])
         console.log('success')
       }
     })
   }
+
+  let handleReport = (id) => {
+    api.report(id, (err, data) => {
+      if (err) {
+        console.log(err)
+      } else {
+        setReported(true)
+        console.log('success')
+      }
+    })
+  }
+  useEffect(() => {
+    console.log('hi')
+  }, [reported, readMore])
 
   return (
     <Review>
@@ -30,20 +54,29 @@ const ReviewItem = ({ t }) => {
       </div>
       <div style={{ fontSize: '25px', textDecoration: 'bold', marginTop: '15px' }}>{t.summary}</div>
       <br />
-      <div style={{ fontSize: '16px' }}>{t.body.length <= 250 ? t.body : t.body.substring(0, 250) + '...'}</div>
-      <div>{t.body.length >= 250 ? 'Read More' : null}</div>
+      {
+        readMore ? <div style={{ fontSize: '16px' }}> {t.body}</div> :
+          <>
+            <div style={{ fontSize: '16px' }}>{t.body.length <= 250 ? t.body : t.body.substring(0, 200) + '...'}</div>
+            <ReadMore onClick={() => setReadMore(true)}>{t.body.length >= 200 ? 'Read More' : null}</ReadMore>
+          </>
+
+      }
       <br />
       {t.recommend ? <div style={{ fontSize: '16px' }}>✔️ I recommend this product</div> : null}
       <div>
         {
           t.photos.length !== 0 ?
             t.photos.map(i => {
-              return <img
-                src={i.url}
-                width="100"
-                marginTop='20px'
-                alt="header image"
-              />
+              return (
+                <span style={{ marginRight: '10px' }}>
+                  <img
+                    src={i.url}
+                    width="100"
+                    alt="header image"
+                  />
+                </span>
+              )
             }) : null
         }
       </div>
@@ -58,9 +91,19 @@ const ReviewItem = ({ t }) => {
       <br />
       <div style={{ display: 'flex', fontSize: '13px', color: '#8a8a8a' }}>
         <div>Helpful?&nbsp;</div>
-        <div onClick={() => handleYesClick(t.review_id)} style={{ textDecoration: 'underline' }}>Yes ({t.helpfulness})</div>
+        {
+          clicked ?
+            <div style={{ textDecoration: 'underline' }}>Yes ({newHelp})</div>
+            :
+            <Yes onClick={() => handleYesClick(t.review_id)} style={{ textDecoration: 'underline' }}>Yes ({t.helpfulness})</Yes >
+        }
         <div>&nbsp; | &nbsp;</div>
-        <div style={{ textDecoration: 'underline' }}> Report </div>
+        {
+          reported ?
+            <div style={{ textDecoration: 'underline', color: 'red' }}> Reported </div>
+            :
+            <Report onClick={() => handleReport(t.review_id)} style={{ textDecoration: 'underline' }}> Report </Report >
+        }
       </div>
 
 
