@@ -51,19 +51,16 @@ const App = (props) => {
       <UserContext.Provider value={{ currentPD: products, Img: styles }}>
         <div>
           <GlobalStyle color='#fafafa' />
-          <h1>Products </h1>
           <div>
-            {products.id ? <OverView id={products.id} /> : null}
+            {/* {products.id ? <OverView id={products.id} /> : null} */}
           </div>
           <div>
             <br></br>
           </div>
           <div>
-            <h2> Related Product</h2>
             <RelatedProducts setRelatedId={setRelatedId} />
           </div>
           <div>
-            <h2>Outfit List</h2>
             <Outfit />
           </div>
           <div>

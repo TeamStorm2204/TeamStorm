@@ -125,18 +125,18 @@ const Reviews = ({ relatedId }) => {
 
 
   return (
-    <div style={{ height: '700px' }}>
+    <div style={{ marginTop: '-25px' }}>
       <ThemeProvider theme={theme}>
         <Header>
           <div>
-            <h1 style={{ fontSize: '40px' }}>Reviews &</h1 >
-            <h1 style={{ marginTop: '-30px', fontSize: '40px' }}>Ratings</h1 >
+            <h1 style={{ fontSize: '37px' }}>Reviews &</h1 >
+            <h1 style={{ marginTop: '-30px', fontSize: '37px' }}>Ratings</h1 >
           </div>
           {
             reviews.length !== 0 ?
               <div>
                 <Star style={{ paddingTop: '20px', display: 'flex', alignItems: 'baseline' }}>
-                  <p style={{ fontWeight: '600', fontSize: '50px', textShadow: '3px 3px 1px #c2c2c2' }} >{Math.round(avg * 10) / 10}</p>
+                  <p style={{ fontWeight: '600', fontSize: '45px', textShadow: '3px 3px 1px #c2c2c2' }} >{Math.round(avg * 10) / 10}</p>
                   <div style={{ fontSize: '20px', display: 'inline-block' }}>
                     {avg > 0 ? <St average={Math.round(avg * 10) / 10}>★★★★★</St> : null}
                   </div>
@@ -190,7 +190,7 @@ const Reviews = ({ relatedId }) => {
                         handleFilter(t)
                       }} style={{ background: `${filterTags.includes(t) ? 'rgba(0, 0, 0, 0.07)' : ''}` }}>
                         {t} stars
-                        <div style={{ marginLeft: '20px', height: '7px', width: '150px', backgroundColor: 'grey' }}>
+                        <div style={{ marginLeft: '20px', height: '5px', width: '130px', backgroundColor: 'grey' }}>
                           <ProgressBar percentNum={filteredRatings[t].length / maxRevCt * 100}></ProgressBar>
                         </div>
                       </FilterRate>
@@ -203,7 +203,7 @@ const Reviews = ({ relatedId }) => {
               Object.keys(meta).map(t => {
                 let lowT = t.toLowerCase()
                 return (
-                  <div style={{ margin: '5px', width: '240px', fontSize: '15px', color: '#4f4e4e', marginTop: '5px' }}>
+                  <div style={{ margin: '5px', width: '200px', fontSize: '15px', color: '#4f4e4e', marginTop: '5px' }}>
                     {t}
                     <RangeSlider>
                       <input type="range" min="1" max="5" value={meta[t].value} className="slider" ></input>

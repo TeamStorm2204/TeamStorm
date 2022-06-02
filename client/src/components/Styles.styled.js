@@ -79,7 +79,7 @@ display:flex;
     }
   `
 export const Header = styled.div`
-    display: grid;
+display: grid;
   grid-template-columns: 25% 25% 25% 25%;
 cursor:default;
     width: 80%;
@@ -258,19 +258,17 @@ export const InteractiveStars = styled.div`
 export const ProgressBar = styled.div`
   background-color: #FDCC0D;
   width: ${(props) => props.percentNum}%;
-  height: 7px;
+  height: 5px;
 `
 export const RangeSlider = styled.div`
   .slider {
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
-  height: 7px;
+  height: 5px;
   background: #d3d3d3;
   outline: none;
   opacity: 0.7;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
 }
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
