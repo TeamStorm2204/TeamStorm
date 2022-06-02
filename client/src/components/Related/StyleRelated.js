@@ -4,10 +4,11 @@ import { createGlobalStyle } from 'styled-components';
 
   export const Card =styled.div`
   background-image: url(${(props) => props.url});
+  border-radius: 10px 10px 0 0;
   display:felx;
   position:relative;
   width:100%;
-  height:70%;
+  height:60%;
   z-index: 1;
   background-position: center;
   background-size: cover;
@@ -20,7 +21,7 @@ import { createGlobalStyle } from 'styled-components';
    display:felx;
    position:relative;
    width:100%;
-   height:60%;
+   height:65%;
    z-index: 1;
    background-position: center;
    background-size: cover;
@@ -36,7 +37,7 @@ import { createGlobalStyle } from 'styled-components';
     border: 2px solid black;
     float:left;
     &:hover {
-     border: 2.5px solid black;
+     box-shadow: 2.5px 2.5px black;
    }
    `
    export const OutCardFit =styled.div`
@@ -60,6 +61,7 @@ import { createGlobalStyle } from 'styled-components';
    font: 100 1.2rem/1.4 Helvetica,Arial,sans-serif;
    padding-left:5px;
    padding-right:5px;
+
    `
    export const Title=styled.div`
    display:flex;
@@ -149,7 +151,7 @@ import { createGlobalStyle } from 'styled-components';
    z-index:10;
    width:23px;
    height:23px;
-   border:none;
+   border-radius: 50% ;
    &:hover {
     cursor: pointer;
     color: pink;
@@ -210,48 +212,55 @@ import { createGlobalStyle } from 'styled-components';
 
    `
    export const  Container=styled.div`
-   width:300px;
-   height:250px;
+   overflow-y: auto;
+   width:210px;
+   height:180px;
    font-size:12px;
    z-index:20;
-   top:70%;
-   border-radius:20px;
+   top:60%;
    background-color:white;
    box-shadow:rgba(0, 0, 0, 0.35) 0px 5px 15px;
    display:flex;
    position:absolute;
    padding:15px;
-   margin-left:800px;
 
-   `
-   export const Close=styled.div`
-   display:flex;
-   justify-content:flex-end;
-   `
-   export const CloseButton=styled.div`
+   margin-left:800px;`
+
+
+   export const CloseButton=styled.button`
+   border-radius: 10px 10px 10px 10px ;
+   border: 1px solid rgba(0,0,0,1);
+   margin: 20px;
+   font-style: Helvetica,Arial,sans-serif;
+   font-size:12px;
    background-color:transparent;
-   border:none;
-   font-size:20px;
-   cursor:pointer;
+   display:flex;
+   &:hover {
+    cursor: pointer;
+    border: 2.5px solid black;
+  }
+   position: absolute;
+   top: 85%;
+   left:35%;
+   z-index: 1;
+
    `
 
 
    export const XfeatureL = styled.td`
     position: flex;
     text-align: center;
-    padding-left: 10px;
-    padding-right: 10px;
-    font-style: italic;
+    font-style: Helvetica,Arial,sans-serif;
+    font-size: 10px;
 
     `;
 
     export const XfeatureR = styled.td`
     position: flex;
     text-align: center;
-    padding-right: 10px;
-    padding-left: 10px;
-    font-style: italic;
-    fotn-size: 5px;
+    font-style: Helvetica,Arial,sans-serif;
+    font-size: 10px;
+
     `;
 
     export const Value = styled.td`
@@ -261,12 +270,14 @@ import { createGlobalStyle } from 'styled-components';
     `;
 
     export const HeadL = styled.th`
-    padding-left: 10px;
+    padding-left: 5px;
+
 
     `;
 
     export const HeadR = styled.th`
-      padding-right: 10px;
+      padding-right: 5px;
+
 
       `;
 
