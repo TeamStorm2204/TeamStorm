@@ -5,11 +5,11 @@ import { UserContext } from '../App.jsx';
 import api from '../../../API';
 import NewRev1 from './NewRev/NewRev1.jsx';
 import RenderReviews from './RenderReviews.jsx';
-import { Body, RangeSlider, Dropdown, DropdownMenu, DrpItem, St, ProgressBar, Scrollbar, PrimaryButton, Star, Header, Ratings, RatingCheck, SubHeader, GlobalStyles, StyledButton } from '../Styles.styled.js';
+import { FilterRate, Body, RangeSlider, Dropdown, DropdownMenu, DrpItem, St, ProgressBar, Scrollbar, PrimaryButton, Star, Header, Ratings, RatingCheck, SubHeader, GlobalStyles, StyledButton } from '../Styles.styled.js';
 import Stars from '../Stars.jsx';
+import { AiOutlineDown } from "react-icons/ai";
 
 export const Average = createContext();
-let filterTags = []
 const theme = {
   colors: {
     header: '#e3d5d5',
@@ -17,7 +17,7 @@ const theme = {
     footer: '#003333',
   }
 }
-const Reviews = ({relatedId}) => {
+const Reviews = ({ relatedId }) => {
   let metaStrings = {
     size: ['Too small', 'Too big'],
     width: ['Too narrow', 'Too wide'],
@@ -26,9 +26,9 @@ const Reviews = ({relatedId}) => {
     length: ['Too short', 'Too long'],
     fit: ['Too tight', 'Too loose'],
   }
-  let id = useContext(UserContext)
+  let product = useContext(UserContext)
+  let id = product.currentPD.id
 
-  // console.log('id', id.currentPD.id);
   let arr = [5, 4, 3, 2, 1]
   const [reviews, setReviews] = useState([]);
   const [renderedReviews, setRenderedReviews] = useState([]);
@@ -38,10 +38,13 @@ const Reviews = ({relatedId}) => {
   const [filteredArrs, setFilteredArrs] = useState([])
   const [isFiltered, setIsFiltered] = useState(false);
   const [meta, setMeta] = useState({});
-  // const [filterTags, setFilterTags] = useState([])
+  const [sortert, setSortert] = useState(['relevant', 'Relevance'])
+  const [helpfulList, setHelpfulList] = useState([])
+  const [filterTags, setFilterTags] = useState([])
+  const [filterClick, setFilterClick] = useState(false)
+  const [rec, setRec] = useState(0)
   useEffect(() => {
-    api.getReviews({ product_id: id.currentPD.id, count: 100 }, (err, data) => {
-
+    api.getReviews({ product_id: id, count: 1000, sort: sortert[0] }, (err, data) => {
       if (data.results.length > 0) {
         let sum = 0
         let obj = { 1: [], 2: [], 3: [], 4: [], 5: [] }
@@ -51,26 +54,39 @@ const Reviews = ({relatedId}) => {
           obj[data.results[i].rating].push(data.results[i])
           obj[data.results[i].rating].length > max ? max = obj[data.results[i].rating].length : max = max
         }
-        let avge = sum / data.results.length;
-        setAvg(avge)
         setMaxRevCt(max)
         setFilteredRatings(obj)
       }
       setReviews(data.results);
+      if (isFiltered) {
+        setRenderedReviews(filteredArrs.slice(0, 2))
+        return
+      }
       setRenderedReviews(data.results.slice(0, 2))
 
-      api.getReviewsMeta({ product_id: id.currentPD.id }, (err, data) => {
-        setMeta(data.characteristics)
+      api.getReviewsMeta({ product_id: id }, (err, data) => {
+        if (err) {
+          console.log(err)
+        } else {
+          setMeta(data.characteristics)
+          let pRec = Number(data.recommended.true) / (Number(data.recommended.false) + Number(data.recommended.true)) * 100
+          setRec(pRec)
+          let sum = 0;
+          let avgg = 0;
+          let count = 0;
+          for (let key in data.ratings) {
+            sum += Number(data.ratings[key]) * Number(key);
+            count += Number(data.ratings[key])
+          }
+          avgg = sum / count;
+          setAvg(avgg)
+        }
       })
     })
-  }, [isFiltered, setAvg, relatedId]);
-
+  }, [id, sortert]);
+  //, filteredArrs, filterTags,isFiltered,
   var sorter = (sortType) => {
-    setIsFiltered(false)
-    api.getReviews({ product_id: id.currentPD.id, sort: sortType, count: 100 }, (err, data) => {
-      setReviews(data.results);
-      setRenderedReviews(data.results.slice(0, 2))
-    })
+    setSortert(sortType)
   }
 
   let renderMore = () => {
@@ -83,99 +99,111 @@ const Reviews = ({relatedId}) => {
       setRenderedReviews(filteredArrs)
     }
   }
+
   let handleFilter = (ratingNum) => {
-    let newFilterTags = filterTags.slice()
-    if (newFilterTags.slice(0, filterTags.length - 1).includes(ratingNum)) {
-      newFilterTags.pop()
-      let ind = newFilterTags.indexOf(ratingNum)
-      newFilterTags.splice(ind, 1)
+    let arr = filterTags.slice()
+    if (filterTags.includes(ratingNum)) {
+      let index = filterTags.indexOf(ratingNum)
+      arr.splice(index, 1)
+    } else {
+      arr.push(ratingNum)
     }
-    let arr = filteredRatings[ratingNum]
-    if (arr.length === 0) {
-      filterTags.pop()
-      return
-    }
-    let bigArr = []
-    newFilterTags.map(t => {
-      let a = filteredRatings[t]
-      bigArr.push(a)
+    let filtArr = reviews.filter(t => {
+      return arr.includes(t.rating)
     })
-    filterTags = newFilterTags;
-    setFilteredArrs(bigArr.flat())
-    setRenderedReviews(bigArr.flat().slice(0, 2))
-    if (newFilterTags.length > 0) {
+    setFilterTags(arr)
+    setFilteredArrs(filtArr)
+    setRenderedReviews(filtArr.slice(0, 2))
+
+    if (arr.length > 0) {
       setIsFiltered(true)
     } else {
+      setRenderedReviews(reviews.slice(0, 2))
       setIsFiltered(false)
     }
   }
+
+
   return (
-    <div style={{ height: '700px' }}>
+    <div style={{ marginTop: '-25px' }}>
       <ThemeProvider theme={theme}>
         <Header>
-          <h1>Reviews</h1>
+          <div>
+            <h1 style={{ fontSize: '37px' }}>Reviews &</h1 >
+            <h1 style={{ marginTop: '-30px', fontSize: '37px' }}>Ratings</h1 >
+          </div>
           {
             reviews.length !== 0 ?
-              <Star>
-                <p style={{ fontSize: '40px' }} >{Math.round(avg * 10) / 10}</p>
-                <Stars id={id.currentPD.id} />
-              </Star> : <div></div>
+              <div>
+                <Star style={{ paddingTop: '20px', display: 'flex', alignItems: 'baseline' }}>
+                  <p style={{ fontWeight: '600', fontSize: '45px', textShadow: '3px 3px 1px #c2c2c2' }} >{Math.round(avg * 10) / 10}</p>
+                  <div style={{ fontSize: '20px', display: 'inline-block' }}>
+                    {avg > 0 ? <St average={Math.round(avg * 10) / 10}>★★★★★</St> : null}
+                  </div>
+                </Star>
+                <div style={{ marginTop: '-35px', display: 'flex', fontSize: '13px', color: '#8a8a8a' }}>
+                  Recommended by {Math.round(rec * 100) / 100}% of reviewers
+                </div>
+              </div>
+              : <div></div>
           }
-          <h5>Fit Slide Bar</h5>
-          <div>
-            <NewRev1 meta={meta} />
+          < h5 ></h5>
+          <div style={{ display: 'flex', flexDirection: 'row-reverse' }}>
+            <NewRev1 relatedId={id} meta={meta} />
           </div>
         </Header>
         <SubHeader>
-          <h5>Filter Reviews</h5>
+          <h6>Filter Reviews</h6>
           {isFiltered ? <h6>Showing {renderedReviews.length} of {filteredArrs.length} results</h6> : <h6>Showing {renderedReviews.length} of {reviews.length} results</h6>}
           <h5></h5>
-          <div>
+          <div style={{ display: 'flex', flexDirection: 'row-reverse' }}>
             <Dropdown>
-              <span style={{ textDecoration: 'underline', fontSize: '15px' }}>Filter by...🔽</span>
-              <DropdownMenu>
-                <DrpItem onClick={() => sorter('newest')}>Newest</DrpItem>
-                <DrpItem onClick={() => sorter('helpful')}>Helpfulness</DrpItem>
-                <DrpItem onClick={() => sorter('relevant')}>Recommended</DrpItem>
+              <div>
+                <h6 style={{ cursor: 'pointer' }} onClick={() => setFilterClick(prev => !prev)}>Filtered by: <b style={{ textDecoration: 'underline' }}>{sortert[1]}<span><AiOutlineDown /></span></b></h6>
+              </div>
+              <DropdownMenu dis={filterClick}>
+                <DrpItem onClick={() => {
+                  setFilterClick(prev => !prev)
+                  sorter(['newest', 'Newest'])
+                }}>&nbsp; <b>Newest</b></DrpItem>
+                <DrpItem onClick={() => {
+                  setFilterClick(prev => !prev)
+                  sorter(['helpful', 'Helpfulness'])
+                }}>&nbsp; <b>Helpfulness</b></DrpItem>
+                <DrpItem onClick={() => {
+                  setFilterClick(prev => !prev)
+                  sorter(['relevant', 'Relevance'])
+                }
+                }>&nbsp; <b>Recommended</b></DrpItem>
               </DropdownMenu>
             </Dropdown>
           </div>
         </SubHeader>
         <Body>
           <Ratings>
-            <br></br>
-            <div style={{ display: 'flex' }}>
-              {filterTags.map(t => {
-                return <span style={{ backgroundColor: 'grey', padding: '5px', fontSize: '12px' }}>{t} stars</span>
-              })}
-            </div>
-            <br></br>
             <RatingCheck>
-              <div>
+              <div style={{ marginTop: '-10px' }}>
                 {
                   arr.map(t => {
                     return (
-                      <div onClick={() => {
-                        filterTags.push(t)
-                        // setFilterTags([...filterTags, t])
+                      <FilterRate onClick={() => {
                         handleFilter(t)
-                      }} style={{ alignItems: 'center', display: 'flex', textDecoration: 'underline', fontSize: '16px', color: '#4f4e4e' }}>
+                      }} style={{ background: `${filterTags.includes(t) ? 'rgba(0, 0, 0, 0.07)' : ''}` }}>
                         {t} stars
-                        <div style={{ marginLeft: '20px', height: '7px', width: '150px', backgroundColor: 'grey' }}>
+                        <div style={{ marginLeft: '20px', height: '5px', width: '130px', backgroundColor: 'grey' }}>
                           <ProgressBar percentNum={filteredRatings[t].length / maxRevCt * 100}></ProgressBar>
                         </div>
-                      </div>
+                      </FilterRate>
                     )
                   })
                 }
               </div>
             </RatingCheck>
-            <br />
             {
               Object.keys(meta).map(t => {
                 let lowT = t.toLowerCase()
                 return (
-                  <div style={{ width: '200px', fontSize: '16px', color: '#4f4e4e', marginTop: '15px' }}>
+                  <div style={{ margin: '5px', width: '200px', fontSize: '15px', color: '#4f4e4e', marginTop: '5px' }}>
                     {t}
                     <RangeSlider>
                       <input type="range" min="1" max="5" value={meta[t].value} className="slider" ></input>
@@ -188,14 +216,18 @@ const Reviews = ({relatedId}) => {
                 )
               })
             }
+            <br />
           </Ratings>
-          {
-            isFiltered ? <RenderReviews renderMore={renderMore} renderedReviews={renderedReviews} mainList={filteredArrs} />
-              : <RenderReviews renderMore={renderMore} renderedReviews={renderedReviews} mainList={reviews} />
-          }
+          <RenderReviews
+            helpfulList={helpfulList}
+            setHelpfulList={setHelpfulList}
+            renderMore={renderMore}
+            renderedReviews={renderedReviews}
+            mainList={isFiltered ? filteredArrs : reviews}
+          />
         </Body>
       </ThemeProvider >
-    </div>
+    </div >
   )
 }
 
