@@ -66,7 +66,7 @@ const ProductStyleSelector =({styles, setSelectedIndex, selectedIndex})=> {
                 return (
                     (selectedIndex === index) ?
                     <SelectImgWrap img={style.photos[0].thumbnail_url} key={index} onClick={()=>setSelectedIndex(index) }>
-                    <FaRegCheckCircle fontSize="1.5em"/>
+                    <FaRegCheckCircle fontSize="1.25em"/>
                     </SelectImgWrap>:
                     <ImgWrapper src={style.photos[0].thumbnail_url} key={index} onClick={()=>setSelectedIndex(index)}/>
                 )

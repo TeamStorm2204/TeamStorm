@@ -58,7 +58,6 @@ const App = (props) => {
             <br></br>
           </div>
           <div>
-            <h2> Related Product</h2>
              <RelatedProducts setRelatedId={setRelatedId}/>
           </div>
           <div>

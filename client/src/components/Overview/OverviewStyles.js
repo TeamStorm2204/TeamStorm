@@ -38,14 +38,32 @@ export const StylesWrapper = styled.div`
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
-  gap: 5px;
-  margin-bottom: 5px;
+  max-width: 450px;
 `;
 
 export const ImgWrapper = styled.img`
-  min-width: 23%;
-  max-width: 69px;
+  min-width: 20%;
+  margin: 0 10px 10px 0;
+  max-width: 68px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 5px;
+  // border: 2px solid gray;
 `;
+
+export const SelectImgWrap = styled.div`
+  box-sizing: border-box;
+  margin: 0 10px 10px 0;
+  min-width: 20%;
+  max-width: 68px;
+  aspect-ratio: 1/1;
+  border-radius: 5px;
+  border: 2px solid black;
+  background-image: url(${props => props.img});
+  background-size: cover;
+  background-position-y: center;
+  background-position-x: center;
+  `;
 
 export const ThumbImg = styled.img`
   width: 9%;
@@ -95,14 +113,7 @@ export const ImagesWrap = styled.div`
   background-position-x: center;
 `;
 
-export const SelectImgWrap = styled.div`
-  box-sizing: border-box;
-  min-width: 23%;
-  max-width: 69px;
-  border: 2px solid black;
-  background-image: url(${props => props.img});
-  background-size: cover;
-  `;
+
 
 export const Select = styled.select`
     background-color: #fff;
