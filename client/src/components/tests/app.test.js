@@ -7,12 +7,12 @@ import App from "../App.jsx";
 
 // afterEach(cleanup);
 
-test('should render app', async ()=>{
-    render(<App/>);
+test('should render app', async () => {
+    render(<App />);
 
     await waitFor(() => screen.getAllByRole('heading'))
 
-    expect(screen.getByRole('heading', {name: 'Products' })).toBeInTheDocument();
-    expect(screen.getByRole('heading', {name: 'Related Product' })).toBeInTheDocument();
-    //expect(screen.getByRole('heading', {name: 'Camo Onesie' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Products' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Related Product' })).toBeInTheDocument();
+    // expect(screen.getByRole('heading', {name: 'Camo Onesie' })).toBeInTheDocument();
 })
