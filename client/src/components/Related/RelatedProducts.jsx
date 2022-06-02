@@ -39,7 +39,6 @@ const RelatedProducts =(props)=> {
                   if(err) {
                     console.log(err);
                   }else {
-                    console.log('waht is the rlated infor', data);
                     var urls=[];
                     var price='';
                     var discount='';
@@ -52,7 +51,6 @@ const RelatedProducts =(props)=> {
                       }
                     }
                     if(urls.length===0) {
-                      console.log('anudatatat',data.results)
                       urls=data.results[0].photos;
                       discount=data.results[0].sale_price;
                     }
@@ -60,7 +58,6 @@ const RelatedProducts =(props)=> {
                     result.discount=discount;
                     size.push('125');
                     totalData.push(result);
-                    console.log('waht is the total data before return',totalData);
                     if(totalData.length===len) {
                       setRelative(totalData);
                       setHover(size);

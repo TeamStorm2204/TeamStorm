@@ -27,8 +27,6 @@ const ImageSlider = ({
         const [currentSub, setCurrentSub] = useState(Array(length).fill(0));
         const [hover, setHover] = useState(Array(length).fill('150'));
         const [modal, setModal] = useState({item: {}, status: false});
-        console.log('cureeeeet', modal.status);
-
 
         const nextSlide=()=> {
           setCurrent(current===length-1?0:current+1);

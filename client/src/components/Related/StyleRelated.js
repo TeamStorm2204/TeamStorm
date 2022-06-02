@@ -42,6 +42,7 @@ import { createGlobalStyle } from 'styled-components';
    `
    export const OutCardFit =styled.div`
    flex-direction:row;
+
    justify-content:space-between;
    border-radius: 10px;
    height: 250px;
@@ -139,6 +140,21 @@ import { createGlobalStyle } from 'styled-components';
    overflow: hidden;
    position: relative;
    `
+  export const SlideOutFit =styled.div`
+
+  width:80%;
+  margin: 0 auto;
+  padding-left:25px;
+  padding-right:25px;
+  display: flex;
+  height: 300px;
+  overflow: hidden;
+  position: relative;
+  `
+
+
+
+
 
    export const Images =styled.div`
    margin-left:100px;
@@ -212,20 +228,19 @@ import { createGlobalStyle } from 'styled-components';
 
    `
    export const  Container=styled.div`
-   overflow-y: auto;
-   width:210px;
-   height:180px;
+
+   gap:10px;
+   flex-direction:column;
+   width:250px;
    font-size:12px;
    z-index:20;
-   top:60%;
+   top:75%;
    background-color:white;
    box-shadow:rgba(0, 0, 0, 0.35) 0px 5px 15px;
    display:flex;
    position:absolute;
-   padding:15px;
-
-   margin-left:800px;`
-
+   padding-top:20px;
+   margin-left:670px;`
 
    export const CloseButton=styled.button`
    border-radius: 10px 10px 10px 10px ;
@@ -234,18 +249,12 @@ import { createGlobalStyle } from 'styled-components';
    font-style: Helvetica,Arial,sans-serif;
    font-size:12px;
    background-color:transparent;
-   display:flex;
    &:hover {
     cursor: pointer;
     border: 2.5px solid black;
-  }
-   position: absolute;
-   top: 85%;
-   left:35%;
+   }
    z-index: 1;
-
    `
-
 
    export const XfeatureL = styled.td`
     position: flex;

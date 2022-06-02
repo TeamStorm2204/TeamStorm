@@ -8,8 +8,7 @@ import {IoAddOutline} from 'react-icons/io5';
 import {IconContext} from 'react-icons';
 import axios from 'axios';
 import {UserContext} from '../App.jsx';
-import { Slide, CardFit, Description, Space, Add, Cross, PlusButton, OutCardFit, RightArrow, LeftArrow, Title} from './StyleRelated.js';
-import Carousel from 'react-elastic-carousel';
+import { Slide, CardFit, Description, Space, Add, Cross, PlusButton, OutCardFit, RightArrow, LeftArrow, Title, SlideOutFit} from './StyleRelated.js';
 import {VscError} from 'react-icons/vsc';
 import Stars from '../Stars.jsx';
 
@@ -58,6 +57,7 @@ const Outfit=(props)=> {
   }
 
   const length=outfits.length;
+
   const nextSlide=()=> {
     setCurrent(current===length-1?-1:current+1);
   }
@@ -70,30 +70,32 @@ const Outfit=(props)=> {
     <div>
      <Title>Outfit List</Title>
      <hr style={{width:'50%', backgroundColor:'rgba(0,0,0,0.2)',height:'2px', display:'felx', margin:'-10'}}/>
-      <Slide>
-        <div style={{marginLeft:'25', marginRight:'25', display:'flex', gap: '50px', alignItems:'center'}}>
-       {current!==-1?
+      <SlideOutFit>
+        <div style={{marginLeft:'25', marginRight:'25', display:'flex', gap: '50px', alignItems:'center', paddingLeft:'17.5%'}}>
+       { length>2&&current>=0?
        (<LeftArrow onClick={prevSlide}>
         <FaChevronCircleLeft/>
         </LeftArrow>):null}
-        {current!==length-1?
+
+        {length>2&&current!==length-2?
         (<RightArrow onClick={nextSlide}>
         <FaChevronCircleRight />
         </RightArrow>):null}
 
-        {current===-1? (
+        {/* {current===-1? ( */}
         <OutCardFit onClick={()=> {addOutfit(data)}}>
           <Add>
             <IconContext.Provider value={{ size: '4em' }}>
               <PlusButton  aria-label='add'><IoAddOutline/></PlusButton>
             </IconContext.Provider>
           </Add>
-        </OutCardFit> ):null
-       }
+          </OutCardFit>
+          {/* ):null} */}
+
         { outfits.length>0?
               (
                 outfits.map( (item, index)=>{
-                    if(index===current || index===current+1||index===current+2) {
+                    if(index===current+1 || index===current+2) {
                     return (
                       <OutCardFit>
                         <CardFit url={item.url} >
@@ -129,7 +131,7 @@ const Outfit=(props)=> {
         ):null
       }
       </div>
-    </Slide>
+    </SlideOutFit>
     <hr style={{width:'80%', display:'felx', marginTop:'5em'}}/>
     </div>
  )
