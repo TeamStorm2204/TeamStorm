@@ -40,24 +40,21 @@ const Overview =(props)=> {
     return (
         
 
-        // expanded? <ExpandedView selectedStyle={styles[selectedIndex || 0]} setExpanded={setExpanded}></ExpandedView>:
-        <div style={{display:'flex', flexFlow:'row wrap', gap:'5%', justifyContent:'space between'}}>
+        expanded? styles.length? <div style={{position:'relative'}}><ExpandedView selectedStyle={styles[selectedIndex || 0]} setExpanded={setExpanded}></ExpandedView></div>: null:
+        <div style={{display:'flex', flexFlow:'row wrap', gap:'5%', justifyContent:'center'}}>
           {/* <div style={{position:'relative', minWidth:'60%'}}>
           {styles.length? <DefaultView selectedStyle={styles[selectedIndex || 0]} setExpanded={setExpanded}></DefaultView>:null}
         </div> */}
-
         <div style={{position:'relative', maxWidth:'540px', minWidth:'300px', flexGrow: '1', flexShrink: '1', flexBasis:'300px'}}>
           {styles.length? <PracView selectedStyle={styles[selectedIndex || 0]} setExpanded={setExpanded}></PracView> : null}
         </div>
-
-          <ProductDetailsContainer style={{}}>
-            <SubHeader>{product.category}</SubHeader>
-            <Header>{product.name}</Header>
-            {product.description? <SubHeader>{product.description}</SubHeader>: null}
-            {(reviewCount > 0)? <SubHeader onClick={scrollTo}><Stars id={props.id} setReviewCount={setReviewCount}></Stars> Read all {reviewCount} reviews</SubHeader>: null}
-            {styles.length? <ProductStyleSelector id={props.id} styles={styles} setSelectedIndex={setSelectedIndex} selectedIndex={selectedIndex || 0} ></ProductStyleSelector> :null}
-          </ProductDetailsContainer>
-
+        <ProductDetailsContainer >
+          <SubHeader>{product.category}</SubHeader>
+          <Header>{product.name}</Header>
+          <SubHeader>{product.description}</SubHeader>
+          {(reviewCount > 0)? <SubHeader onClick={scrollTo}><Stars id={props.id} setReviewCount={setReviewCount}></Stars> Read all {reviewCount} reviews</SubHeader>: null}
+          {styles.length? <ProductStyleSelector id={props.id} styles={styles} setSelectedIndex={setSelectedIndex} selectedIndex={selectedIndex || 0} ></ProductStyleSelector> :null}
+        </ProductDetailsContainer>
         </div>
     )
 }

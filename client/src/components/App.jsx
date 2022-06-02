@@ -52,7 +52,6 @@ const App = (props) => {
       <UserContext.Provider value={{ currentPD: products, Img: styles }}>
         <div>
           <GlobalStyle color='#f5f5f5' />
-          <h1>Products </h1>
           <div>
             {products.id ? <OverView id={products.id} /> : null}
           </div>
