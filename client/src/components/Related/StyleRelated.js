@@ -4,6 +4,7 @@ import { createGlobalStyle } from 'styled-components';
 
   export const Card =styled.div`
   background-image: url(${(props) => props.url});
+  border-radius: 10px 10px 0 0;
   display:felx;
   position:relative;
   width:100%;
@@ -36,7 +37,7 @@ import { createGlobalStyle } from 'styled-components';
     border: 2px solid black;
     float:left;
     &:hover {
-     border: 2.5px solid black;
+     box-shadow: 2.5px 2.5px black;
    }
    `
    export const OutCardFit =styled.div`
