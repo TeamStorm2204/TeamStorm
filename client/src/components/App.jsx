@@ -66,7 +66,7 @@ const App = (props) => {
             <Outfit />
           </div>
           <div>
-            {/* <Reviews relatedId={relatedId}/> */}
+            <Reviews relatedId={relatedId}/>
           </div>
         </div>
       </UserContext.Provider>
