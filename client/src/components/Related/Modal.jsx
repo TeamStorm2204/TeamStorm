@@ -37,13 +37,9 @@ const Modal =({closeModal, length, id, relatedInf})=> {
 
     <Container>
 
-      <Close>
-      <CloseButton onClick={()=>closeModal(Array(length).fill(false))}>  <VscError/ > </CloseButton>
-      </Close>
-
       <table>
           <thead>
-            {/* <tr style={{fontSize:15, position:'center'}}>Comparing</tr> */}
+
             <tr>
               <HeadL>{totalFeatures.overView.name}</HeadL>
               <th> </th>
@@ -51,7 +47,7 @@ const Modal =({closeModal, length, id, relatedInf})=> {
               <th> </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id='table'>
           {totalFeatures.featuresTitle.map((item, key) => (
               <tr key={key}>
                 <XfeatureL>
@@ -81,6 +77,9 @@ const Modal =({closeModal, length, id, relatedInf})=> {
             ))}
           </tbody>
         </table>
+
+      <CloseButton onClick={()=>closeModal(Array(length).fill(false))}> close</CloseButton>
+
   </Container>
 
 

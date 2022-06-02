@@ -8,8 +8,9 @@ import Form1 from './Form1.jsx';
 import Form2 from './Form2.jsx';
 import Form3 from './Form3.jsx';
 
-const NewRev1 = ({ meta }) => {
+const NewRev1 = ({ meta, relatedId }) => {
   let product = useContext(UserContext)
+
   let styles = {
     display: 'flex',
     alignItems: 'center',
@@ -20,7 +21,7 @@ const NewRev1 = ({ meta }) => {
   const [fullForm, setfullForm] = useState({})
   const [submitted, setSubmitted] = useState(false)
   const [form1, setForm1] = useState({
-    product_id: product.currentPD.id,
+    product_id: relatedId,
     rating: 0,
     recommend: false,
     name: '',
@@ -52,7 +53,7 @@ const NewRev1 = ({ meta }) => {
   let toggle = () => {
     setPgNum(1)
     setForm1({
-      product_id: product.currentPD.id,
+      product_id: relatedId,
       rating: 0,
       recommend: false,
       name: '',
@@ -84,19 +85,17 @@ const NewRev1 = ({ meta }) => {
   var changeView = () => {
     switch (pgNum) {
       case 1:
-        return <Form1 form1={form1} setForm1={setForm1} incPage={incPage} />
+        return <Form1 relatedId={relatedId} form1={form1} setForm1={setForm1} incPage={incPage} />
       case 2:
         return <Form2 setSubmitted={setSubmitted} form1={form1} form2={form2} setForm2={setForm2} incPage={incPage} decPage={decPage} />
       case 3:
         return <Form3 form1={form1} form2={form2} submitted={submitted} />
-      default:
-        return <Form1 incPage={incPage} />
     }
   }
   return (
     <div>
       <div>
-        <StyledButton onClick={toggle}>Write a review</StyledButton>
+        <StyledButton style={{ fontWeight: 'bold' }} onClick={toggle}>WRITE A REVIEW</StyledButton>
         <Modal dis={dist}>
           <ModalContent>
             <div style={{ display: 'flex' }}>

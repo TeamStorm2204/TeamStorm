@@ -7,6 +7,15 @@ import OverView from './Overview/Overview.jsx';
 import { Body, Header, Ratings, ReviewsList, Review, SubHeader, GlobalStyle, StyledButton } from './Styles.styled.js';
 import Outfit from './Related/Outfit.jsx';
 
+// import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+// import {library} from '@fortawesome/fontawesome-svg-core';
+// import {fas, faFontAwesome} from '@fortawesome/free-solid-svg-icons';
+// //import { faBrands, faFontAwesome } from '@fortawesome/free-brands-svg-icons';
+// library.add(fas,faFontAwesome);
+
+
+
+
 
 export const UserContext = createContext();
 
@@ -16,13 +25,12 @@ const App = (props) => {
   const [relatedId, setRelatedId] = useState(40344);
   let id = 0;
   useEffect(() => {
-
     api.getProductInformation(relatedId, (err, data) => {
-      
+
       if (err) {
         console.log(err)
       } else {
-        console.log({data});
+        console.log({ data });
         setProducts(data);
         id = data.id
         api.getProductStyles(id, (err, data) => {
@@ -54,11 +62,10 @@ const App = (props) => {
              <RelatedProducts setRelatedId={setRelatedId}/>
           </div>
           <div>
-            <h2>Outfit List</h2>
             <Outfit />
           </div>
           <div>
-            <Reviews relatedId={relatedId}/>
+            <Reviews relatedId={relatedId} />
           </div>
         </div>
       </UserContext.Provider>

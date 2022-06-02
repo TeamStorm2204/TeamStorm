@@ -6,6 +6,8 @@ import api from '../../../../API';
 import { InputBox, StyledButton, RadioButton, PrimaryButton } from '../../Styles.styled.js';
 
 const Form2 = ({ setSubmitted, form1, form2, setForm2, incPage, decPage }) => {
+  let products = useContext(UserContext)
+  let name = products.currentPD.name
   let charStObj = {
     sizeArr: ['A size too small', '½ a size too small', 'Perfect', '½ a size too big', 'A size too wide'],
     widthArr: ['Too narrow', 'Slightly narrow', 'Perfect', 'Slightly wide', 'Too wide'],
@@ -61,7 +63,7 @@ const Form2 = ({ setSubmitted, form1, form2, setForm2, incPage, decPage }) => {
   }
   return (
     <form>
-      <h1>Write a review for {product.currentPD.name}</h1>
+      <h1>Write a review for {name}</h1>
       {labels.map(t => {
         let lowT = t.toLowerCase()
         if (form2[lowT]) {
