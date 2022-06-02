@@ -29,11 +29,6 @@ const ImageSlider = ({
         const [modal, setModal] = useState({item: {}, status: false});
         console.log('cureeeeet', modal.status);
 
-        useEffect( ()=> {
-          document.addEventListener( 'mousedown', ()=>{
-            setModal({item:{},status:false})
-          })
-        })
 
         const nextSlide=()=> {
           setCurrent(current===length-1?0:current+1);
@@ -79,8 +74,10 @@ const ImageSlider = ({
          <Description style={{fontSize:15}}>
            <span key={index} style={{fontWeight:'bold'}}> {item.name} </span>
           </Description>
-          <Description style={{fontSize:15}}>
+          <Description style={{fontSize:12}}>
               <span key={index+3} >{item.category}</span>
+          </Description>
+          <Description style={{fontSize:12}}>
                 {item.discount?
                   <div>
                    <span key={index+1}> Price:${item.discount} </span>

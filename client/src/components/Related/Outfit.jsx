@@ -57,12 +57,12 @@ const Outfit=(props)=> {
     setOutfits(update);
   }
 
-
+  const length=outfits.length;
   const nextSlide=()=> {
-    setCurrent(current===length-1?0:current+1);
+    setCurrent(current===length-1?-1:current+1);
   }
   const prevSlide=()=> {
-    setCurrent(current===0? length-1:current-1);
+    setCurrent(current===-1? length-1:current-1);
 
   }
 
@@ -72,12 +72,14 @@ const Outfit=(props)=> {
      <hr style={{width:'50%', backgroundColor:'rgba(0,0,0,0.2)',height:'2px', display:'felx', margin:'-10'}}/>
       <Slide>
         <div style={{marginLeft:'25', marginRight:'25', display:'flex', gap: '50px', alignItems:'center'}}>
-        <LeftArrow onClick={prevSlide}>
+       {current!==-1?
+       (<LeftArrow onClick={prevSlide}>
         <FaChevronCircleLeft/>
-        </LeftArrow>
-        <RightArrow onClick={nextSlide}>
+        </LeftArrow>):null}
+        {current!==length-1?
+        (<RightArrow onClick={nextSlide}>
         <FaChevronCircleRight />
-        </RightArrow>
+        </RightArrow>):null}
 
         {current===-1? (
         <OutCardFit onClick={()=> {addOutfit(data)}}>
@@ -104,8 +106,10 @@ const Outfit=(props)=> {
                         <Description style={{fontSize:15}}>
                             <span key={index} style={{fontWeight:'bold'}}> {item.name} </span>
                         </Description>
-                        <Description style={{fontSize:15}}>
+                        <Description style={{fontSize:12}}>
                             <span key={index+3} >{item.category}</span>
+                        </Description>
+                        <Description style={{fontSize:12}}>
                               {item.discount?
                                 (<div>
                                 <span key={index+1}> Price:${item.discount} </span>
