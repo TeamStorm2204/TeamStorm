@@ -17,11 +17,10 @@ export const StyleName = styled.div`
   color: var(--text-dark);
   display: in-line
   letter-spacing: .05rem;
-  margin-bottom: 5px;
+  margin: 10px 0 5px 0;
   font: 700 1.2rem/1.4 Helvetica,Arial,sans-serif;
   letter-spacing: .05rem;
 `;
-
 
 export const SubStyleName = styled.span`
   color: var(--text-medium);
@@ -42,12 +41,6 @@ export const StylesWrapper = styled.div`
   gap: 5px;
   margin-bottom: 5px;
 `;
-// export const ImgWrapper = styled.div`
-//   min-width: 23%;
-//   max-width: 69px;
-//   background-image: url(${props => props.img});
-//   background-size: cover;
-// `;
 
 export const ImgWrapper = styled.img`
   min-width: 23%;
@@ -55,36 +48,38 @@ export const ImgWrapper = styled.img`
 `;
 
 export const ThumbImg = styled.img`
-  width: 50px;
-  margin: 1px;
-  padding: 3px;
-`;
-
-export const Arrow = styled.button`
-  margin: 30px 0 30px 0;
-  padding: 10px 0 10px 0;
+  width: 9%;
+  aspect-ratio: 1/1;
+  margin: 4px;
+  padding: 1px;
+  background-color: black;
 `;
 
 export const BorderThumbImg = styled.img`
-  width: 50px;
-  margin: 1px;
-  padding: 3px;
-  border: 2px solid black;
+  width: 9%;
+  aspect-ratio: 1/1;
+  margin: 4px;
+  padding: 1px;
+  background-color: white;
 `;
 
 export const DefaultImgWrap = styled.div`
-  position: relative;
+//   position: relative;
   box-sizing: border-box;
-  min-width: 450px;
-  width: auto;
-  min-height: 675px;
+  width:90%
+//   min-width: 45px;
+  min-width: 100%;
+//   min-height: 675;
+//   height: (width * 1.5);
+//   max-height: auto;
+  min-height: calc(70vw);
   background-color: lightGray;
   background-image: url(${props => props.img});
   background-size: contain;
   background-repeat: no-repeat;
   background-position-y: center;
   background-position-x: center;
-`
+`;
 
 export const ImagesWrap = styled.div`
   position: relative;
@@ -98,7 +93,8 @@ export const ImagesWrap = styled.div`
   background-repeat: no-repeat;
   background-position-y: center;
   background-position-x: center;
-`
+`;
+
 export const SelectImgWrap = styled.div`
   box-sizing: border-box;
   min-width: 23%;
@@ -106,13 +102,7 @@ export const SelectImgWrap = styled.div`
   border: 2px solid black;
   background-image: url(${props => props.img});
   background-size: cover;
-  `
-export const CheckMark = styled.div`
-  max-width: 19px;
-  background-color: white;
-  border-radius: 11px;
-`;
-
+  `;
 
 export const Select = styled.select`
     background-color: #fff;
@@ -122,8 +112,8 @@ export const Select = styled.select`
     height: 40px;
     letter-spacing: .02rem;
     padding: 0 10px 0 10px;
-    margin-bottom: 5px;
-`
+    margin: 15px 0 15px 0;
+`;
 
 export const Input = styled.input`
     background-color: black;
@@ -134,21 +124,15 @@ export const Input = styled.input`
     display: inline-block;
     font-size: 16px;
     width: 100%;
-`
+    margin-bottom: 10px;
+`;
 
 export const ProductDetailsContainer = styled.div`
     position: relative;
-    min-width: 350px;
-    max-width: 450px;
-  `
-  
-export const GlobalStyle = createGlobalStyle`
-   body {
-    display: flex;
-    margin: 0;
-    padding: 100px;
-    background: #f5f5f5;
-    font - family: sans-serif;
-    flex-direction: column;
-  }
-`
+    min-width: 250px;
+    max-width: 540px;
+    // justifyContent:center;
+    flex-basis: 250px;
+    flex-grow: 1;
+    flex-shrink: 1;
+  `;

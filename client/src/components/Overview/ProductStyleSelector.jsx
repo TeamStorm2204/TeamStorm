@@ -1,9 +1,8 @@
 import React from 'react';
 import API from '../../../API';
 import { useEffect, useState } from 'react';
-import { ThemeProvider } from 'styled-components';
 import {FaRegCheckCircle} from 'react-icons/fa';
-import {Input, ImgWrapper, Select, StylesWrapper, StyleName, SubStyleName, Price, SelectImgWrap} from './DefaultStyles.js';
+import {Input, ImgWrapper, Select, StylesWrapper, StyleName, SubStyleName, Price, SelectImgWrap} from './OverviewStyles.js';
 
 const ProductStyleSelector =({styles, setSelectedIndex, selectedIndex})=> {
     const [quantity, setQuantity] = useState([]);

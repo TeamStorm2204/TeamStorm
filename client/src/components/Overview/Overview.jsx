@@ -2,13 +2,10 @@ import React from 'react';
 import API from '../../../API';
 import { useEffect, useState } from 'react';
 import ProductStyleSelector from './ProductStyleSelector.jsx';
-import ProductView from './ProductView.jsx';
 import ExpandedView from './ExpandedView.jsx';
 import DefaultView from './DefaultView.jsx';
-import { ThemeProvider } from 'styled-components';
-import {Header, SubHeader, ProductDetailsContainer} from './DefaultStyles.js';
+import {Header, SubHeader, ProductDetailsContainer} from './OverviewStyles.js';
 import Stars from '../Stars.jsx';
-import PracView from './PracView.jsx';
 
 const Overview =(props)=> {
     const [product, setProduct] = useState([]);
@@ -42,11 +39,8 @@ const Overview =(props)=> {
 
         expanded? styles.length? <div style={{position:'relative'}}><ExpandedView selectedStyle={styles[selectedIndex || 0]} setExpanded={setExpanded}></ExpandedView></div>: null:
         <div style={{display:'flex', flexFlow:'row wrap', gap:'5%', justifyContent:'center'}}>
-          {/* <div style={{position:'relative', minWidth:'60%'}}>
-          {styles.length? <DefaultView selectedStyle={styles[selectedIndex || 0]} setExpanded={setExpanded}></DefaultView>:null}
-        </div> */}
         <div style={{position:'relative', maxWidth:'540px', minWidth:'300px', flexGrow: '1', flexShrink: '1', flexBasis:'300px'}}>
-          {styles.length? <PracView selectedStyle={styles[selectedIndex || 0]} setExpanded={setExpanded}></PracView> : null}
+          {styles.length? <DefaultView selectedStyle={styles[selectedIndex || 0]} setExpanded={setExpanded}></DefaultView> : null}
         </div>
         <ProductDetailsContainer >
           <SubHeader>{product.category}</SubHeader>

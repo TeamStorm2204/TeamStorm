@@ -7,15 +7,6 @@ import OverView from './Overview/Overview.jsx';
 import { Body, Header, Ratings, ReviewsList, Review, SubHeader, GlobalStyle, StyledButton } from './Styles.styled.js';
 import Outfit from './Related/Outfit.jsx';
 
-// import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-// import {library} from '@fortawesome/fontawesome-svg-core';
-// import {fas, faFontAwesome} from '@fortawesome/free-solid-svg-icons';
-// //import { faBrands, faFontAwesome } from '@fortawesome/free-brands-svg-icons';
-// library.add(fas,faFontAwesome);
-
-
-
-
 
 export const UserContext = createContext();
 
@@ -60,14 +51,14 @@ const App = (props) => {
           </div>
           <div>
             <h2> Related Product</h2>
-             {/* <RelatedProducts setRelatedId={setRelatedId}/> */}
+             <RelatedProducts setRelatedId={setRelatedId}/>
           </div>
           <div>
-            {/* <h2>Outfit List</h2> */}
-            {/* <Outfit /> */}
+            <h2>Outfit List</h2>
+            <Outfit />
           </div>
           <div>
-            {/* <Reviews relatedId={relatedId}/> */}
+            <Reviews relatedId={relatedId}/>
           </div>
         </div>
       </UserContext.Provider>

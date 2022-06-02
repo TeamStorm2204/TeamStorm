@@ -1,8 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { ThemeProvider } from 'styled-components';
 import {FaChevronCircleLeft, FaChevronCircleRight} from 'react-icons/fa';
-import {DefaultImgWrap, ThumbImg, BorderThumbImg, Arrow, DefImg} from './DefaultStyles.js';
+import {ThumbImg, BorderThumbImg} from './OverviewStyles.js';
 
 const DefaultView =(props)=> {
   const photos = props.selectedStyle.photos.concat(props.selectedStyle.photos);
@@ -38,31 +37,38 @@ const DefaultView =(props)=> {
   }
 
   const expandView = function(e) {
+    props.setExpanded(true);
       if(e.target.getAttribute('value') === 'magnify') {
-      props.setExpanded(true)
+      props.setExpanded(true);
       }
   }
 
-
     return (
-      <DefaultImgWrap img={photos[selectedIndex].url} style={{display:'flex', justifyContent:'center', cursor:'zoom-in'}} value="magnify" onClick={expandView}>
-      <div style={{display: 'flex', alignItems: 'center', cursor: 'default'}}>
-      {(selectedIndex > 0)? <FaChevronCircleLeft color="white" fontSize="1.5em" style={{ position: 'absolute', left: '2px',}} onClick={mainArrowClick}></FaChevronCircleLeft> : null}
-      {(photos.length > (selectedIndex + 1)) ? <FaChevronCircleRight color="white" fontSize="1.5em" style={{ position: 'absolute', right: '2px'}} onClick={()=>{mainArrowClick('left')}}></FaChevronCircleRight > : null}
-      </div>
+    <div style={{aspectRatio: '3/4',display:'flex', justifyContent:'center', cursor:'zoom-in'}} value="magnify" onClick={expandView}>
+        <img src={photos[selectedIndex].url} style={{justifyContent:'center', width:"100%", height:'100%', objectFit:'cover'}}/>
+        <div style={{display: 'flex', alignItems: 'center', cursor: 'default'}}>
+            {(selectedIndex > 0)? <FaChevronCircleLeft color="white" fontSize="1.5em" style={{ position: 'absolute', left: '2px',}} onClick={mainArrowClick}></FaChevronCircleLeft> : null}
+            {(photos.length > (selectedIndex + 1)) ? <FaChevronCircleRight color="white" fontSize="1.5em" style={{ position: 'absolute', right: '2px'}} onClick={()=>{mainArrowClick('left')}}></FaChevronCircleRight > : null}
 
-      <div style={{display:'flex', flexDirection: 'row', justifyContent:'space-evenly', position: 'absolute', bottom: '0px', alignItems: 'center', cursor: 'default'}}>
-        {(indexStart > 0) ? <Arrow onClick={rightArrowClick}><i class="fas fa-angle-left fa-lg" /></Arrow> : null}
+        </div>
+
+        <div style={{display: 'flex', alignItems: 'end', cursor: 'default' }}>
+        <div style={{ display:'flex', flexDirection: 'row', position: 'absolute',left: '0', justifyContent:'space-around', alignItems: 'center', aspectRatio: '8/1'}}>
         {photos.map((photo, index)=>(
-          (index >= indexStart && (index <= indexEnd)) ?
-          (selectedIndex !== index)? 
-              <ThumbImg src={photo.thumbnail_url} key={index}  onClick={()=>setSelectedIndex(index)}/>:
-              <BorderThumbImg src={photo.thumbnail_url} key={index} onClick={()=>setSelectedIndex(index)}/>:
+            (index >= indexStart && (index <= indexEnd))?
+            (selectedIndex !== index)? 
+            <ThumbImg src={photo.thumbnail_url} key={index} onClick={()=>setSelectedIndex(index)}/>:
+            <BorderThumbImg src={photo.thumbnail_url} key={index} onClick={()=>setSelectedIndex(index)}/>:
             null
-          ))}
-        {(photos.length > (indexEnd + 1)) ? <Arrow onClick={leftArrowClick}><i class="fas fa-angle-right fa-lg" /></Arrow > : null}
-      </div>
-      </DefaultImgWrap>
+            ))}
+        {(indexStart > 0)? <FaChevronCircleLeft color="white" style={{ position: 'absolute', left: '2px'}} onClick={rightArrowClick}></FaChevronCircleLeft> : null}
+        {(photos.length > (indexEnd + 1))? <FaChevronCircleRight color="white" style={{ position: 'absolute', right: '2px'}} onClick={leftArrowClick}></FaChevronCircleRight > : null}
+        </div>
+        </div>
+
+        <div style={{display:'flex', flexDirection: 'row', }}>
+        </div>
+    </div>
     )
 }
 export default DefaultView;

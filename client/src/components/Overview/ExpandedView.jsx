@@ -1,9 +1,8 @@
 import React from 'react';
 import API from '../../../API';
 import { useEffect, useState } from 'react';
-import { ThemeProvider } from 'styled-components';
 import {FaChevronCircleLeft, FaChevronCircleRight, FaCircle, FaRegCircle, FaCompress} from 'react-icons/fa';
-import {DefaultImgWrap, ThumbImg, BorderThumbImg, Arrow} from './OverviewStyles.js';
+import {} from './DefaultView.jsx';
 import Zoom from 'react-img-zoom'
 
 const ExpandedView =(props)=> {
@@ -44,7 +43,7 @@ const ExpandedView =(props)=> {
 
   return (
     zoomMode?
-    <div style={{cursor:'zoom-out'}} value="magnify" onClick={()=>{setZoomMode(!zoomMode)}}>
+    <div style={{display: 'flex', justifyContent:'center', cursor:'zoom-out'}} value="magnify" onClick={()=>{setZoomMode(!zoomMode)}}>
     <Zoom
     img={photos[selectedIndex].url}
     zoomScale={2.5}
@@ -54,22 +53,28 @@ const ExpandedView =(props)=> {
     </div>
     :
 
-    <div style={{justifyContent:'center', minWidth: '300px', cursor:'zoom-in'}} value="magnify" onClick={magnify}>
+    <div style={{display: 'flex', justifyContent:'center', minWidth: '300px', cursor:'zoom-in'}} value="magnify" onClick={magnify}>
 
-      <img src={photos[selectedIndex].url} style={{justifyContent:'center', width:"100%", height:'100%', maxHeight:'700px', objectFit:'contain' }} value="magnify"/>
+      <img src={photos[selectedIndex].url} style={{width:"auto", height:'100%', maxHeight:'700px', objectFit:'contain' }} value="magnify"/>
 
-      <div style={{display: 'flex', alignItems: 'center', cursor: 'default'}}>
-        <FaCompress color="black" fontSize="1.5em" style={{ position: 'absolute', top: '2px', right: '2px',}} onClick={contract}></FaCompress>
-        {(selectedIndex > 0)? <FaChevronCircleLeft color="black" fontSize="1.5em" style={{ position: 'absolute', left: '2px',}} onClick={mainRightArrowClick}></FaChevronCircleLeft> : null}
-        {(photos.length > (selectedIndex + 1)) ? <FaChevronCircleRight color="black" fontSize="1.5em" style={{ position: 'absolute', right: '2px'}} onClick={()=>{mainRightArrowClick('left')}}></FaChevronCircleRight > : null}
+      <div style={{position:'relative', display: 'flex', cursor: 'default'}}>
+        <FaCompress color="black" fontSize="1.5em" style={{ position: 'absolute', right: '2px'}} onClick={contract}></FaCompress>
+        {(photos.length > (selectedIndex + 1)) ? <FaChevronCircleRight color="black" fontSize="1.5em" style={{ position: 'absolute', top: '50%', right: '2px'}} onClick={()=>{mainRightArrowClick('left')}}></FaChevronCircleRight > : null}
       </div>
 
-      <div style={{ position: 'relative', right:'-50%', bottom: '5px', width: '100%', justifyContent:'center'}}>
-      <div style={{display:'flex', flexDirection: 'row', position: 'absolute', bottom: '0', alignContent: 'center', alignItems:'center', gap: '3px', margin:'3px', cursor: 'default'}}>
+      <div style={{position:'relative'}}>
+      <div style={{position:'absolute', display: 'flex', top: '50%', cursor: 'default', 'left': '2px'}}>
+        {(selectedIndex > 0)? <FaChevronCircleLeft color="black" fontSize="1.5em"  onClick={mainRightArrowClick}></FaChevronCircleLeft> : null}
+      </div>
+      
+      </div>
+
+      <div style={{position:'absolute', left:'0', bottom: '2px'}}>
+      <div style={{display:'flex', position: 'relative', width: '100%', bottom: '2px', gap: '3px', margin:'3px', cursor: 'default'}}>
       {photos.map((photo, index)=>(
           (selectedIndex !== index)? 
-          <FaRegCircle color="white"  key={index}  onClick={()=>setSelectedIndex(index)}/>:
-          <FaCircle  color="white"  key={index} onClick={()=>setSelectedIndex(index)}/>
+          <FaRegCircle color="black"  key={index}  onClick={()=>setSelectedIndex(index)}/>:
+          <FaCircle  color="black"  key={index} onClick={()=>setSelectedIndex(index)}/>
           ))}
       </div>
       </div>
@@ -80,31 +85,3 @@ const ExpandedView =(props)=> {
   )
 }
 export default ExpandedView;
-
-// zoomMode?
-// <div style={{cursor:'zoom-out'}} value="magnify" onClick={()=>{setZoomMode(!zoomMode)}}>
-// <Zoom
-// img={photos[selectedIndex].url}
-// zoomScale={2.5}
-// width={600}
-// height={600}
-// />
-// </div>
-// :
-// <DefaultImgWrap img={photos[selectedIndex].url} style={{display:'flex', justifyContent:'center', cursor:'crosshair'}} value="magnify" onClick={magnify}>
-
-//     <div style={{display: 'flex', alignItems: 'center', cursor: 'default'}}>
-//     <FaCompress color="white" fontSize="1.5em" style={{ position: 'absolute', top: '2px', right: '2px',}} onClick={contract}></FaCompress>
-//     {(selectedIndex > 0)? <FaChevronCircleLeft color="white" fontSize="1.5em" style={{ position: 'absolute', left: '2px',}} onClick={mainRightArrowClick}></FaChevronCircleLeft> : null}
-//     {(photos.length > (selectedIndex + 1)) ? <FaChevronCircleRight color="white" fontSize="1.5em" style={{ position: 'absolute', right: '2px'}} onClick={()=>{mainRightArrowClick('left')}}></FaChevronCircleRight > : null}
-//     </div>
-
-//     <div style={{display:'flex', flexDirection: 'row', position: 'absolute', bottom: '0px', alignItems: 'center', gap: '3px', margin:'3px', cursor: 'default'}}>
-//     {photos.map((photo, index)=>(
-//         (selectedIndex !== index)? 
-//         <FaRegCircle color="white"  key={index}  onClick={()=>setSelectedIndex(index)}/>:
-//         <FaCircle  color="white"  key={index} onClick={()=>setSelectedIndex(index)}/>
-//         ))}
-//     </div>
-
-// </DefaultImgWrap>
