@@ -1,11 +1,11 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import {FaChevronCircleLeft, FaChevronCircleRight} from 'react-icons/fa';
-import {ThumbImg, BorderThumbImg} from './OverviewStyles.js';
+import {ThumbImg, BorderThumbImg, LeftArrow, RightArrow} from './OverviewStyles.js';
 
 const DefaultView =(props)=> {
   const photos = props.selectedStyle.photos.concat(props.selectedStyle.photos);
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(1);
   const [indexStart, setIndexStart] = useState(0);
   const [indexEnd, setIndexEnd] = useState(6);
 
@@ -44,16 +44,16 @@ const DefaultView =(props)=> {
   }
 
     return (
-    <div style={{aspectRatio: '3/4',display:'flex', justifyContent:'center', cursor:'zoom-in'}} value="magnify" onClick={expandView}>
-        <img src={photos[selectedIndex].url} style={{justifyContent:'center', width:"100%", height:'100%', objectFit:'cover'}}/>
+    <div style={{aspectRatio: '3/4',display:'flex', justifyContent:'center', cursor:'zoom-in'}}>
+        <img src={photos[selectedIndex].url} style={{width:"100%", height:'100%', objectFit:'cover'}}  value="magnify" onClick={expandView}/>
         <div style={{display: 'flex', alignItems: 'center', cursor: 'default'}}>
-            {(selectedIndex > 0)? <FaChevronCircleLeft color="white" fontSize="1.5em" style={{ position: 'absolute', left: '2px',}} onClick={mainArrowClick}></FaChevronCircleLeft> : null}
-            {(photos.length > (selectedIndex + 1)) ? <FaChevronCircleRight color="white" fontSize="1.5em" style={{ position: 'absolute', right: '2px'}} onClick={()=>{mainArrowClick('left')}}></FaChevronCircleRight > : null}
+            {(selectedIndex > 0)? <LeftArrow><FaChevronCircleLeft onClick={mainArrowClick}></FaChevronCircleLeft></LeftArrow> : null}
+            {(photos.length > (selectedIndex + 1)) ? <RightArrow><FaChevronCircleRight onClick={()=>{mainArrowClick('left')}}></FaChevronCircleRight ></RightArrow> : null}
 
         </div>
 
         <div style={{display: 'flex', alignItems: 'end', cursor: 'default' }}>
-        <div style={{ display:'flex', flexDirection: 'row', position: 'absolute',left: '0', justifyContent:'space-around', alignItems: 'center', aspectRatio: '8/1'}}>
+        <div style={{ display:'flex', flexDirection: 'row', position: 'absolute',left: '0', justifyContent:'center', alignItems: 'center', aspectRatio: '8/1'}}>
         {photos.map((photo, index)=>(
             (index >= indexStart && (index <= indexEnd))?
             (selectedIndex !== index)? 
@@ -61,8 +61,8 @@ const DefaultView =(props)=> {
             <BorderThumbImg src={photo.thumbnail_url} key={index} onClick={()=>setSelectedIndex(index)}/>:
             null
             ))}
-        {(indexStart > 0)? <FaChevronCircleLeft color="white" style={{ position: 'absolute', left: '2px'}} onClick={rightArrowClick}></FaChevronCircleLeft> : null}
-        {(photos.length > (indexEnd + 1))? <FaChevronCircleRight color="white" style={{ position: 'absolute', right: '2px'}} onClick={leftArrowClick}></FaChevronCircleRight > : null}
+        {(indexStart > 0)? <FaChevronCircleLeft color="white" style={{ position: 'absolute', left: '10px'}} onClick={rightArrowClick}></FaChevronCircleLeft> : null}
+        {(photos.length > (indexEnd + 1))? <FaChevronCircleRight color="white" style={{ position: 'absolute', right: '10px'}} onClick={leftArrowClick}></FaChevronCircleRight > : null}
         </div>
         </div>
 

@@ -128,9 +128,8 @@ const Reviews = ({ relatedId }) => {
     <div style={{ marginTop: '-25px' }}>
       <ThemeProvider theme={theme}>
         <Header>
-          <h1 id="Reviews">Reviews</h1>
           <div>
-            <h1 style={{ fontSize: '37px' }}>Reviews &</h1 >
+            <h1 id='Reviews' style={{ fontSize: '37px' }}>Reviews &</h1 >
             <h1 style={{ marginTop: '-30px', fontSize: '37px' }}>Ratings</h1 >
           </div>
           {

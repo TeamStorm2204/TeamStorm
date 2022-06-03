@@ -2,7 +2,7 @@ import React from 'react';
 import API from '../../../API';
 import { useEffect, useState } from 'react';
 import {FaChevronCircleLeft, FaChevronCircleRight, FaCircle, FaRegCircle, FaCompress} from 'react-icons/fa';
-import {} from './DefaultView.jsx';
+import {ZoomContainer, ExpandedContainer, SideContainer, LeftArrow, ExpandedImage, Compress, RightArrow, BottomContainer, ImageIcons, ImageIcon} from './ImageViewStyles.js'
 import Zoom from 'react-img-zoom'
 
 const ExpandedView =(props)=> {
@@ -35,51 +35,60 @@ const ExpandedView =(props)=> {
   }
 
   const magnify=function(e) {
-    console.log('hit', (e.target.getAttribute('value')))
     if(e.target.getAttribute('value') === 'magnify') {
         setZoomMode(!zoomMode);
     }
   }
 
   return (
+
     zoomMode?
-    <div style={{display: 'flex', justifyContent:'center', cursor:'zoom-out'}} value="magnify" onClick={()=>{setZoomMode(!zoomMode)}}>
+    <ZoomContainer value="magnify" onClick={()=>{setZoomMode(!zoomMode)}}>
     <Zoom
     img={photos[selectedIndex].url}
     zoomScale={2.5}
-    width={600}
+    width={1000}
     height={600}
     />
-    </div>
+    </ZoomContainer>
     :
 
-    <div style={{display: 'flex', justifyContent:'center', minWidth: '300px', cursor:'zoom-in'}} value="magnify" onClick={magnify}>
-
-      <img src={photos[selectedIndex].url} style={{width:"auto", height:'100%', maxHeight:'700px', objectFit:'contain' }} value="magnify"/>
-
-      <div style={{position:'relative', display: 'flex', cursor: 'default'}}>
-        <FaCompress color="black" fontSize="1.5em" style={{ position: 'absolute', right: '2px'}} onClick={contract}></FaCompress>
-        {(photos.length > (selectedIndex + 1)) ? <FaChevronCircleRight color="black" fontSize="1.5em" style={{ position: 'absolute', top: '50%', right: '2px'}} onClick={()=>{mainRightArrowClick('left')}}></FaChevronCircleRight > : null}
-      </div>
-
-      <div style={{position:'relative'}}>
-      <div style={{position:'absolute', display: 'flex', top: '50%', cursor: 'default', 'left': '2px'}}>
-        {(selectedIndex > 0)? <FaChevronCircleLeft color="black" fontSize="1.5em"  onClick={mainRightArrowClick}></FaChevronCircleLeft> : null}
-      </div>
+    <ExpandedContainer value="magnify" onClick={magnify}>
       
-      </div>
+      {(selectedIndex > 0)?
+      <SideContainer>
+        <LeftArrow>
+          <FaChevronCircleLeft onClick={mainRightArrowClick}></FaChevronCircleLeft>
+        </LeftArrow>
+      </SideContainer>
+       : null}
 
-      <div style={{position:'absolute', left:'0', bottom: '2px'}}>
-      <div style={{display:'flex', position: 'relative', width: '100%', bottom: '2px', gap: '3px', margin:'3px', cursor: 'default'}}>
-      {photos.map((photo, index)=>(
-          (selectedIndex !== index)? 
-          <FaRegCircle color="black"  key={index}  onClick={()=>setSelectedIndex(index)}/>:
-          <FaCircle  color="black"  key={index} onClick={()=>setSelectedIndex(index)}/>
-          ))}
-      </div>
-      </div>
+      <ExpandedImage src={photos[selectedIndex].url} value="magnify"/>
 
-      </div>
+      <SideContainer>
+        <Compress>
+          <FaCompress onClick={contract}></FaCompress>
+        </Compress>
+        {(photos.length > (selectedIndex + 1)) ? 
+        <RightArrow>
+          <FaChevronCircleRight onClick={()=>{mainRightArrowClick('left')}}/>
+        </RightArrow> : null}
+      </SideContainer>
+
+      <BottomContainer>
+      <ImageIcons>
+      {photos.map((photo, index)=>
+        <ImageIcon>
+        {(selectedIndex === index)?
+          <FaCircle key={index} onClick={()=>setSelectedIndex(index)}/>:
+          <FaRegCircle key={index}  onClick={()=>setSelectedIndex(index)}/>
+        }
+        </ImageIcon>
+      )}
+      </ImageIcons>
+      </BottomContainer>
+
+    </ExpandedContainer>
     
 
   )
