@@ -6,12 +6,44 @@ export const Header = styled.h1`
     font: 100 2.2rem/1.4 Helvetica,Arial,sans-serif;
     letter-spacing: .05rem;
     margin-bottom: 5px;
+    margin-top: 10px
   `
 export const SubHeader = styled.div`
     color: var(--text-light);
     font: 100 1.0rem/1.2 Helvetica,Arial,sans-serif;
     letter-spacing: .05rem;
     margin: 5px 0 5px 0;
+`
+
+export const LeftArrow = styled.div`
+  font-size: 1.5em;
+  color: white;  
+  position: absolute; 
+  left: 2px;
+  opacity: 1;
+  &:hover {
+    opacity: 0.8;
+  }
+`
+export const RightArrow = styled.div`
+  font-size: 1.5em;
+  color: white;
+  position: absolute; 
+  right: 2px;
+  opacity: 1;
+  &:hover {
+    opacity: 0.8;
+  }
+`
+export const  Reviews = styled.div`
+  color: var(--text-medium);
+  font: 100 1.0rem/1.0 Helvetica,Arial,sans-serif;
+  letter-spacing: .05rem;
+  margin: 5px 0 5px 0;
+  text-decoration: underline;
+  &:hover {
+    text-decoration: none;
+  }  
 `
 export const StyleName = styled.div`
   color: var(--text-dark);
@@ -48,37 +80,46 @@ export const ImgWrapper = styled.img`
   aspect-ratio: 1/1;
   object-fit: cover;
   border-radius: 5px;
-  // border: 2px solid gray;
+  border-color: #4a4949;
+  &:hover {
+    margin: 0 6px 6px 0;
+    opacity: 0.8;
+    border: 2px solid #4a4949;
+  }
 `;
 
 export const SelectImgWrap = styled.div`
-  box-sizing: border-box;
-  margin: 0 10px 10px 0;
-  min-width: 20%;
-  max-width: 68px;
-  aspect-ratio: 1/1;
-  border-radius: 5px;
-  border: 2px solid black;
-  background-image: url(${props => props.img});
-  background-size: cover;
-  background-position-y: center;
-  background-position-x: center;
-  `;
+box-sizing: border-box;
+margin: 0 10px 10px 0;
+min-width: 20%;
+max-width: 68px;
+aspect-ratio: 1/1;
+border-radius: 5px;
+border: 2px solid #4a4949;
+background-image: url(${props => props.img});
+background-size: cover;
+background-position-y: center;
+background-position-x: center;
+`;
 
 export const ThumbImg = styled.img`
   width: 9%;
   aspect-ratio: 1/1;
   margin: 4px;
-  padding: 1px;
-  background-color: black;
+  object-fit: cover;
+  border-radius: 1px;
+  border: 1px;
+  &:hover {
+    opacity: 0.7;
+    border: 1px solid white;
+  }
 `;
-
 export const BorderThumbImg = styled.img`
   width: 9%;
   aspect-ratio: 1/1;
-  margin: 4px;
-  padding: 1px;
-  background-color: white;
+  object-fit: cover;
+  border-radius: 2px;
+  border: 1px solid white;
 `;
 
 export const DefaultImgWrap = styled.div`
@@ -136,6 +177,9 @@ export const Input = styled.input`
     font-size: 16px;
     width: 100%;
     margin-bottom: 10px;
+    &:hover {
+      opacity: 0.8;
+    }
 `;
 
 export const ProductDetailsContainer = styled.div`
