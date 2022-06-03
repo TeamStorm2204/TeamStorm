@@ -32,7 +32,7 @@ const Stars = (props) => {
         setStars(avg);
       }
     })
-  }, []);
+  }, [props.id]);
 
 
 

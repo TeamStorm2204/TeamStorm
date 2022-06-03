@@ -1,7 +1,7 @@
 import React from 'react';
 import API from '../../../API';
 import { useEffect, useState } from 'react';
-import {FaRegCheckCircle} from 'react-icons/fa';
+import {FaRegCheckCircle, FaFacebookF, FaTwitter, FaPinterest} from 'react-icons/fa';
 import {Input, ImgWrapper, Select, StylesWrapper, StyleName, SubStyleName, Price, SelectImgWrap} from './OverviewStyles.js';
 
 const ProductStyleSelector =({styles, setSelectedIndex, selectedIndex})=> {
@@ -91,9 +91,9 @@ const ProductStyleSelector =({styles, setSelectedIndex, selectedIndex})=> {
             </form>
 
             <StylesWrapper>
-            <i class="fab fa-facebook-f  fa-lg" />
-            <i class="fab fa-twitter fa-lg"></i>
-            <i class="fab fa-pinterest  fa-lg"></i>
+                <FaFacebookF fontSize="1.25em"/>
+                <FaTwitter fontSize="1.25em"/>
+                <FaPinterest fontSize="1.25em"/>
             </StylesWrapper>
         </div>
     )
