@@ -6,7 +6,7 @@ import {ZoomContainer, ExpandedContainer, SideContainer, LeftArrow, ExpandedImag
 import Zoom from 'react-img-zoom'
 
 const ExpandedView =(props)=> {
-  const photos = props.selectedStyle.photos.concat(props.selectedStyle.photos);
+  const photos = props.selectedStyle.photos
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [indexStart, setIndexStart] = useState(0);
   const [indexEnd, setIndexEnd] = useState(6);

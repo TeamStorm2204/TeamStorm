@@ -5,7 +5,7 @@ import {ThumbImg, BorderThumbImg, LeftArrow, RightArrow} from './OverviewStyles.
 import {DefaultContainer, DefaultImage, ArrowsContainer, ThumbnailsContainer, InnerContainer, ThumbnailsRightArrow, ThumbnailsLeftArrow} from './ImageViewStyles.js'
 
 const DefaultView =(props)=> {
-  const photos = props.selectedStyle.photos.concat(props.selectedStyle.photos);
+  const photos = props.selectedStyle.photos
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [indexStart, setIndexStart] = useState(0);
   const [indexEnd, setIndexEnd] = useState(6);

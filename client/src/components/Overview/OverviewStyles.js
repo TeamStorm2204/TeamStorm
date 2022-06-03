@@ -88,15 +88,6 @@ export const ImgWrapper = styled.img`
   }
 `;
 
-
-// export const ThumbImg = styled.img`
-// width: 9%;
-// aspect-ratio: 1/1;
-// margin: 4px;
-// padding: 1px;
-// background-color: black;
-// `;
-
 export const SelectImgWrap = styled.div`
 box-sizing: border-box;
 margin: 0 10px 10px 0;
