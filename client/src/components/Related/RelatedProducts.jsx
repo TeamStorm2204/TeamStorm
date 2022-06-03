@@ -66,7 +66,7 @@ const RelatedProducts = (props) => {
   }, [id]);
 
   return (
-    <div>
+    <div style={{marginTop:'50px'}}>
       <Title> You May Also Like</Title>
       <hr style = {{width: '50%', backgroundColor: 'rgba(0,0,0,0.2)', height: '2px', display: 'felx', margin: '-10'}}/>
       {hover.length > 0?
