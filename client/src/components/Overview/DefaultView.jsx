@@ -2,10 +2,11 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import {FaChevronCircleLeft, FaChevronCircleRight} from 'react-icons/fa';
 import {ThumbImg, BorderThumbImg, LeftArrow, RightArrow} from './OverviewStyles.js';
+import {DefaultContainer, DefaultImage, ArrowsContainer, ThumbnailsContainer, InnerContainer, ThumbnailsRightArrow, ThumbnailsLeftArrow} from './ImageViewStyles.js'
 
 const DefaultView =(props)=> {
   const photos = props.selectedStyle.photos.concat(props.selectedStyle.photos);
-  const [selectedIndex, setSelectedIndex] = useState(1);
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const [indexStart, setIndexStart] = useState(0);
   const [indexEnd, setIndexEnd] = useState(6);
 
@@ -36,39 +37,50 @@ const DefaultView =(props)=> {
     }
   }
 
-  const expandView = function(e) {
+  const expandView = function() {
     props.setExpanded(true);
-      if(e.target.getAttribute('value') === 'magnify') {
-      props.setExpanded(true);
-      }
   }
 
     return (
-    <div style={{aspectRatio: '3/4',display:'flex', justifyContent:'center', cursor:'zoom-in'}}>
-        <img src={photos[selectedIndex].url} style={{width:"100%", height:'100%', objectFit:'cover'}}  value="magnify" onClick={expandView}/>
-        <div style={{display: 'flex', alignItems: 'center', cursor: 'default'}}>
-            {(selectedIndex > 0)? <LeftArrow><FaChevronCircleLeft onClick={mainArrowClick}></FaChevronCircleLeft></LeftArrow> : null}
-            {(photos.length > (selectedIndex + 1)) ? <RightArrow><FaChevronCircleRight onClick={()=>{mainArrowClick('left')}}></FaChevronCircleRight ></RightArrow> : null}
+    <DefaultContainer>
+        <DefaultImage src={photos[selectedIndex].url} onClick={expandView}/>
+        <ArrowsContainer>
+            {(selectedIndex > 0)? 
+              <LeftArrow>
+                <FaChevronCircleLeft onClick={mainArrowClick}>
+                </FaChevronCircleLeft>
+              </LeftArrow> : null
+            }
+            {(photos.length > (selectedIndex + 1)) ?
+              <RightArrow>
+                <FaChevronCircleRight onClick={()=>{mainArrowClick('left')}}>
+                </FaChevronCircleRight>
+              </RightArrow> : null
+            }
+        </ArrowsContainer>
 
-        </div>
-
-        <div style={{display: 'flex', alignItems: 'end', cursor: 'default' }}>
-        <div style={{ display:'flex', flexDirection: 'row', position: 'absolute',left: '0', justifyContent:'center', alignItems: 'center', aspectRatio: '8/1'}}>
-        {photos.map((photo, index)=>(
-            (index >= indexStart && (index <= indexEnd))?
-            (selectedIndex !== index)? 
-            <ThumbImg src={photo.thumbnail_url} key={index} onClick={()=>setSelectedIndex(index)}/>:
-            <BorderThumbImg src={photo.thumbnail_url} key={index} onClick={()=>setSelectedIndex(index)}/>:
-            null
+        <ThumbnailsContainer>
+          <InnerContainer>
+            {photos.map((photo, index)=>(
+              (index >= indexStart && (index <= indexEnd))?
+                (selectedIndex !== index)? 
+                  <ThumbImg src={photo.thumbnail_url} key={index} onClick={()=>setSelectedIndex(index)}/>:
+                  <BorderThumbImg src={photo.thumbnail_url} key={index} onClick={()=>setSelectedIndex(index)}/>
+                : null
             ))}
-        {(indexStart > 0)? <FaChevronCircleLeft color="white" style={{ position: 'absolute', left: '10px'}} onClick={rightArrowClick}></FaChevronCircleLeft> : null}
-        {(photos.length > (indexEnd + 1))? <FaChevronCircleRight color="white" style={{ position: 'absolute', right: '10px'}} onClick={leftArrowClick}></FaChevronCircleRight > : null}
-        </div>
-        </div>
+            {(indexStart > 0)?
+              <ThumbnailsRightArrow>
+                <FaChevronCircleLeft onClick={rightArrowClick}/>
+              </ThumbnailsRightArrow> : null
+            }
+            {(photos.length > (indexEnd + 1))?
+              <ThumbnailsLeftArrow>
+                <FaChevronCircleRight onClick={leftArrowClick}></FaChevronCircleRight >
+              </ThumbnailsLeftArrow> : null}
+          </InnerContainer>
+        </ThumbnailsContainer>
 
-        <div style={{display:'flex', flexDirection: 'row', }}>
-        </div>
-    </div>
+    </DefaultContainer>
     )
 }
 export default DefaultView;

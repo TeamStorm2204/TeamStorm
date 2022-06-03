@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
 
+//ExpandedView Styling
 
 export const ZoomContainer = styled.div`
     display: flex;
@@ -73,5 +74,52 @@ export const ImageIcon = styled.div`
     &:hover {
         opacity: 0.8;
         color: lightGray;
+      }
+`
+//DefaultView Styling
+
+export const DefaultContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    aspect-ratio: 3/4;
+`
+export const DefaultImage = styled.img`
+    width: 100%;
+    height: 100%;
+    objectFit: cover; 
+    cursor: zoom-in;
+`
+export const ArrowsContainer = styled.div`
+    display: flex;
+    align-items: center;
+`
+export const ThumbnailsContainer = styled.div`
+    display: flex;
+    align-items: end;
+`
+
+export const InnerContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    left: 0;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 8/1;
+`
+export const ThumbnailsRightArrow = styled.div`
+    position: absolute;
+    left: 10px;
+    color: white;
+    &:hover {
+        opacity: 0.8;
+      }
+`
+export const ThumbnailsLeftArrow = styled.div`
+    position: absolute;
+    right: 10px;
+    color: white;
+    &:hover {
+        opacity: 0.8;
       }
 `
