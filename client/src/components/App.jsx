@@ -30,11 +30,9 @@ const App = (props) => {
       if (err) {
         console.log(err)
       } else {
-        console.log({ data });
         setProducts(data);
         id = data.id
         api.getProductStyles(id, (err, data) => {
-          console.log(id);
           if (err) {
             console.log(err);
           } else {
@@ -46,7 +44,7 @@ const App = (props) => {
   }, [relatedId]);
 
   if (products.name) {
-    console.log(products.id, styles);
+
     return (
       <UserContext.Provider value={{ currentPD: products, Img: styles }}>
         <div>
