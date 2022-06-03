@@ -3,7 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 
 export const Header = styled.h1`
     color: var(--text-dark);
-    font: 100 2.2rem/1.4 Helvetica,Arial,sans-serif;
+    font: 100 2.2rem/1.3 Helvetica,Arial,sans-serif;
     letter-spacing: .05rem;
     margin-bottom: 5px;
     margin-top: 10px
@@ -36,33 +36,30 @@ export const RightArrow = styled.div`
   }
 `
 export const  Reviews = styled.div`
-  color: var(--text-medium);
-  font: 100 1.0rem/1.0 Helvetica,Arial,sans-serif;
+  display: inline;
+  font: 20 0.8rem/1.0 Helvetica,Arial,sans-serif;
   letter-spacing: .05rem;
-  margin: 5px 0 5px 0;
+  margin: 5px 2px 5px 0;
   text-decoration: underline;
   &:hover {
     text-decoration: none;
   }  
 `
 export const StyleName = styled.div`
-  color: var(--text-dark);
-  display: in-line
   letter-spacing: .05rem;
-  margin: 10px 0 5px 0;
-  font: 700 1.2rem/1.4 Helvetica,Arial,sans-serif;
+  margin: 10px 0 10px 0;
+  font: 20 1.3rem/normal Helvetica,Arial,sans-serif;
   letter-spacing: .05rem;
 `;
 
 export const SubStyleName = styled.span`
-  color: var(--text-medium);
-  font: 1.2rem/normal Helvetica,Arial,sans-serif;
+  font: 60 1.3rem/normal Helvetica,Arial,sans-serif;
   letter-spacing: .05rem;
+  padding-left: 3px;
 `;
 
 export const Price = styled.span`
-  color: var(--text-medium);
-  font: 1.2rem/normal Helvetica,Arial,sans-serif;
+  font: 50 1.3rem/normal Helvetica,Arial,sans-serif;
   letter-spacing: .05rem;
   padding-right: 5px;
 `;
