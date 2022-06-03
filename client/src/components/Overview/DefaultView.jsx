@@ -10,6 +10,11 @@ const DefaultView =(props)=> {
   const [indexStart, setIndexStart] = useState(0);
   const [indexEnd, setIndexEnd] = useState(6);
 
+  useEffect(() => {
+    setIndexStart(0);
+    setIndexEnd(6);
+  }, [props.selectedStyle]);
+
   const rightArrowClick =function() {
     setIndexStart(indexStart-1);
     setIndexEnd(indexEnd-1);
@@ -69,14 +74,14 @@ const DefaultView =(props)=> {
                 : null
             ))}
             {(indexStart > 0)?
-              <ThumbnailsRightArrow>
+              <ThumbnailsLeftArrow>
                 <FaChevronCircleLeft onClick={rightArrowClick}/>
-              </ThumbnailsRightArrow> : null
+              </ThumbnailsLeftArrow> : null
             }
             {(photos.length > (indexEnd + 1))?
-              <ThumbnailsLeftArrow>
+              <ThumbnailsRightArrow>
                 <FaChevronCircleRight onClick={leftArrowClick}></FaChevronCircleRight >
-              </ThumbnailsLeftArrow> : null}
+              </ThumbnailsRightArrow> : null}
           </InnerContainer>
         </ThumbnailsContainer>
 

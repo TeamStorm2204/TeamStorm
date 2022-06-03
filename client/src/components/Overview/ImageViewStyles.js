@@ -86,7 +86,7 @@ export const DefaultContainer = styled.div`
 export const DefaultImage = styled.img`
     width: 100%;
     height: 100%;
-    objectFit: cover; 
+    object-fit: cover; 
     cursor: zoom-in;
 `
 export const ArrowsContainer = styled.div`
@@ -109,7 +109,7 @@ export const InnerContainer = styled.div`
 `
 export const ThumbnailsRightArrow = styled.div`
     position: absolute;
-    left: 10px;
+    right: 10px;
     color: white;
     &:hover {
         opacity: 0.8;
@@ -117,7 +117,7 @@ export const ThumbnailsRightArrow = styled.div`
 `
 export const ThumbnailsLeftArrow = styled.div`
     position: absolute;
-    right: 10px;
+    left: 10px;
     color: white;
     &:hover {
         opacity: 0.8;

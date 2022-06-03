@@ -15,18 +15,27 @@ const Overview =(props)=> {
     const [expanded, setExpanded] = useState(false);
 
     useEffect(() => {
-        API.getProductStyles(props.id, (err, data) => {
-            // console.log('dat', data.results)
-          setStyles(data.results);
-        })
-      }, [props.id]);
+      setReviewCount(1);
+      setExpanded(false);
+      API.getProductStyles(props.id, (err, data) => {
+        // if (data.results.length) {
+        //   setSelectedIndex(0);
+        // }
+          // console.log('dat', data.results)
+        setStyles(data.results);
+      })
+      API.getProductInformation(props.id, (err, data) => {
+        // console.log(data);
+      setProduct(data);
+      })
+    }, [props.id]);
 
-    useEffect(() => {
-        API.getProductInformation(props.id, (err, data) => {
-            // console.log(data);
-          setProduct(data);
-        })
-      }, [props.id]);
+    // useEffect(() => {
+    //     API.getProductInformation(props.id, (err, data) => {
+    //         // console.log(data);
+    //       setProduct(data);
+    //     })
+    //   }, [props.id]);
 
     const scrollTo = function(){
       let reviews = window.document.getElementById('Reviews');
@@ -50,7 +59,7 @@ const Overview =(props)=> {
           <Header>{product.name}</Header>
           <SubHeader>{product.description}</SubHeader>
             {(reviewCount > 0)? 
-            <Reviews onClick={scrollTo} >
+            <Reviews onClick={scrollTo}>
               <Stars id={props.id} setReviewCount={setReviewCount}></Stars> 
               Read all {reviewCount} reviews
             </Reviews>: null}
