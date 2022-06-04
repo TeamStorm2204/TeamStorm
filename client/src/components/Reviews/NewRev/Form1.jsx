@@ -2,7 +2,14 @@ import React from 'react';
 import { useEffect, useState, useContext } from 'react';
 import api from '../../../../API';
 import { UserContext } from '../../App.jsx'
-import { AddImg, InteractiveStars, TextBox, InputBox, InputEmail, StyledButton } from '../../Styles.styled.js';
+import {
+  AddImg,
+  InteractiveStars,
+  TextBox,
+  InputBox,
+  InputEmail,
+  StyledButton
+} from '../../Styles.styled.js';
 import Axios from 'axios';
 
 const Form1 = ({ relatedId, form1, setForm1, incPage }) => {

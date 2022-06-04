@@ -1,7 +1,7 @@
 import { ThemeProvider } from 'styled-components'
 import React from 'react';
 import { useEffect, useState, createContext } from 'react';
-import { St, Review, ReadMore, Yes, Report } from '../Styles.styled.js';
+import { St, Review, ReadMore, Yes, Report, Modal } from '../Styles.styled.js';
 import api from '../../../API'
 
 const ReviewItem = ({ helpfulList, setHelpfulList, t }) => {
@@ -10,6 +10,7 @@ const ReviewItem = ({ helpfulList, setHelpfulList, t }) => {
   let [reported, setReported] = useState(false)
   let [newHelp, setNewHelp] = useState(t.helpfulness)
   let [readMore, setReadMore] = useState(false)
+  let [imgClick, setImgClick] = useState(['none'])
 
   let dateConverter = (dateString) => {
     const options = { year: "numeric", month: "long", day: "numeric" }
@@ -60,7 +61,6 @@ const ReviewItem = ({ helpfulList, setHelpfulList, t }) => {
             <div style={{ fontSize: '16px' }}>{t.body.length <= 250 ? t.body : t.body.substring(0, 200) + '...'}</div>
             <ReadMore onClick={() => setReadMore(true)}>{t.body.length >= 200 ? 'Read More' : null}</ReadMore>
           </>
-
       }
       <br />
       {t.recommend ? <div style={{ fontSize: '16px' }}>✔️ I recommend this product</div> : null}
@@ -69,12 +69,21 @@ const ReviewItem = ({ helpfulList, setHelpfulList, t }) => {
           t.photos.length !== 0 ?
             t.photos.map(i => {
               return (
-                <span style={{ marginRight: '10px' }}>
+                <span onClick={() => imgClick[0] === 'none' ? setImgClick(['flex', i.url]) : setImgClick(['none'])} style={{ marginRight: '10px' }}>
                   <img
                     src={i.url}
                     width="100"
                     alt="header image"
                   />
+                  <Modal style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }} dis={imgClick}>
+                    <small style={{ top: '0', color: 'white' }}>Click anywhere on this page to close</small>
+                    <br></br>
+                    <img
+                      style={{ maxWidth: '80%', maxHeight: '80%' }}
+                      src={imgClick[1]}
+                      alt="header image"
+                    />
+                  </Modal>
                 </span>
               )
             }) : null
