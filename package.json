@@ -56,7 +56,7 @@
     "start": "nodemon server/index.js",
     "test": "jest",
     "client-dev": "npx webpack --watch",
-    "build": "npx webpack --mode production"
+    "build": "npx webpack"
   },
   "repository": {
     "type": "git",
