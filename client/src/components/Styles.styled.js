@@ -49,7 +49,7 @@ export const FilterRate = styled.div`
 export const Modal = styled.div`
   display: ${(props) => props.dis[0]};
   position: fixed;
-  z-index: 1;
+  z-index: 20;
   left: 0;
   top: 0;
   width: 100%;

@@ -159,7 +159,7 @@ const Reviews = () => {
       <ThemeProvider theme={theme}>
         <Header>
           <div>
-            <h1 style={{ fontSize: '37px' }}>Reviews &</h1 >
+            <h1 id='Reviews' style={{ fontSize: '37px' }}>Reviews &</h1 >
             <h1 style={{ marginTop: '-30px', fontSize: '37px' }}>Ratings</h1 >
           </div>
           {

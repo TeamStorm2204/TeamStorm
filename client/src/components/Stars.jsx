@@ -16,13 +16,11 @@ const Stars = (props) => {
       } else {
         // console.log({data})
         if(props.setReviewCount) {
-          console.log({data});
           let ratingsCount = 0;
           for(let key in data.recommended){
               if(Number(data.recommended[key])) {
               ratingsCount+=Number(data.recommended[key]);
             }
-            console.log({ratingsCount})
             props.setReviewCount(ratingsCount);
           }
         }
@@ -34,7 +32,7 @@ const Stars = (props) => {
         setStars(avg);
       }
     })
-  }, []);
+  }, [props.id]);
 
 
 

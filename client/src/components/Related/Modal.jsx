@@ -6,40 +6,36 @@ import styled from 'styled-components';
 import {VscError} from 'react-icons/vsc';
 
 
-const Modal =({closeModal, length, id, relatedInf})=> {
-  const [totalFeatures, setFeatures]=useState({});
+// eslint-disable-next-line react/prop-types
+const Modal =({closeModal, length, id, relatedInf}) => {
+  const [totalFeatures, setFeatures] = useState({});
 
-  useEffect( ()=> {
-    API.getProductInformation(id, (err, data)=> {
-      if(err) {
+  useEffect(() => {
+    API.getProductInformation(id, (err, data) => {
+      if (err) {
         console.log(err);
       }else {
-
-        var total=data.features.concat(relatedInf.features);
-        var featuresTitle=[];
-        for (let i=0; i<total.length;i++) {
-          if( !featuresTitle.includes(total[i].feature)) {
-              featuresTitle.push(total[i].feature);
+        // eslint-disable-next-line react/prop-types
+        var total = data.features.concat(relatedInf.features);
+        var featuresTitle = [];
+        for (let i = 0; i < total.length; i++) {
+          if (!featuresTitle.includes(total[i].feature)) {
+            featuresTitle.push(total[i].feature);
           }
         }
-        var totalInfor={overView: data, related: relatedInf, featuresTitle:featuresTitle }; //data/related  has the name; deaturesTitle has all no repeative titles; data.feature or relatedInf.features has its features
-
+        var totalInfor = {overView: data, related: relatedInf, featuresTitle:featuresTitle}; //data/related  has the name; deaturesTitle has all no repeative titles; data.feature or relatedInf.features has its features
         setFeatures(totalInfor);
       }
     })
-  },[])
+  }, [])
 
 
-  if(totalFeatures.overView!==undefined) {
+  if (totalFeatures.overView !== undefined) {
     console.log('waht is overView', totalFeatures);
-
-  return (
-
-    <Container>
-
-      <table>
+    return (
+      <Container>
+        <table>
           <thead>
-
             <tr>
               <HeadL>{totalFeatures.overView.name}</HeadL>
               <th> </th>
@@ -48,7 +44,7 @@ const Modal =({closeModal, length, id, relatedInf})=> {
             </tr>
           </thead>
           <tbody id='table'>
-          {totalFeatures.featuresTitle.map((item, key) => (
+            {totalFeatures.featuresTitle.map((item, key) => (
               <tr key={key}>
                 <XfeatureL>
                   {totalFeatures.overView.features.map((item1) => (
@@ -57,11 +53,10 @@ const Modal =({closeModal, length, id, relatedInf})=> {
                         ? `${item1.value}`
                         : '✓'
                       : ' '
-                  ))}
+                  ))
+                  }
                 </XfeatureL>
-
                 <Value>{item}</Value>
-
                 <XfeatureR>
                   {totalFeatures.related.features.map((item2) => (
                     (item2.feature === item)
@@ -69,22 +64,17 @@ const Modal =({closeModal, length, id, relatedInf})=> {
                         ? `${item2.value}`
                         : '✓'
                       : ' '
-                  ))}
-
+                  ))
+                  }
                 </XfeatureR>
-
               </tr>
-            ))}
+            ))
+            }
           </tbody>
         </table>
-
-      <CloseButton onClick={()=>closeModal(Array(length).fill(false))}> close</CloseButton>
-
-  </Container>
-
-
-
-  )
+        <CloseButton onClick={()=>closeModal(Array(length).fill(false))}> close</CloseButton>
+      </Container>
+    )
   }
 }
 

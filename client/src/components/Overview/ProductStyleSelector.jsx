@@ -1,7 +1,7 @@
 import React from 'react';
 import API from '../../../API';
 import { useEffect, useState } from 'react';
-import {FaRegCheckCircle} from 'react-icons/fa';
+import {FaCheckCircle, FaFacebookF, FaTwitter, FaPinterest} from 'react-icons/fa';
 import {Input, ImgWrapper, Select, StylesWrapper, StyleName, SubStyleName, Price, SelectImgWrap} from './OverviewStyles.js';
 
 const ProductStyleSelector =({styles, setSelectedIndex, selectedIndex})=> {
@@ -55,9 +55,9 @@ const ProductStyleSelector =({styles, setSelectedIndex, selectedIndex})=> {
                 :null}
                 <Price style={strikethoughStyle}>${selectedStyle.original_price}</Price>
             </StyleName>
-
+            <hr style={{width: '100%', height: '1px', margin: '20px 0 10px 0', backgroundColor: 'rgba(0, 0, 0, 0.2)'}}/>
             <StyleName> 
-                Style: 
+                Style:  
                 <SubStyleName>{selectedStyle.name}</SubStyleName>
             </StyleName>
 
@@ -66,7 +66,9 @@ const ProductStyleSelector =({styles, setSelectedIndex, selectedIndex})=> {
                 return (
                     (selectedIndex === index) ?
                     <SelectImgWrap img={style.photos[0].thumbnail_url} key={index} onClick={()=>setSelectedIndex(index) }>
-                    <FaRegCheckCircle fontSize="1.25em"/>
+                    <div style={{display: 'flex', justifyContent: 'end'}}>
+                    <FaCheckCircle color="white" opacity="0.7"/>
+                    </div>
                     </SelectImgWrap>:
                     <ImgWrapper src={style.photos[0].thumbnail_url} key={index} onClick={()=>setSelectedIndex(index)}/>
                 )
@@ -91,9 +93,9 @@ const ProductStyleSelector =({styles, setSelectedIndex, selectedIndex})=> {
             </form>
 
             <StylesWrapper>
-            <i class="fab fa-facebook-f  fa-lg" />
-            <i class="fab fa-twitter fa-lg"></i>
-            <i class="fab fa-pinterest  fa-lg"></i>
+                <FaFacebookF fontSize="1.25em"/>
+                <FaTwitter fontSize="1.25em"/>
+                <FaPinterest fontSize="1.25em"/>
             </StylesWrapper>
         </div>
     )
