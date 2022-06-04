@@ -62,26 +62,6 @@ const Reviews = () => {
   const [recAvg, setRecAvg] = useState(0)
 
   useEffect(() => {
-
-    api.getReviewsMeta({ product_id: id }, (err, data) => {
-      if (err) {
-        console.log(err)
-      } else {
-        setMeta(data.characteristics)
-        let pRec = Number(data.recommended.true) / (Number(data.recommended.false) + Number(data.recommended.true)) * 100
-        let sum = 0;
-        let avgg = 0;
-        let count = 0;
-        for (let key in data.ratings) {
-          sum += Number(data.ratings[key]) * Number(key);
-          count += Number(data.ratings[key])
-        }
-        avgg = sum / count;
-        setRecAvg([avgg, pRec, count])
-      }
-    })
-  }, []);
-  useEffect(() => {
     api.getReviews({ product_id: id, count: 500, sort: sortert[0] }, (err, data) => {
       console.log('Count: ', recAvg)
       if (data.results.length > 0) {
@@ -114,6 +94,25 @@ const Reviews = () => {
     })
   }, [id, sortert]);
 
+  useEffect(() => {
+    api.getReviewsMeta({ product_id: id }, (err, data) => {
+      if (err) {
+        console.log(err)
+      } else {
+        setMeta(data.characteristics)
+        let pRec = Number(data.recommended.true) / (Number(data.recommended.false) + Number(data.recommended.true)) * 100
+        let sum = 0;
+        let avgg = 0;
+        let count = 0;
+        for (let key in data.ratings) {
+          sum += Number(data.ratings[key]) * Number(key);
+          count += Number(data.ratings[key])
+        }
+        avgg = sum / count;
+        setRecAvg([avgg, pRec, count])
+      }
+    })
+  }, [id]);
 
   var sorter = (sortType) => {
     setSortert(sortType)
