@@ -69,17 +69,19 @@ const ReviewItem = ({ helpfulList, setHelpfulList, t }) => {
           t.photos.length !== 0 ?
             t.photos.map(i => {
               return (
-                <span onClick={() => imgClick[0] === 'none' ? setImgClick(['flex', i.url]) : setImgClick(['none'])} style={{ marginRight: '10px' }}>
+                <span onClick={() => imgClick[0] === 'none' ? setImgClick(['flex', i.url]) : setImgClick(['none'])} style={{ cursor: 'pointer', marginRight: '10px' }}>
                   <img
                     src={i.url}
                     width="100"
                     alt="header image"
+                    loading="lazy"
                   />
                   <Modal style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }} dis={imgClick}>
                     <small style={{ top: '0', color: 'white' }}>Click anywhere on this page to close</small>
                     <br></br>
                     <img
-                      style={{ maxWidth: '80%', maxHeight: '80%' }}
+                      // style={{ maxWidth: '80%', maxHeight: '80%' }}
+                      width='500'
                       src={imgClick[1]}
                       alt="header image"
                     />
