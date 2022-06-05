@@ -55,7 +55,7 @@ const ImageSlider = ({images = [], setRelatedId, overViewData }) => {
                   <OutCard>
                     <Card id="carousel" url = {item.image[0].url}>
                     <Icon>
-                      <IconContext.Provider value={ {size: '1.5em'} }>
+                      <IconContext.Provider value={ {fontize: '1.5em'} }>
                         <StarButton onClick={()=>{ var modalNew={item:item, status:true}; setModal(modalNew)}}>
                             <ImStarEmpty/ >
                         </StarButton>
@@ -88,6 +88,7 @@ const ImageSlider = ({images = [], setRelatedId, overViewData }) => {
             }
           })
           }
+
         </div>
       </Slide>
     </div>

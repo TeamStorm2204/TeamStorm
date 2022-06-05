@@ -42,7 +42,6 @@ export const OutCard = styled.div`
 `
 export const OutCardFit = styled.div`
   flex-direction: row;
-  justify-content: space-between;
   border-radius: 10px;
   height: 250px;
   width: 200px;
@@ -78,27 +77,19 @@ export const Icon = styled.div`
   width: 12px !important;
   height: 12px !important;
 `
-
-export const Space = styled.div`
-  display: inline-block;
-  width: 600px;
-  padding:50px;
-
-`
-export const Add = styled.div`
-  top: 40%;
-  left: 35%;
-  display: felx;
-  position: relative;
-  width: 100%;
-  height: 50%;
-  z-index: 1;
-`
-
  export const PlusButton = styled.div `
   z-index: 3;
+  top: 5%;
+  display: felx;
+  margin-left:20%;
+  position: relative;
+  width: 10%;
+  z-index: 20;
+  left:'20%';
   &:hover{
-    cursor: pointer
+    cursor: pointer;
+    color:#FF4500;
+    font-size:2.1em;
   }
  `
 export const Cross = styled.button`
@@ -116,16 +107,6 @@ export const Cross = styled.button`
   height: 15px !important;
 `
 
-export const Cd = styled.div`
-  position: relative;
-  transition: 0.3s;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 220px;
-  height: 200px;
-  margin-bottom: 10px;
-  `
 export const Slide = styled.div`
   width: 80%;
   margin: 0 auto;
@@ -133,26 +114,24 @@ export const Slide = styled.div`
   padding-right: 25px;
   display: flex;
   height: 300px;
-  justify-content: space-around;
+  justify-content:center;
   overflow: hidden;
   position: relative;
+
 `
 export const SlideOutFit = styled.div`
-  width: 80%;
+width: 80%;
   margin: 0 auto;
-  padding-left: 25px;
+  padding-right: 25px;
   padding-right: 25px;
   display: flex;
   height: 300px;
   overflow: hidden;
   position: relative;
+  justify-content:center;
+
 `
 
-export const Images = styled.div`
-  margin-left: 100px;
-  margin-top: 60px;
-  border-radius: 10px;
-`
 
 export const StarButton = styled.div`
   background-color: rgba(255,255,255,.45);
@@ -168,7 +147,7 @@ export const StarButton = styled.div`
 export const RightArrow = styled.div`
   position: absolute;
   top: 50%;
-  right: 45px;
+  right: 30px;
   font-size: 2em;
   z-index: 10;
   cursor: pointer;
@@ -182,7 +161,7 @@ export const RightArrow = styled.div`
 export const LeftArrow = styled.div`
   position: absolute;
   top: 50%;
-  left: 45px;
+  left: 30px;
   font-size: 2em;
   z-index: 10;
   cursor: pointer;
@@ -191,30 +170,6 @@ export const LeftArrow = styled.div`
   cursor: pointer;
   font-size: 2.1em;
   }
-
-`
-
-export const RightArrowSub = styled.div`
-  position: absolute;
-  padding-right: 300px;
-  color: white;
-  top: 85%;
-  right: 2px;
-  font-size: em;
-  z-index: 10;
-  cursor: pointer;
-  user-select: none;
-
-`
-export const LeftArrowSub = styled.div`
-  position: absolute;
-  top: 85%;
-  color: white;
-  left: 2px;
-  font-size: em;
-  z-index: 10;
-  cursor: pointer;
-  user-select: none;
 `
 
 export const  Container = styled.div`
