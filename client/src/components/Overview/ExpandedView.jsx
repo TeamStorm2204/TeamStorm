@@ -63,7 +63,7 @@ const ExpandedView =(props)=> {
       </SideContainer>
        : null}
 
-      <ExpandedImage src={photos[selectedIndex].url} value="magnify"/>
+      <ExpandedImage src={photos[selectedIndex].url} loading="lazy" value="magnify"/>
 
       <SideContainer>
         <Compress>

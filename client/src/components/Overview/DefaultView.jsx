@@ -32,7 +32,8 @@ const DefaultView = (props) => {
       index = selectedIndex - 1;
     }
     setSelectedIndex(index);
-    if (index < indexStart) {
+    props.setSelectedImg(index);
+    if(index < indexStart)  {
       setIndexStart(index);
       setIndexEnd(index + 6);
     }
@@ -48,42 +49,42 @@ const DefaultView = (props) => {
 
   return (
     <DefaultContainer>
-      <DefaultImage src={photos[selectedIndex].url} onClick={expandView} />
-      <ArrowsContainer>
-        {(selectedIndex > 0) ?
-          <LeftArrow>
-            <FaChevronCircleLeft onClick={mainArrowClick}>
-            </FaChevronCircleLeft>
-          </LeftArrow> : null
-        }
-        {(photos.length > (selectedIndex + 1)) ?
-          <RightArrow>
-            <FaChevronCircleRight onClick={() => { mainArrowClick('left') }}>
-            </FaChevronCircleRight>
-          </RightArrow> : null
-        }
-      </ArrowsContainer>
+        <DefaultImage src={photos[selectedIndex].url } loading="lazy" onClick={expandView}/>
+        <ArrowsContainer>
+            {(selectedIndex > 0)? 
+              <LeftArrow>
+                <FaChevronCircleLeft onClick={mainArrowClick}>
+                </FaChevronCircleLeft>
+              </LeftArrow> : null
+            }
+            {(photos.length > (selectedIndex + 1)) ?
+              <RightArrow>
+                <FaChevronCircleRight onClick={()=>{mainArrowClick('left')}}>
+                </FaChevronCircleRight>
+              </RightArrow> : null
+            }
+        </ArrowsContainer>
 
-      <ThumbnailsContainer>
-        <InnerContainer>
-          {photos.map((photo, index) => (
-            (index >= indexStart && (index <= indexEnd)) ?
-              (selectedIndex !== index) ?
-                <ThumbImg src={photo.thumbnail_url} key={index} onClick={() => setSelectedIndex(index)} /> :
-                <BorderThumbImg src={photo.thumbnail_url} key={index} onClick={() => setSelectedIndex(index)} />
-              : null
-          ))}
-          {(indexStart > 0) ?
-            <ThumbnailsLeftArrow>
-              <FaChevronCircleLeft onClick={rightArrowClick} />
-            </ThumbnailsLeftArrow> : null
-          }
-          {(photos.length > (indexEnd + 1)) ?
-            <ThumbnailsRightArrow>
-              <FaChevronCircleRight onClick={leftArrowClick}></FaChevronCircleRight >
-            </ThumbnailsRightArrow> : null}
-        </InnerContainer>
-      </ThumbnailsContainer>
+        <ThumbnailsContainer>
+          <InnerContainer>
+            {photos.map((photo, index)=>(
+              (index >= indexStart && (index <= indexEnd))?
+                (selectedIndex !== index)? 
+                  <ThumbImg src={photo.thumbnail_url} loading="lazy" key={index} onClick={()=>setSelectedIndex(index)}/>:
+                  <BorderThumbImg src={photo.thumbnail_url} loading="lazy" key={index} onClick={()=>setSelectedIndex(index)}/>
+                : null
+            ))}
+            {(indexStart > 0)?
+              <ThumbnailsLeftArrow>
+                <FaChevronCircleLeft onClick={rightArrowClick}/>
+              </ThumbnailsLeftArrow> : null
+            }
+            {(photos.length > (indexEnd + 1))?
+              <ThumbnailsRightArrow>
+                <FaChevronCircleRight onClick={leftArrowClick}></FaChevronCircleRight >
+              </ThumbnailsRightArrow> : null}
+          </InnerContainer>
+        </ThumbnailsContainer>
 
     </DefaultContainer>
   )

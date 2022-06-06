@@ -1,16 +1,16 @@
 import React from 'react';
 import API from '../../../API';
-import { useEffect, useState } from 'react';
+import {useState } from 'react';
 import {FaCheckCircle, FaFacebookF, FaTwitter, FaPinterest} from 'react-icons/fa';
-import {Input, ImgWrapper, Select, StylesWrapper, StyleName, SubStyleName, Price, SelectImgWrap} from './OverviewStyles.js';
+import {Input, ImgWrapper, Select, StylesWrapper, StyleName, SubStyleName, Price, SelectImgWrapper} from './OverviewStyles.js';
 
 const ProductStyleSelector =({styles, setSelectedIndex, selectedIndex})=> {
     const [quantity, setQuantity] = useState([]);
     const [message, setMessage] =  useState(false);
     const selectedStyle = styles[selectedIndex];
-    // console.log({selectedStyle});
     const strikethoughStyle= selectedStyle.sale_price? {textDecorationLine: 'line-through'} : {};
     let skus=[];
+
     for(let key in selectedStyle.skus) {
         let sku = selectedStyle.skus[key]
         if (sku !== 'null'){
@@ -19,8 +19,8 @@ const ProductStyleSelector =({styles, setSelectedIndex, selectedIndex})=> {
             }
         }
     }
-    // console.log(skus);
     
+
     const selectSize = function(event) {
         if (event.target.value === 'Select Size') {
             setQuantity([]);
@@ -65,11 +65,7 @@ const ProductStyleSelector =({styles, setSelectedIndex, selectedIndex})=> {
             {(styles.length > 0)? styles.map((style, index)=>{
                 return (
                     (selectedIndex === index) ?
-                    <SelectImgWrap img={style.photos[0].thumbnail_url} key={index} onClick={()=>setSelectedIndex(index) }>
-                    <div style={{display: 'flex', justifyContent: 'end'}}>
-                    <FaCheckCircle color="white" opacity="0.7"/>
-                    </div>
-                    </SelectImgWrap>:
+                    <SelectImgWrapper src={style.photos[0].thumbnail_url} key={index}/>:
                     <ImgWrapper src={style.photos[0].thumbnail_url} key={index} onClick={()=>setSelectedIndex(index)}/>
                 )
             }): null}
