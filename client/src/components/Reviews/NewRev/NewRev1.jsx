@@ -1,9 +1,21 @@
 import { ThemeProvider } from 'styled-components'
 import React from 'react';
-import { Suspense, useEffect, useState, useContext } from 'react';
+import {
+  Suspense,
+  useEffect,
+  useState,
+  useContext
+} from 'react';
 import { UserContext } from '../../App.jsx';
 import api from '../../../../API';
-import { InputBox, Header, Modal, ModalContent, StyledButton, Close } from '../../Styles.styled.js';
+import {
+  InputBox,
+  Header,
+  Modal,
+  ModalContent,
+  StyledButton,
+  Close
+} from '../../Styles.styled.js';
 import Form1 from './Form1.jsx';
 import Form2 from './Form2.jsx';
 import Form3 from './Form3.jsx';
@@ -85,11 +97,30 @@ const NewRev1 = ({ meta, relatedId }) => {
   var changeView = () => {
     switch (pgNum) {
       case 1:
-        return <Form1 relatedId={relatedId} form1={form1} setForm1={setForm1} incPage={incPage} />
+        return (
+          <Form1
+            relatedId={relatedId}
+            form1={form1}
+            setForm1={setForm1}
+            incPage={incPage} />
+        )
       case 2:
-        return <Form2 setSubmitted={setSubmitted} form1={form1} form2={form2} setForm2={setForm2} incPage={incPage} decPage={decPage} />
+        return (
+          <Form2
+            setSubmitted={setSubmitted}
+            form1={form1}
+            form2={form2}
+            setForm2={setForm2}
+            incPage={incPage}
+            decPage={decPage} />
+        )
       case 3:
-        return <Form3 form1={form1} form2={form2} submitted={submitted} />
+        return (
+          <Form3
+            form1={form1}
+            form2={form2}
+            submitted={submitted} />
+        )
     }
   }
   return (

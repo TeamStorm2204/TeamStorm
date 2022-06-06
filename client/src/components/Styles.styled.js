@@ -40,7 +40,6 @@ export const FilterRate = styled.div`
   font-weight: 500;
   font-size: 16px;
   color: #4f4e4e;
-  margin-top:-10px;
   cursor: pointer;
   &:hover {
     cursor: pointer;
@@ -191,9 +190,10 @@ cursor:default;
     box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.2);
   `
 export const Star = styled.div`
+    padding-top: 20px;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: baseline;
     margin-right:30px
   `
 export const St = styled.div`
