@@ -5,10 +5,11 @@ import {ImArrowLeft, ImArrowRight} from 'react-icons/im';
 import {FaChevronCircleLeft, FaChevronCircleRight} from 'react-icons/fa';
 import { useEffect, useState, createContext, useContext } from 'react';
 import {IoAddOutline} from 'react-icons/io5';
+import{RiHeartAddFill} from "react-icons/ri";
 import {IconContext} from 'react-icons';
 import axios from 'axios';
 import {UserContext} from '../App.jsx';
-import { Slide, CardFit, Description, Space, Add, Cross, PlusButton, OutCardFit, RightArrow, LeftArrow, Title, SlideOutFit} from './StyleRelated.js';
+import { CardFit, Description, Add, Cross, PlusButton, OutCardFit, RightArrow, LeftArrow, Title, SlideOutFit} from './StyleRelated.js';
 import {VscError} from 'react-icons/vsc';
 import Stars from '../Stars.jsx';
 
@@ -19,7 +20,7 @@ const Outfit = (props) => {
   ]
   const data = useContext(UserContext);
 
-  const [current, setCurrent] = useState(-1);
+  const [current, setCurrent] = useState(0);
   const [outfits, setOutfits] = useState(localStorage.getItem('outfits')? JSON.parse(localStorage.getItem('outfits')): []);
   const[ img, setImg] = useState([]);
 
@@ -56,12 +57,12 @@ const Outfit = (props) => {
   }
 
   const length=outfits.length;
-
+  console.log('length',length);
   const nextSlide = () => {
-    setCurrent(current === length-1? -1: current+1);
+    setCurrent(current === length-1? 0: current+1);
   }
   const prevSlide=()=> {
-    setCurrent(current===-1? length-1: current-1);
+    setCurrent(current===0? length-1: current-1);
 
   }
 
@@ -69,29 +70,27 @@ const Outfit = (props) => {
     <div>
       <Title>Outfit List</Title>
       <hr style = {{width:'50%', backgroundColor:'rgba(0,0,0,0.2)',height:'2px', display:'felx', margin:'-10'}}/>
-      <SlideOutFit>
-        <div style = {{marginLeft:'25', marginRight:'25', display:'flex', gap: '50px', alignItems:'center', paddingLeft:'17.5%'}}>
-          { length > 2 && current >= 0?
+
+      <IconContext.Provider value={{ size: '2em' }}>
+        <PlusButton onClick = {() => {addOutfit(data)}} ><RiHeartAddFill /></PlusButton>
+      </IconContext.Provider>
+
+      <SlideOutFit position={length}>
+        <div style = {{marginLeft:'25', marginRight:'25', display:'flex', gap: '50px', alignItems:'center'}}>
+
+          {length>0&& current !== 0?
           (<LeftArrow onClick={prevSlide}>
             <FaChevronCircleLeft/>
             </LeftArrow>): null}
 
-          {length > 2 && current !== length-2?
+          {length>3&&current !== length-1?
           (<RightArrow onClick = {nextSlide}>
           <FaChevronCircleRight />
           </RightArrow>): null}
 
-          <OutCardFit onClick = {() => {addOutfit(data)}}>
-            <Add>
-              <IconContext.Provider value={{ size: '4em' }}>
-                <PlusButton  aria-label='add'><IoAddOutline/></PlusButton>
-              </IconContext.Provider>
-            </Add>
-          </OutCardFit>
-
           {outfits.length>0?
           (outfits.map( (item, index) => {
-            if(index === current+1 || index === current+2) {
+            if (index === current|| index === current+1||index===current+2) {
               return (
                 <OutCardFit>
                   <CardFit url = {item.url} >
@@ -125,7 +124,7 @@ const Outfit = (props) => {
           })
           ): null
           }
-        </div>
+          </div>
       </SlideOutFit>
       <hr style={{width:'80%', display:'felx', marginTop:'5em'}}/>
     </div>
