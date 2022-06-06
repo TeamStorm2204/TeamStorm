@@ -13,20 +13,22 @@ const Overview =(props)=> {
     const [styles, setStyles] = useState([]);
     const [reviewCount, setReviewCount] = useState(1);
     const [expanded, setExpanded] = useState(false);
+    const [selectedImg, setSelectedImg] = useState(0);
 
     useEffect(() => {
+      setSelectedImg(0);
       setReviewCount(1);
       setExpanded(false);
+      setSelectedIndex(null);
       API.getProductStyles(props.id, (err, data) => {
-        // if (data.results.length) {
-        //   setSelectedIndex(0);
-        // }
-          // console.log('dat', data.results)
+        if(!err){
         setStyles(data.results);
+        }
       })
       API.getProductInformation(props.id, (err, data) => {
-        // console.log(data);
-      setProduct(data);
+        if (!err) {
+        setProduct(data);
+        }
       })
     }, [props.id]);
 
@@ -44,7 +46,7 @@ const Overview =(props)=> {
         <div>
         <div style={{ width:'80%', margin:'0 auto', display:'flex', flexFlow:'row wrap', gap:'5%', justifyContent:'center'}}>
         <div style={{position:'relative', maxWidth:'540px', minWidth:'300px', flexGrow: '1', flexShrink: '1', flexBasis:'300px'}}>
-          {styles.length? <DefaultView selectedStyle={styles[selectedIndex || 0]} setExpanded={setExpanded}></DefaultView> : null}
+          {styles.length? <DefaultView selectedStyle={styles[selectedIndex || 0]} setExpanded={setExpanded} selectedImg={selectedImg} setSelectedImg={setSelectedImg}></DefaultView> : null}
         </div>
 
         <ProductDetailsContainer >

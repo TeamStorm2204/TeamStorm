@@ -32,6 +32,7 @@ const DefaultView =(props)=> {
       index = selectedIndex - 1;
     }
     setSelectedIndex(index);
+    props.setSelectedImg(index);
     if(index < indexStart)  {
       setIndexStart(index);
       setIndexEnd(index + 6);
@@ -48,7 +49,7 @@ const DefaultView =(props)=> {
 
     return (
     <DefaultContainer>
-        <DefaultImage src={photos[selectedIndex].url} onClick={expandView}/>
+        <DefaultImage src={photos[selectedIndex].url } loading="lazy" onClick={expandView}/>
         <ArrowsContainer>
             {(selectedIndex > 0)? 
               <LeftArrow>
@@ -69,8 +70,8 @@ const DefaultView =(props)=> {
             {photos.map((photo, index)=>(
               (index >= indexStart && (index <= indexEnd))?
                 (selectedIndex !== index)? 
-                  <ThumbImg src={photo.thumbnail_url} key={index} onClick={()=>setSelectedIndex(index)}/>:
-                  <BorderThumbImg src={photo.thumbnail_url} key={index} onClick={()=>setSelectedIndex(index)}/>
+                  <ThumbImg src={photo.thumbnail_url} loading="lazy" key={index} onClick={()=>setSelectedIndex(index)}/>:
+                  <BorderThumbImg src={photo.thumbnail_url} loading="lazy" key={index} onClick={()=>setSelectedIndex(index)}/>
                 : null
             ))}
             {(indexStart > 0)?
