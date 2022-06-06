@@ -30,13 +30,6 @@ const Overview =(props)=> {
       })
     }, [props.id]);
 
-    // useEffect(() => {
-    //     API.getProductInformation(props.id, (err, data) => {
-    //         // console.log(data);
-    //       setProduct(data);
-    //     })
-    //   }, [props.id]);
-
     const scrollTo = function(){
       let reviews = window.document.getElementById('Reviews');
       reviews.scrollIntoView({behavior: "smooth"});
@@ -61,7 +54,7 @@ const Overview =(props)=> {
             {(reviewCount > 0)? 
             <Reviews onClick={scrollTo}>
               <Stars id={props.id} setReviewCount={setReviewCount}></Stars> 
-              Read all {reviewCount} reviews
+              <span style={{marginLeft: '2px'}}>Read all {reviewCount} reviews</span>
             </Reviews>: null}
           {styles.length? <ProductStyleSelector id={props.id} styles={styles} setSelectedIndex={setSelectedIndex} selectedIndex={selectedIndex || 0} ></ProductStyleSelector> :null}
         </ProductDetailsContainer>

@@ -5,7 +5,25 @@ import { UserContext } from '../App.jsx';
 import api from '../../../API';
 import NewRev1 from './NewRev/NewRev1.jsx';
 import RenderReviews from './RenderReviews.jsx';
-import { FilterRate, Body, RangeSlider, Dropdown, DropdownMenu, DrpItem, St, ProgressBar, Scrollbar, PrimaryButton, Star, Header, Ratings, RatingCheck, SubHeader, GlobalStyles, StyledButton } from '../Styles.styled.js';
+import {
+  FilterRate,
+  Body,
+  RangeSlider,
+  Dropdown,
+  DropdownMenu,
+  DrpItem,
+  St,
+  ProgressBar,
+  Scrollbar,
+  PrimaryButton,
+  Star,
+  Header,
+  Ratings,
+  RatingCheck,
+  SubHeader,
+  GlobalStyles,
+  StyledButton
+} from '../Styles.styled.js';
 import Stars from '../Stars.jsx';
 import { AiOutlineDown } from "react-icons/ai";
 
@@ -17,7 +35,7 @@ const theme = {
     footer: '#003333',
   }
 }
-const Reviews = ({ relatedId }) => {
+const Reviews = () => {
   let metaStrings = {
     size: ['Too small', 'Too big'],
     width: ['Too narrow', 'Too wide'],
@@ -32,7 +50,6 @@ const Reviews = ({ relatedId }) => {
   let arr = [5, 4, 3, 2, 1]
   const [reviews, setReviews] = useState([]);
   const [renderedReviews, setRenderedReviews] = useState([]);
-  const [avg, setAvg] = useState(0);
   const [maxRevCt, setMaxRevCt] = useState(0);
   const [filteredRatings, setFilteredRatings] = useState({ 1: [], 2: [], 3: [], 4: [], 5: [] });
   const [filteredArrs, setFilteredArrs] = useState([])
@@ -42,9 +59,11 @@ const Reviews = ({ relatedId }) => {
   const [helpfulList, setHelpfulList] = useState([])
   const [filterTags, setFilterTags] = useState([])
   const [filterClick, setFilterClick] = useState(false)
-  const [rec, setRec] = useState(0)
+  const [recAvg, setRecAvg] = useState(0)
+
   useEffect(() => {
-    api.getReviews({ product_id: id, count: 1000, sort: sortert[0] }, (err, data) => {
+    api.getReviews({ product_id: id, count: 500, sort: sortert[0] }, (err, data) => {
+      console.log('Count: ', recAvg)
       if (data.results.length > 0) {
         let sum = 0
         let obj = { 1: [], 2: [], 3: [], 4: [], 5: [] }
@@ -59,32 +78,42 @@ const Reviews = ({ relatedId }) => {
       }
       setReviews(data.results);
       if (isFiltered) {
+        if (filterTags.length > 0) {
+          let filtArr = data.results.filter(t => {
+            return filterTags.includes(t.rating)
+          })
+          setFilteredArrs(filtArr)
+          setRenderedReviews(filtArr.slice(0, 2))
+          return
+        }
         setRenderedReviews(filteredArrs.slice(0, 2))
         return
       }
-      setRenderedReviews(data.results.slice(0, 2))
 
-      api.getReviewsMeta({ product_id: id }, (err, data) => {
-        if (err) {
-          console.log(err)
-        } else {
-          setMeta(data.characteristics)
-          let pRec = Number(data.recommended.true) / (Number(data.recommended.false) + Number(data.recommended.true)) * 100
-          setRec(pRec)
-          let sum = 0;
-          let avgg = 0;
-          let count = 0;
-          for (let key in data.ratings) {
-            sum += Number(data.ratings[key]) * Number(key);
-            count += Number(data.ratings[key])
-          }
-          avgg = sum / count;
-          setAvg(avgg)
-        }
-      })
+      setRenderedReviews(data.results.slice(0, 2))
     })
   }, [id, sortert]);
-  //, filteredArrs, filterTags,isFiltered,
+
+  useEffect(() => {
+    api.getReviewsMeta({ product_id: id }, (err, data) => {
+      if (err) {
+        console.log(err)
+      } else {
+        setMeta(data.characteristics)
+        let pRec = Number(data.recommended.true) / (Number(data.recommended.false) + Number(data.recommended.true)) * 100
+        let sum = 0;
+        let avgg = 0;
+        let count = 0;
+        for (let key in data.ratings) {
+          sum += Number(data.ratings[key]) * Number(key);
+          count += Number(data.ratings[key])
+        }
+        avgg = sum / count;
+        setRecAvg([avgg, pRec, count])
+      }
+    })
+  }, [id]);
+
   var sorter = (sortType) => {
     setSortert(sortType)
   }
@@ -135,14 +164,14 @@ const Reviews = ({ relatedId }) => {
           {
             reviews.length !== 0 ?
               <div>
-                <Star style={{ paddingTop: '20px', display: 'flex', alignItems: 'baseline' }}>
-                  <p style={{ fontWeight: '600', fontSize: '45px', textShadow: '3px 3px 1px #c2c2c2' }} >{Math.round(avg * 10) / 10}</p>
+                <Star>
+                  <p style={{ fontWeight: '600', fontSize: '45px', textShadow: '3px 3px 1px #c2c2c2' }} >{Math.round(recAvg[0] * 10) / 10}</p>
                   <div style={{ fontSize: '20px', display: 'inline-block' }}>
-                    {avg > 0 ? <St average={Math.round(avg * 10) / 10}>★★★★★</St> : null}
+                    {recAvg[0] > 0 ? <St average={Math.round(recAvg[0] * 10) / 10}>★★★★★</St> : null}
                   </div>
                 </Star>
                 <div style={{ marginTop: '-35px', display: 'flex', fontSize: '13px', color: '#8a8a8a' }}>
-                  Recommended by {Math.round(rec * 100) / 100}% of reviewers
+                  Recommended by {Math.round(recAvg[1] * 100) / 100}% of reviewers
                 </div>
               </div>
               : <div></div>
