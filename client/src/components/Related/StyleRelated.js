@@ -89,7 +89,7 @@ export const Icon = styled.div`
   &:hover{
     cursor: pointer;
     color:#FF4500;
-    font-size:2.1em;
+    font-size:1.2em;
   }
  `
 export const Cross = styled.button`
